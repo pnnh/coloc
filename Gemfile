@@ -32,6 +32,9 @@ gem 'bcrypt'
 # gem 'debugger', group: [:development, :test]
 
 gem 'bootstrap-sass'
+gem 'faker'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 group :development, :test do
   gem 'rspec-rails'
