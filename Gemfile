@@ -35,6 +35,7 @@ gem 'bootstrap-sass'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'rspec-its'
   gem 'spring'
   gem 'factory_girl_rails'
 end
