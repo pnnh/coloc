@@ -49,6 +49,8 @@ p {
     line-height: 1.7em;
 }
 /* header */
+.nav > li { float: left; }
+
 #logo {
     float: left;
     margin-right: 10px;
@@ -144,8 +146,7 @@ input {
     }
 }
 .field_with_errors {
-    @extend .control-group;
-    @extend .error;
+    @extend .has-error;
 }
 
 /* Users index */
