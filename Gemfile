@@ -20,7 +20,7 @@ gem 'jbuilder'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc',          group: :doc
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -31,9 +31,12 @@ gem 'sdoc',          group: :doc
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'bootstrap-sass'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'spring'
+  gem 'factory_girl_rails'
 end
 
 group :test do
