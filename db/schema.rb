@@ -11,16 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141221093200) do
+ActiveRecord::Schema.define(version: 20141228101837) do
 
-  create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email"
+  create_table "items", force: :cascade do |t|
+    t.string   "content",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_digest"
-    t.string   "remember_token"
-    t.boolean  "admin",           default: false
+    t.string   "title"
+  end
+
+  add_index "items", ["title"], name: "index_items_on_title"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name",            limit: 255
+    t.string   "email",           limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "password_digest", limit: 255
+    t.string   "remember_token",  limit: 255
+    t.boolean  "admin",                       default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

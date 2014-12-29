@@ -9,4 +9,9 @@ FactoryGirl.define do
       admin true
     end
   end
+
+  factory :item do
+    title "new item"
+    content "new item content"
+  end
 end

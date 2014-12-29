@@ -26,12 +26,12 @@ gem 'bootstrap-will_paginate'
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'rspec-rails'
-  gem 'rspec-its'
   gem 'spring'
 end
 
 group :test do
+  gem 'rspec-rails'
+  gem 'rspec-its'
   gem 'selenium-webdriver'
   gem 'capybara'
   gem 'factory_girl_rails'
