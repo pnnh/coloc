@@ -4,7 +4,7 @@ RSpec.describe "ItemPages", :type => :request do
   subject { page }
 
   describe "create item" do
-    before { visit new_path }
+    before { visit new_item_path }
     let(:submit) { "Create" }
 
     describe "with invalid information" do
