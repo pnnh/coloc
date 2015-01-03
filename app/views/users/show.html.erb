@@ -1,11 +1,14 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-	<%= gravatar_for @user %>
-	<%= @user.name %>
-      </h1>
-    </section>
-  </aside>
+
+<div class="col-md-11">
+  <%= @user.name %>
+</div>
+<div class="col-md-1">  
+  <ul class="nav nav-stacked" role="tablist">
+    <% if current_user.admin? && !current_user?(@user) %>
+      <li role="presentation">
+	<%= link_to "Delete", @user, method: :delete, data: { confirm: "You sure?" } %>
+      </li>
+    <% end %>
+  </ul>
 </div>

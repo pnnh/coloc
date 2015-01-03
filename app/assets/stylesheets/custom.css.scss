@@ -66,7 +66,7 @@ p {
 }
 /* footer */
 footer {
-    margin-top: 45px;
+    margin-top: 20px;
     padding-top: 5px;
     border-top: 1px solid $gray-medium-light;
     color: $gray-light;
@@ -126,6 +126,7 @@ aside {
 }
 
 /* forms */
+label { margin-top: 5px; }
 input, textarea, select, .uneditable-input {
     border: 1px solid #bbb;
     width: 100%;
@@ -138,6 +139,7 @@ input {
 #error_explanation {
     color: #f00;
     ul {
+	padding-left: 0;
 	list-style: none;
 	margin: 0 0 18px 0;
     }
@@ -150,13 +152,17 @@ input {
 
 .users {
     list-style: none;
+    padding-left: 0px;
     margin: 0;
     li {
 	overflow: auto;
 	padding: 10px 0;
-	border-top: 1px solid $gray-lighter;
+	border-bottom: 1px solid $gray-lighter;
 	&:last-child {
-	    border-bottom: 1px solid $gray-lighter;
+	    border-bottom: none;
 	}
     }
 }
+
+/* pagination */
+ul.pagination { margin: 0;  }
