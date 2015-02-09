@@ -21,7 +21,7 @@
       <%= link_to 'Save', '#', :onclick => '$("#edit_form").submit();' %>
     </li>
     <li role="presentation">
-      <%= link_to "Show", user_path(@user), data: { confirm: "Changes will be lost!" } %>
+      <%= link_to "Show", user_path(@user) %>
     </li>
     <% if current_user.admin? && !current_user?(@user) %>
       <li role="presentation">

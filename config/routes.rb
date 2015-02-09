@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :items
   resources :tags
   resources :sessions, only: [:new, :create, :destory]
+  resources :item_searches, only: [:new, :create]
   root to: 'static_pages#home'
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'

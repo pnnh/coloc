@@ -4,7 +4,8 @@ class ItemsController < ApplicationController
   end
   
   def index
-    @items = Item.paginate(page: params[:page])
+    @keyword = params[:keyword]
+    @items = (!@keyword.empty? ? Item.where("title LIKE :q", q: "%#{@keyword}%") : Item).paginate(page: params[:page])
   end
 
   def show
@@ -27,7 +28,6 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update_attributes(params.require(:item).permit(:content))
-      flash[:success] = "Item updated"
       redirect_to @item
     else
       render 'edit'
@@ -36,7 +36,6 @@ class ItemsController < ApplicationController
 
   def destroy
     Item.find(params[:id]).destroy
-    flash[:success] = "Item destroyed."
     redirect_to items_url
   end
 end

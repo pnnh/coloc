@@ -4,7 +4,7 @@
   <%= render partial: 'shared/errors', object: @item.errors %>
   <div class="span6 offset3">
     <%= form_for @item, :html => { :id => "edit_form" } do |f| %>
-    <%= f.text_field :content %>
+    <%= f.text_area :content, rows: 10 %>
     <% end %>
   </div>
 </div>
@@ -14,7 +14,7 @@
       <%= link_to 'Save', '#', :onclick => '$("#edit_form").submit();' %>
     </li>
     <li role="presentation">
-      <%= link_to "Show", item_path(@item), data: { confirm: "Changes will be lost!" } %>
+      <%= link_to "Show", item_path(@item) %>
     </li>
     <li role="presentation">
       <%= link_to "Delete", @item, method: :delete, data: { confirm: "You sure?" } %>
