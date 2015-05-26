@@ -1,4 +1,4 @@
-source "https://ruby.taobao.org"
+source "https://rubygems.org"
 
 gem 'rails'
 gem 'sass-rails'
@@ -14,6 +14,7 @@ gem 'bootstrap-sass'
 gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'rails-latex'
 
 group :development, :test do
   gem 'sqlite3'
