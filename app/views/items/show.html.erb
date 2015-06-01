@@ -1,15 +1,23 @@
 <% provide(:title, @item.title) %>
 
-<div class="col-md-11">
-  <%= @item.content %>
-</div>
-<div class="col-md-1">  
-  <ul class="nav nav-stacked" role="tablist">
-    <li role="presentation">
-      <%= link_to "Edit", edit_item_path(@item) %>
-    </li>
-    <li role="presentation">
-      <%= link_to "Delete", @item, method: :delete, data: { confirm: "You sure?" } %>
-    </li>
-  </ul>
+<% content_for :head do %>
+<%= stylesheet_link_tag    '/pdf.js/components/pdf_viewer', media: 'all', 'data-turbolinksxb-track' => true %>
+  <%= javascript_include_tag '/pdf.js/components/compatibility', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag '/pdf.js/pdf', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag '/pdf.js/components/pdf_viewer.js', 'data-turbolinks-track' => true %>  
+<% end %>
+
+<% content_for :navbar do %> 
+<li class="active"><%= link_to "阅读", item_path(@item) %></li>
+<li><%= link_to "编辑", edit_item_path(@item) %></li>
+<% end %> 
+
+<div class="row">
+  <div class="col-md-12" style='text-align:center'>
+    <!--<embed src="/pdf/<%= @item.title %>.pdf" width="100%" height="800" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">-->
+    <div id="viewerContainer">
+      <div id="viewer" class="pdfViewer"></div>
+    </div>
+      <%= javascript_include_tag '/pdf.js/simpleviewer', 'data-turbolinks-track' => true %>
+  </div>
 </div>
