@@ -1,3 +1,4 @@
+# coding: utf-8
 source "https://rubygems.org"
 
 gem 'rails'
@@ -17,6 +18,7 @@ gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'rails-latex'
+gem 'github-markup'
 
 group :development, :test do
   gem 'sqlite3'
