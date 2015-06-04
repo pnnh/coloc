@@ -1,4 +1,2 @@
-# Ruby on Rails Tutorial: sample application
-This is the sample application for
-the [*Ruby on Rails Tutorial*](http://railstutorial.
-by [Michael Hartl](http://michaelhartl.com/).
+# 宇哲
+一个表达并传播知识的站点
