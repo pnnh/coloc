@@ -1,8 +1,23 @@
 <% provide(:title, 'All users') %>
 
 <div class="col-md-12">
-  <ul class="users">
-    <%= render @users %>
-  </ul>
+  
+  <table class="table">
+    <thead>
+      <tr>
+	<th>#</th>
+	<th>姓名</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% n = 0
+	 for user in @users%>
+      <tr>
+	<th><%=n+=1%></th>
+	<td><%=link_to user.name, user%></td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
   <%= will_paginate %>
 </div>

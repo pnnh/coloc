@@ -2,20 +2,21 @@
 
 /* mixins, variables, etc. */
 $gray-medium-light: #eaeaea;
+/*
 @mixin box_sizing {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-}
+}*/
 /* universal */
-html {
+/*html {
     overflow-y: scroll;
 }
 
 section {
     overflow: auto;
-}
-textarea {
+}*/
+/*textarea {
     resize: vertical;
 }
 .center {
@@ -23,8 +24,8 @@ textarea {
     h1 {
 	margin-bottom: 10px;
     }
-}
-/* typography */
+}*/
+/* typography
 h1, h2, h3, h4, h5, h6 {
     line-height: 1;
 }
@@ -45,9 +46,9 @@ h2 {
 p {
     font-size: 1.1em;
     line-height: 1.7em;
-}
+}*/
 /* header */
-.nav > li { float: left; }
+/*.nav > li { float: left; }
 .navbar-form { padding-left: 0px; }
 #logo {
     float: left;
@@ -63,7 +64,7 @@ p {
 	color: white;
 	text-decoration: none;
     }
-}
+}*/
 /* footer */
 footer {
     margin-top: 30px;
@@ -89,16 +90,16 @@ footer {
     }
 }
 /* miscellaneous */
-.debug_dump {
+/*.debug_dump {
     clear: both;
     float: left;
     width: 100%;
     margin-top: 45px;
     @include box_sizing;
 }
-
+*/
 /* sidebar */
-aside {
+/*aside {
     section {
 	padding: 10px 0;
 	border-top: 1px solid $gray-lighter;
@@ -124,8 +125,8 @@ aside {
     float: left;
     margin-right: 10px;
 }
-
-/* forms */
+*/
+/* forms 
 label { margin-top: 5px; }
 input, textarea, select, .uneditable-input {
     border: 1px solid #bbb;
@@ -147,9 +148,10 @@ input {
 .field_with_errors {
     @extend .has-error;
 }
+*/
 
 /* Users index */
-
+/*
 .users,.items {
     list-style: none;
     padding-left: 0px;
@@ -163,6 +165,6 @@ input {
 	}
     }
 }
-
+*/
 /* pagination */
-ul.pagination { margin: 0;  }
+.pagination { margin: 0;  }
