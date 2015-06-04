@@ -20,6 +20,8 @@ gem 'bootstrap-will_paginate'
 gem 'rails-latex'
 gem 'github-markup'
 
+gem 'github-markup'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'spring'
