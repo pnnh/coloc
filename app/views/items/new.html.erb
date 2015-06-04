@@ -1,13 +1,25 @@
-<% provide(:title, 'New Item') %>
-<h1>New Item</h1>
+<% provide(:title, '新建条目') %>
+
+<% content_for :navbar do %> 
+<li class="active"><%= link_to "创建", new_item_path %></li>
+<% end %>
+
 <div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@item) do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-    <%= f.label :content %>
-    <%= f.text_field :content %>
-    <%= f.submit "Create", class: "btn btn-large btn-primary" %>
+  <div class="col-md-12">
+    <%= form_for @item do |f| %>
+    <div class="form-group">
+      <%= f.label :title, "标题" %>
+      <%= f.text_field :title, class:"form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :markup, "标记" %>
+      <%= f.select :markup, all_markups, {}, class:"form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :content, "正文" %>
+      <%= f.text_area :content, class:"form-control", rows:50 %>
+    </div>
+    <%= f.submit "提交", class:"btn btn-default" %>
     <% end %>
   </div>
 </div>

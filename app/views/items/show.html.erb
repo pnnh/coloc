@@ -6,7 +6,8 @@
 <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
 <% end %>
 
-<% content_for :navbar do %> 
+<% content_for :navbar do %>
+<li><%= link_to "创建", new_item_path %></li>
 <li class="active"><%= link_to "阅读", item_path(@item) %></li>
 <li><%= link_to "编辑", edit_item_path(@item) %></li>
 <% end %> 

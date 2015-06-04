@@ -1,6 +1,7 @@
-<% provide(:title, "Edit Item") %>
+<% provide(:title, "编辑条目") %>
 
-<% content_for :navbar do %> 
+<% content_for :navbar do %>
+<li><%= link_to "创建", new_item_path %></li>
 <li><%= link_to "阅读", item_path(@item) %></li>
 <li class="active"><%= link_to "编辑", edit_item_path(@item) %></li>
 <% end %> 
@@ -8,7 +9,7 @@
 <div class="row">
   <div class="col-md-12">  
     <%= render partial: 'shared/errors', object: @item.errors %>
-    <%= form_for @item, :html => { :id => "edit_form" } do |f| %>
+    <%= form_for @item do |f| %>
     <div class="form-group">
       <%= f.label :markup, "标记" %>
       <%= f.select :markup, all_markups, {}, class:"form-control" %>
