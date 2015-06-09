@@ -1,34 +1,43 @@
+<% search_act = yield(:search_act)
+   search_act = root_path  if search_act.empty? %>
 
-  <nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-      <div class="navbar-header">
-	<a class="navbar-brand" href="/">首页</a>
-      </div>
-      <%= form_tag(items_path, method: "get", class: "navbar-form navbar-left", role: "search") do %>
-      <div class="form-group">
-	<%= text_field_tag(:keyword, @keyword, class: "form-control", placeholder: "搜索") %>
-      </div>
-      <% end %>
-      <ul class="nav navbar-nav">
-	<%= yield :navbar %>  
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-	<% if signed_in? %>
-	<li><%= link_to "用户", users_path %></li>
-	<li id="fat-menu" class="dropdown">
-	  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-	    账号 <span class="caret"></span>
-	  </a>
-	  <ul class="dropdown-menu" role="menu">
-	    <li><%= link_to "信息", current_user %></li>
-	    <li><%= link_to "设置", edit_user_path(current_user) %></li>
-	    <li class="divider"></li>
-	    <li><%= link_to "注销", signout_path, method: "delete" %></li>
-	  </ul>
-	</li>
-	<% else %>
-	<li><%= link_to "登录", signin_path %></li>
-	<% end %>
-      </ul>
+<script type="text/javascript">
+  function search_submit(form){
+  document.location.href= "<%=search_act == "/" ? "" : search_act%>/" + search_form.keyword.value;
+  return false;
+  }
+</script>
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">首页</a>
     </div>
-  </nav>
+    <%= form_tag(search_act, method: "get", id: "search_form", class: "navbar-form navbar-left", role: "search", onsubmit: raw("return search_submit();")) do %>
+    <div class="form-group">
+      <%= text_field_tag(:keyword, @keyword, class: "form-control", placeholder: "搜索") %>
+    </div>
+    <% end %>
+    <ul class="nav navbar-nav">
+      <%= yield :navbar %>  
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <% if signed_in? %>
+      <li><%= link_to "用户", users_path %></li>
+      <li id="fat-menu" class="dropdown">
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	  账号 <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" role="menu">
+	  <li><%= link_to "信息", current_user %></li>
+	  <li><%= link_to "设置", edit_user_path(current_user) %></li>
+	  <li class="divider"></li>
+	  <li><%= link_to "注销", signout_path, method: "delete" %></li>
+	</ul>
+      </li>
+      <% else %>
+      <li><%= link_to "登录", signin_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

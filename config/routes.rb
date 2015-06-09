@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   resources :users
-  resources :items
+  resources :items, only: [:new, :edit, :create, :show]
   resources :tags
   resources :sessions, only: [:new, :create, :destory]
+  #resources :infos, only: [:index]
   resources :item_searches, only: [:new, :create]
   root to: 'static_pages#home'
   match '/signup', to: 'users#new', via: 'get'
@@ -16,6 +17,8 @@ Rails.application.routes.draw do
   get 'static_pages/help'
   get 'static_pages/about'
   get 'static_pages/contact'
+
+  match '/:keyword', to: 'infos#index', as: 'search', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

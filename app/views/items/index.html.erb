@@ -1,4 +1,5 @@
-<% provide(:title, '条目列表') %>
+<% provide(:title, '条目列表')
+   provide(:search_act, items_path) %>
 
 <div class="col-md-12">
   <table class="table">
@@ -20,6 +21,5 @@
       <%end%>
     </tbody>
   </table>
-  <%= will_paginate %>
 </div>
 

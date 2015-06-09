@@ -1,0 +1,49 @@
+<% provide(:title, '信息列表')
+   provide(:search_act, root_path)%>
+
+<div class="col-md-12">
+  <table class="table">
+    <colgroup span="3"><col style="width:15px;"/><col style="width:50px;"/><col/></colgroup>
+    <thead>
+      <tr>
+	<th>#</th>
+	<th>内容</th>
+	<th>标题</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% n = 0
+	 for item in @items
+	 break if n == @limit%>
+      <tr>
+	<th><%=n+=1%></th>
+	<td>条目</td>
+	<td><%=link_to item.title, item%></td>
+      </tr>
+      <% end%>
+      <% if(n == @limit)%>
+      <tr>
+	<td colspan="2"></td>
+	<td><a href="#">更多条目...</a></td>
+      <tr>
+	<% end%>
+	
+      <% n = 0
+	 for user in @users
+	 break if n == @limit%>
+      <tr>
+	<th><%=n += 1%></th>
+	<td>用户</td>
+	<td><%=link_to user.name, user%></td>
+      </tr>
+      <% end%>
+      <% if(n == @limit)%>
+      <tr>
+	<td colspan="2"></td>
+	<td><a href="#">更多用户...</a></td>
+      <tr>
+      <% end%>
+    </tbody>
+  </table>
+</div>
+

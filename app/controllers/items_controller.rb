@@ -2,14 +2,20 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
   end
-  
-  def index
-    @keyword = params[:keyword]
-    @items = (!@keyword.empty? ? Item.where("title LIKE :q", q: "%#{@keyword}%") : Item).paginate(page: params[:page])
-  end
 
   def show
-    @item = Item.find(params[:id])
+    id = params[:id]
+    if(id.to_i > 0)
+      @item = Item.find id
+    elsif(!id.blank?)
+      @item = Item.find_by_title id
+      if(@item.nil?)
+        @keyword = id
+        @items = Item.where("title LIKE :q", q: "%#{@keyword}%").limit(100)
+        render 'index'
+      end
+    end
+
     #send_data(pdf, :filename=>item.title + '.pdf', :disposition => "inline", :type => "application/pdf; charset=utf-8")
   end
 
