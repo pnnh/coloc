@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :users, only: [:new, :edit, :create, :show]
-  resources :items, only: [:new, :edit, :create, :show]
+  resources :users, only: [:new, :edit, :create, :show, :update]
+  resources :items, only: [:new, :edit, :create, :show, :update]
   resources :tags
   resources :sessions, only: [:new, :create, :destory]
   root to: 'static_pages#home'

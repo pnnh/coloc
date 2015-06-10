@@ -1,5 +1,5 @@
-<% provide(:title, @item.title)
-   provide(:search_act, items_path) %>
+<% provide(:title, @item.title )
+   provide(:info, "items")%>
 
 <% content_for :head do %>
 <%= stylesheet_link_tag '/highlight.js/styles/github.css', media: 'all', 'data-turbolinksxb-track' => true %>

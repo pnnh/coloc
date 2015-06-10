@@ -1,9 +1,9 @@
-<% search_act = yield(:search_act)
-   search_act = root_path  if search_act.empty? %>
+<% info = yield(:info)
+   search_act = info.empty? || info == "/" ? "/" : "/" + info + "/"%>
 
 <script type="text/javascript">
-  function search_submit(form){
-  document.location.href= "<%=search_act == "/" ? "" : search_act%>/" + search_form.keyword.value;
+  function search_submit(){
+  document.location.href= search_form.action + search_form.keyword.value;
   return false;
   }
 </script>
@@ -15,7 +15,7 @@
     </div>
     <%= form_tag(search_act, method: "get", id: "search_form", class: "navbar-form navbar-left", role: "search", onsubmit: raw("return search_submit();")) do %>
     <div class="form-group">
-      <%= text_field_tag(:keyword, @keyword, class: "form-control", placeholder: "搜索") %>
+      <%= text_field_tag(:keyword, @keyword, class: "form-control", placeholder: "搜索" + info_name(info)) %>
     </div>
     <% end %>
     <ul class="nav navbar-nav">
@@ -23,7 +23,6 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <% if signed_in? %>
-      <li><%= link_to "用户", users_path %></li>
       <li id="fat-menu" class="dropdown">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 	  账号 <span class="caret"></span>

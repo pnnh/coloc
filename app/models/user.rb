@@ -1,11 +1,22 @@
 class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
   before_create :create_remember_token
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 50 }, uniqueness: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, length: { minimum: 6 }
+
+  extend FriendlyId
+  friendly_id :name, :use => [:slugged, :finders]
+  
+  def normalize_friendly_id(input)
+    input.to_s.to_slug.normalize.to_s.gsub("-", "_")
+  end
+  
+  def should_generate_new_friendly_id?
+    new_record?
+  end
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64

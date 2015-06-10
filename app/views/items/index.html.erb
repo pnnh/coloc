@@ -1,5 +1,5 @@
 <% provide(:title, '条目列表')
-   provide(:search_act, items_path) %>
+   provide(:info, "items") %>
 
 <div class="col-md-12">
   <%if @items.count > 0%>
@@ -8,7 +8,8 @@
       <% for item in @items%>
       <tr>
 	<td><%=link_to item.title, item%></td>
-	<td><%=prettify_markup(item.markup)%></td>
+	<td><%=prettify_markup(item.markup)%>
+	<%=item.markup%></td>
       </tr>
       <%end%>
     </tbody>

@@ -10,16 +10,14 @@ gem 'turbolinks'
 gem 'jbuilder'
 gem 'sdoc',          group: :doc
 gem 'bcrypt'
-#gem 'rdiscount'  #markdown解析
-#gem 'coderay'  #代码语法高亮
-
+gem 'redcarpet'
+gem 'friendly_id'
+gem "babosa"
 gem 'bootstrap-sass'
 gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'rails-latex'
-gem 'github-markup'
-
 gem 'github-markup'
 
 group :development, :test do

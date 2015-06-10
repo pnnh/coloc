@@ -10,7 +10,7 @@
       </tr>
       <%for item in @items%>
       <tr>
-	<td><%=link_to item.title, item_show_path(id:item.title)%></td>
+	<td><%=link_to item.title, item%></td>
       </tr>
       <% end%>
       <% if @items.count == @limit%>
@@ -25,7 +25,7 @@
       </tr>
       <%for user in @users%>
       <tr>
-	<td><%=link_to user.name, user_show_path(id:user.name)%></td>
+	<td><%=link_to user.name, user%></td>
       </tr>
       <% end%>
       <% if(@users.count == @limit)%>

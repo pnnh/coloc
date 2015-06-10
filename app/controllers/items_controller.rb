@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
     if(id.to_i > 0)
       @item = Item.find id
     elsif(!id.blank?)
-      @item = Item.find_by_title id
+      @item = Item.friendly.find id rescue nil
       if(@item.nil?)
         @keyword = id
         @items = Item.where("title LIKE :q", q: "%#{@keyword}%").limit(100)
@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(params.require(:item).permit(:title, :content))
+    @item = Item.new(params.require(:item).permit(:title, :content, :markup))
     if @item.save
       #save_pdf(@item)
       redirect_to @item

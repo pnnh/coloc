@@ -11,6 +11,17 @@ module ApplicationHelper
     end
   end
   
+  def info_name(info = "infos")
+    case
+    when info == "items"
+      "条目"
+    when info == "users"
+      "用户"
+    else
+      "信息"
+    end
+  end
+  
   def markdown(string)
     RDiscount.new(string).to_html.html_safe
   end

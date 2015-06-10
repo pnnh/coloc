@@ -40,6 +40,7 @@ GEM
     autoprefixer-rails (5.1.5)
       execjs
       json
+    babosa (1.0.2)
     bcrypt (3.1.10)
     bootstrap-sass (3.3.3)
       autoprefixer-rails (>= 5.0.0.1)
@@ -55,7 +56,6 @@ GEM
       xpath (~> 2.0)
     childprocess (0.5.5)
       ffi (~> 1.0, >= 1.0.11)
-    coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -74,6 +74,8 @@ GEM
     faker (1.4.3)
       i18n (~> 0.5)
     ffi (1.9.6)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     github-markup (1.3.3)
     globalid (0.3.2)
       activesupport (>= 4.1.0)
@@ -128,9 +130,9 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
-    rdiscount (2.1.8)
     rdoc (4.2.0)
       json (~> 1.4)
+    redcarpet (3.2.3)
     rspec-core (3.2.0)
       rspec-support (~> 3.2.0)
     rspec-expectations (3.2.0)
@@ -197,21 +199,22 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  babosa
   bcrypt
   bootstrap-sass
   bootstrap-will_paginate
   capybara
-  coderay
   coffee-rails
   factory_girl_rails
   faker
+  friendly_id
   github-markup
   jbuilder
   jquery-rails
   pg
   rails
   rails-latex
-  rdiscount
+  redcarpet
   rspec-its
   rspec-rails
   sass-rails

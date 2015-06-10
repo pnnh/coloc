@@ -1,16 +1,16 @@
 <% provide(:title, "编辑用户")
-   provide(:search_act, users_path) %>
+   provide(:info, "users") %>
 
 <div class="col-md-12">  
   <%= form_for(@user) do |f| %>
   <%= render :partial => 'shared/errors', :object => @user.errors %>
   <div class="form-group">
-    <%= f.label :name, "姓名" %>
-    <%= f.text_field :name, class:"form-control" %>
+    <%= f.label :email, "邮箱" %>
+    <%= f.text_field :email, class:"form-control", disabled: "disabled" %>
   </div>
   <div class="form-group">
-    <%= f.label :email, "邮箱" %>
-    <%= f.text_field :email, class:"form-control" %>
+    <%= f.label :name, "姓名" %>
+    <%= f.text_field :name, class:"form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :password, "密码" %>
