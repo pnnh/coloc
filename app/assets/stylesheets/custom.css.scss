@@ -166,5 +166,8 @@ input {
     }
 }
 */
+/*table*/
+.table tr:first-child td{border-top:0;}
+.table tr.group_title {background-color:#f9f9f9;}
 /* pagination */
 .pagination { margin: 0;  }

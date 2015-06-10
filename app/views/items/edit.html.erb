@@ -1,4 +1,5 @@
-<% provide(:title, "编辑条目") %>
+<% provide(:title, "编辑条目")
+   provide(:search_act, items_path) %>
 
 <% content_for :navbar do %>
 <li><%= link_to "创建", new_item_path %></li>

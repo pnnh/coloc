@@ -3,46 +3,36 @@
 
 <div class="col-md-12">
   <table class="table">
-    <colgroup span="3"><col style="width:15px;"/><col style="width:50px;"/><col/></colgroup>
-    <thead>
-      <tr>
-	<th>#</th>
-	<th>内容</th>
-	<th>标题</th>
-      </tr>
-    </thead>
     <tbody>
-      <% n = 0
-	 for item in @items
-	 break if n == @limit%>
-      <tr>
-	<th><%=n+=1%></th>
+      <% if @items.count > 0%>
+      <tr class="group_title">
 	<td>条目</td>
-	<td><%=link_to item.title, item%></td>
+      </tr>
+      <%for item in @items%>
+      <tr>
+	<td><%=link_to item.title, item_show_path(id:item.title)%></td>
       </tr>
       <% end%>
-      <% if(n == @limit)%>
+      <% if @items.count == @limit%>
       <tr>
-	<td colspan="2"></td>
-	<td><a href="#">更多条目...</a></td>
+	<td><%=link_to "更多条目...", item_show_path(id:@keyword)%></td>
       <tr>
-	<% end%>
+	<% end end%>
 	
-      <% n = 0
-	 for user in @users
-	 break if n == @limit%>
-      <tr>
-	<th><%=n += 1%></th>
+	<% if @users.count > 0%>
+      <tr class="group_title">
 	<td>用户</td>
-	<td><%=link_to user.name, user%></td>
+      </tr>
+      <%for user in @users%>
+      <tr>
+	<td><%=link_to user.name, user_show_path(id:user.name)%></td>
       </tr>
       <% end%>
-      <% if(n == @limit)%>
+      <% if(@users.count == @limit)%>
       <tr>
-	<td colspan="2"></td>
-	<td><a href="#">更多用户...</a></td>
+	<td><%=link_to "更多用户...", user_show_path(id:@keyword)%></td>
       <tr>
-      <% end%>
+      <% end end%>
     </tbody>
   </table>
 </div>

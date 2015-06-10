@@ -10,8 +10,8 @@ gem 'turbolinks'
 gem 'jbuilder'
 gem 'sdoc',          group: :doc
 gem 'bcrypt'
-gem 'rdiscount'  #markdown解析
-gem 'coderay'  #代码语法高亮
+#gem 'rdiscount'  #markdown解析
+#gem 'coderay'  #代码语法高亮
 
 gem 'bootstrap-sass'
 gem 'faker'

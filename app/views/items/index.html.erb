@@ -2,24 +2,19 @@
    provide(:search_act, items_path) %>
 
 <div class="col-md-12">
+  <%if @items.count > 0%>
   <table class="table">
-    <thead>
-      <tr>
-	<th>#</th>
-	<th>标题</th>
-	<th>标记</th>
-      </tr>
-    </thead>
     <tbody>
-      <% n = 0
-	 for item in @items%>
+      <% for item in @items%>
       <tr>
-	<th><%=n+=1%></th>
 	<td><%=link_to item.title, item%></td>
 	<td><%=prettify_markup(item.markup)%></td>
       </tr>
       <%end%>
     </tbody>
   </table>
+  <%else%>
+  没有结果
+  <%end%>
 </div>
 

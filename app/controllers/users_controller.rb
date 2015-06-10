@@ -4,13 +4,19 @@ class UsersController < ApplicationController
   before_action :admin_user, only: :destroy
   
   def show
-    @user = User.find(params[:id])
+    id = params[:id]
+    if(id.to_i > 0)
+      @user = User.find id
+    elsif(!id.blank?)
+      @user = User.find_by_name id
+      if(@user.nil?)
+        @keyword = id
+        @users = User.where("name LIKE :q", q: "%#{@keyword}%").limit(100)
+        render 'index'
+      end
+    end
   end
 
-  def index
-    @users = User.paginate(page: params[:page])
-  end
-  
   def new
     @user = User.new
   end

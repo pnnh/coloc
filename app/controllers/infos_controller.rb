@@ -6,8 +6,8 @@ class InfosController < ApplicationController
       @items = Arrary.new
       @users = Array.new
     else
-      @items = Item.where("title LIKE :q", q: "%#{@keyword}%").limit(@limit + 1)
-      @users = User.where("name LIKE :q", q: "%#{@keyword}%").limit(@limit + 1)
+      @items = Item.where("title LIKE :q", q: "%#{@keyword}%").limit(@limit)
+      @users = User.where("name LIKE :q", q: "%#{@keyword}%").limit(@limit)
     end
   end
 end
