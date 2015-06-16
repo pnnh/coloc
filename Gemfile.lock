@@ -54,6 +54,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    charlock_holmes (0.7.3)
     childprocess (0.5.5)
       ffi (~> 1.0, >= 1.0.11)
     coffee-rails (4.1.0)
@@ -65,6 +66,7 @@ GEM
     coffee-script-source (1.9.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
+    escape_utils (1.1.0)
     execjs (2.3.0)
     expression_parser (0.9.0)
     factory_girl (4.5.0)
@@ -77,10 +79,19 @@ GEM
     ffi (1.9.6)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
+    github-linguist (4.5.5)
+      charlock_holmes (~> 0.7.3)
+      escape_utils (~> 1.1.0)
+      mime-types (>= 1.19)
+      rugged (~> 0.23.0b1)
+    github-markdown (0.6.8)
     github-markup (1.3.3)
     globalid (0.3.2)
       activesupport (>= 4.1.0)
     hike (1.2.3)
+    html-pipeline (1.11.0)
+      activesupport (>= 2)
+      nokogiri (~> 1.4)
     htmlentities (4.3.3)
     i18n (0.7.0)
     jbuilder (2.2.6)
@@ -102,6 +113,10 @@ GEM
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     pg (0.18.1)
+    posix-spawn (0.3.11)
+    pygments.rb (0.6.3)
+      posix-spawn (~> 0.3.6)
+      yajl-ruby (~> 1.2.0)
     rack (1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -156,6 +171,7 @@ GEM
       rspec-support (~> 3.2.0)
     rspec-support (3.2.1)
     rubyzip (1.1.7)
+    rugged (0.23.0b2)
     sass (3.4.11)
     sass-rails (5.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -207,6 +223,7 @@ GEM
     will_paginate (3.0.7)
     xpath (2.0.0)
       nokogiri (~> 1.3)
+    yajl-ruby (1.2.1)
 
 PLATFORMS
   ruby
@@ -221,10 +238,14 @@ DEPENDENCIES
   factory_girl_rails
   faker
   friendly_id
+  github-linguist
+  github-markdown
   github-markup
+  html-pipeline
   jbuilder
   jquery-rails
   pg
+  pygments.rb
   rails
   rails-latex
   redcarpet

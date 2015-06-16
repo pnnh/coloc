@@ -22,4 +22,13 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  #database: db/production.sqlite3
+  adapter: postgresql
+  encoding: utf8
+  database: <%= ENV["COLOC_DB"] %>
+  username: <%= ENV["COLOC_DBUSER"] %>
+  password: <%= ENV["COLOC_DBPASS"] %>
+  pool: 5
+  timeout: 5000
+  host: <%= ENV["COLOC_DBHOST"] %>
+  port: <%= ENV["COLOC_DBPORT"] %>

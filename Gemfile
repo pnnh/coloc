@@ -11,16 +11,27 @@ gem 'turbolinks'
 gem 'jbuilder'
 gem 'sdoc',          group: :doc
 gem 'bcrypt'
-gem 'redcarpet'
+#url美化
 gem 'friendly_id'
 gem 'babosa'
 gem 'bootstrap-sass'
+#自动化任务
 gem 'faker'
+#分页
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-gem 'rails-latex'
+#文本标记
 gem 'github-markup'
+gem 'github-markdown'
+gem 'github-linguist'
+##Markdown解析
+gem 'redcarpet'
+gem 'html-pipeline'
+##Mediawiki解析
 gem 'wikicloth'
+gem 'rails-latex'
+#语法高亮
+gem 'pygments.rb'
 
 group :development, :test do
   gem 'sqlite3'
