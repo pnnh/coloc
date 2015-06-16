@@ -14,15 +14,16 @@
 ActiveRecord::Schema.define(version: 20150610145917) do
 
   create_table "items", force: :cascade do |t|
-    t.string   "title"
-    t.string   "content"
+    t.string   "content",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
     t.string   "markup"
     t.string   "slug"
   end
 
   add_index "items", ["slug"], name: "index_items_on_slug"
+  add_index "items", ["title"], name: "index_items_on_title"
 
   create_table "tags", force: :cascade do |t|
     t.string   "title"
@@ -34,13 +35,13 @@ ActiveRecord::Schema.define(version: 20150610145917) do
   add_index "tags", ["title"], name: "index_tags_on_title"
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
+    t.string   "name",            limit: 255
+    t.string   "email",           limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_digest"
-    t.string   "remember_token"
-    t.boolean  "admin",           default: false
+    t.string   "password_digest", limit: 255
+    t.string   "remember_token",  limit: 255
+    t.boolean  "admin",                       default: false
     t.string   "slug"
   end
 

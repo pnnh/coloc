@@ -20,6 +20,6 @@
       <div id="viewer" class="pdfViewer"></div>
     </div>
     <%= javascript_include_tag '/pdf.js/simpleviewer', 'data-turbolinks-track' => true %>-->
-    <%= raw markup("markdown", @item.content) %>
+    <%= raw markup(@item.markup, @item.content) %>
   </div>
 </div>

@@ -13,9 +13,11 @@ class User < ActiveRecord::Base
   def normalize_friendly_id(input)
     input.to_s.to_slug.normalize.to_s.gsub("-", "_")
   end
-  
+
   def should_generate_new_friendly_id?
-    new_record?
+    #new_record?
+    #new_record? || slug.blank?
+    true
   end
 
   def User.new_remember_token

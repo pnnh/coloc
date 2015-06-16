@@ -1,5 +1,6 @@
 # coding: utf-8
-source "https://rubygems.org"
+#source "https://rubygems.org"
+source "https://ruby.taobao.org"
 
 gem 'rails'
 gem 'sass-rails'
@@ -12,13 +13,14 @@ gem 'sdoc',          group: :doc
 gem 'bcrypt'
 gem 'redcarpet'
 gem 'friendly_id'
-gem "babosa"
+gem 'babosa'
 gem 'bootstrap-sass'
 gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'rails-latex'
 gem 'github-markup'
+gem 'wikicloth'
 
 group :development, :test do
   gem 'sqlite3'
