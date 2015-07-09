@@ -12,9 +12,9 @@ module ApplicationHelper
   
   def info_name(info = "infos")
     case
-    when info == "items"
+    when info == items_path
       "条目"
-    when info == "users"
+    when info == users_path
       "用户"
     else
       "信息"

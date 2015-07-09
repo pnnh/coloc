@@ -11,7 +11,8 @@ FactoryGirl.define do
   end
 
   factory :item do
-    title "new item"
+    title "newitem"
+    markup "markdown"
     content "new item content"
   end
 end

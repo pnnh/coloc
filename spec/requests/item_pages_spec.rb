@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'rails_helper'
 
 RSpec.describe "ItemPages", :type => :request do
@@ -5,19 +6,17 @@ RSpec.describe "ItemPages", :type => :request do
 
   describe "index" do
     let(:item) { FactoryGirl.create(:item) }
-    before { visit items_path }
-    it { should have_title('All items') }
-    it { should have_content('All items') }
+    before { visit item_path(item) }
     
-    describe "pagination" do
-      before(:all) { 30.times { FactoryGirl.create(:item) } }
-      after(:all) { Item.delete_all }
-      it { should have_selector('div.pagination') }
-      it "should list each item" do
-        Item.paginate(page: 1).each do |item|
-          expect(page).to have_selector('li', text: item.title)
-        end
-      end
+    #it { should have_title('条目列表') }
+    it { should have_content('new item content') }
+
+    describe "搜索条目" do
+      FactoryGirl.create(:item, title:"emacs", markup:"markdown", content:"emacs content")
+      before {visit item_path('e')}
+      #it{raise page.body}
+      it {should have_content('newitem')}
+      it {should have_content('emacs')}
     end
   end
   

@@ -1,21 +1,22 @@
 <% provide(:title, '条目列表')
-   provide(:info, "items") %>
+   provide(:info, items_path) %>
 
-<div class="col-md-12">
+<% content_for :navbar do %> 
+<li><%= link_to "创建", new_item_path %></li>
+<% end %>
+
   <%if @items.count > 0%>
   <table class="table">
     <tbody>
       <% for item in @items%>
       <tr>
 	<td><%=link_to item.title, item%></td>
-	<td><%=prettify_markup(item.markup)%>
-	<%=item.markup%></td>
+	<td><%=prettify_markup(item.markup)%></td>
       </tr>
       <%end%>
     </tbody>
   </table>
-  <%else%>
-  没有结果
+  <%else%>-<%=@items.count%>-<%=request.url%>-
+  没有找到结果，你可以<%=link_to '创建', action:'new', title: @keyword%>此条目
   <%end%>
-</div>
 

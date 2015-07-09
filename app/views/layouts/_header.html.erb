@@ -1,5 +1,5 @@
 <% info = yield(:info)
-   search_act = info.empty? || info == "/" ? "/" : "/" + info + "/"%>
+   search_act = info + "/" %>
 
 <script type="text/javascript">
   function search_submit(){
@@ -8,11 +8,18 @@
   }
 </script>
 
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
       <a class="navbar-brand" href="/">首页</a>
     </div>
+    <div class="collapse navbar-collapse" id="main-navbar-collapse">
     <%= form_tag(search_act, method: "get", id: "search_form", class: "navbar-form navbar-left", role: "search", onsubmit: raw("return search_submit();")) do %>
     <div class="form-group">
       <%= text_field_tag(:keyword, @keyword, class: "form-control", placeholder: "搜索" + info_name(info)) %>
@@ -38,5 +45,6 @@
       <li><%= link_to "登录", signin_path %></li>
       <% end %>
     </ul>
+    </div>
   </div>
 </nav>
