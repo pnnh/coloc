@@ -1,5 +1,5 @@
 GEM
-  remote: https://ruby.taobao.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (4.2.0)
       actionpack (= 4.2.0)
@@ -260,3 +260,6 @@ DEPENDENCIES
   uglifier
   wikicloth
   will_paginate
+
+BUNDLED WITH
+   1.12.5
