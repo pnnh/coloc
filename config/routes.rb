@@ -3,8 +3,11 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :edit, :create, :show, :update], path: 'u'
   resources :items, only: [:new, :edit, :create, :show, :update], path: 'w'
   resources :tags
+  resources :channels, only: [:edit, :create, :update]
   resources :sessions, only: [:new, :create, :destory]
-  root to: 'static_pages#home'
+
+  root to: 'content#index'
+
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
@@ -14,7 +17,10 @@ Rails.application.routes.draw do
 
   #match '/users/:id', to: 'users#show', as: 'user_show', via: 'get'
   #match '/items/:id', to: 'items#show', as: 'item_show', via: 'get'
-  match '/:keyword', to: 'infos#index', as: 'search', via: 'get'
+
+  match '/channel/new/:channel_id', to: 'channels#new', as: 'channel_new', via: 'get'
+  match '/content/new/:channel_id', to: 'content#new', as: 'content_new', via: 'get'
+  match '/content/:channel_id', to: 'content#index', as: 'content_index', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

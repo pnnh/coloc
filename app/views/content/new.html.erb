@@ -1,0 +1,26 @@
+<% provide(:title, '新建条目')
+   provide(:info, items_path) %>
+
+<% content_for :navbar do %>
+    <li class="active"><%= link_to "创建", new_item_path %></li>
+<% end %>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="jumbotron">
+      <h1>
+        <%= link_to "频道", channel_new_url %>
+      </h1>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="jumbotron">
+      <h1>文章</h1>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="jumbotron">
+      <h1>微博</h1>
+    </div>
+  </div>
+</div>

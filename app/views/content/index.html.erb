@@ -1,0 +1,50 @@
+<% provide(:title, '条目列表')
+   provide(:info, items_path) %>
+
+<% content_for :navbar do %>
+    <li  class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        创建 <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu" role="menu">
+        <li><%= link_to "频道", "" %></li>
+        <li><%= link_to "文章", "" %></li>
+        <li><%= link_to "微博", "" %></li>
+      </ul>
+    </li>
+    <li  class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        标签 <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu" role="menu">
+        <li><%= link_to "黑夜", "" %></li>
+        <li><%= link_to "爱与正义", "" %></li>
+        <li><%= link_to "水瓶座", "" %></li>
+        <li><%= link_to "星星", "" %></li>
+        <li><%= link_to "代表月亮消灭你", "" %></li>
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        内容 <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu" role="menu">
+        <li><%= link_to "文章", "" %></li>
+        <li><%= link_to "微博", "" %></li>
+        <li><%= link_to "图片", "" %></li>
+        <li><%= link_to "问答", "" %></li>
+      </ul>
+    </li>
+<% end %>
+
+<table class="table">
+  <tbody>
+  <% for channel in @channels%>
+      <tr>
+        <td><%= link_to channel.name, content_index_url(channel.id)%></td>
+        <td><%=channel.description%></td>
+      </tr>
+  <%end%>
+  </tbody>
+</table>
+

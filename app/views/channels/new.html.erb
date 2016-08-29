@@ -1,0 +1,23 @@
+<% provide(:title, '新建条目')
+   provide(:info, channels_path) %>
+
+<% content_for :navbar do %>
+<% end %>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= render partial: 'shared/errors', object: @channel.errors %>
+    <%= form_for @channel do |f| %>
+        <%= f.hidden_field :channel_id%>
+    <div class="form-group">
+      <%= f.label :name, "名称" %>
+      <%= f.text_field :name, class:"form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description, "描述" %>
+      <%= f.text_area :description, class:"form-control", rows:10 %>
+    </div>
+    <%= f.submit "提交", class:"btn btn-default" %>
+    <% end %>
+  </div>
+</div>

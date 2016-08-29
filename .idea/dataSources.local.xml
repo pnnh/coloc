@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="Rails coloc: production" uuid="ed228e7f-b11a-459a-a350-35067718f7f4">
-      <user-name>&lt;%= ENV[&quot;COLOC_DBUSER&quot;] %&gt;</user-name>
-      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df88dfe9dfe5dfe6dfe5dfe9dff5dfeedfe8dffadfebdff9dff9df88dff7df8adf8fdf94</user-password>
+    <data-source name="Sqlite (Xerial) - development.sqlite3" uuid="54e0674a-4d90-4b23-bc5e-1b6f1a24b6d1">
+      <secret-storage>master_key</secret-storage>
+      <auth-required>false</auth-required>
     </data-source>
   </component>
 </project>

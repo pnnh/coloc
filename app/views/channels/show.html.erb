@@ -1,0 +1,20 @@
+<% provide(:title, @channel.name )
+   provide(:info, channels_path)%>
+
+<% content_for :head do %>
+<% end %>
+
+<% content_for :navbar do %>
+<li><%= link_to "编辑", edit_channel_path(@channel) %></li>
+<% end %> 
+
+<div class="row">
+  <div class="col-md-12">
+     <%= @channel.name %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <%= @channel.description %>
+  </div>
+</div>
