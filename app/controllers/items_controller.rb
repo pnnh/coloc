@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(params.require(:item).permit(:title, :content, :markup))
+    @item = Item.new(params.require(:item).permit(:title, :contents, :markup))
     if @item.save
       #save_pdf(@item)
       redirect_to @item
@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    if @item.update_attributes(params.require(:item).permit(:markup, :content))
+    if @item.update_attributes(params.require(:item).permit(:markup, :contents))
       #save_pdf(@item)
       redirect_to @item
     else

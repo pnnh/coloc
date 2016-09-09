@@ -3,7 +3,6 @@ class CreateTags < ActiveRecord::Migration
     create_table :tags do |t|
       t.string :title
       t.string :content
-      t.integer :channel_id
 
       t.timestamps null: false
     end

@@ -1723,7 +1723,7 @@ var TextLayerBuilder = (function TextLayerBuilderClosure() {
           if (prevEnd !== null) {
             appendTextToDiv(prevEnd.divIdx, prevEnd.offset, infinity.offset);
           }
-          // Clear the divs and set the content until the starting point.
+          // Clear the divs and set the contents until the starting point.
           beginText(begin);
         } else {
           appendTextToDiv(prevEnd.divIdx, prevEnd.offset, begin.offset);
@@ -1979,7 +1979,7 @@ DefaultAnnotationsLayerFactory.prototype = {
  */
 
 /**
- * Simple viewer control to display PDF content/pages.
+ * Simple viewer control to display PDF contents/pages.
  * @class
  * @implements {IRenderableView}
  */

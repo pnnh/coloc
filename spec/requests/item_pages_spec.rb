@@ -9,10 +9,10 @@ RSpec.describe "ItemPages", :type => :request do
     before { visit item_path(item) }
     
     #it { should have_title('条目列表') }
-    it { should have_content('new item content') }
+    it { should have_content('new item contents') }
 
     describe "搜索条目" do
-      FactoryGirl.create(:item, title:"emacs", markup:"markdown", content:"emacs content")
+      FactoryGirl.create(:item, title:"emacs", markup:"markdown", contents:"emacs contents")
       before {visit item_path('e')}
       #it{raise page.body}
       it {should have_content('newitem')}
@@ -79,10 +79,10 @@ RSpec.describe "ItemPages", :type => :request do
     end
     describe "with valid information" do
       let(:new_title) { "New title" }
-      let(:new_content) { "New content" }
+      let(:new_content) { "New contents" }
       before do
         fill_in "title", with: new_title
-        fill_in "content", with: new_content
+        fill_in "contents", with: new_content
         click_button "Save changes"
       end
       it { should have_title(new_title) }

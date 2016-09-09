@@ -421,7 +421,7 @@ if (typeof PDFJS === 'undefined') {
 // Support: Opera<15
 (function checkOnClickCompatibility() {
   // workaround for reported Opera bug DSK-354448:
-  // onclick fires on disabled buttons with opaque content
+  // onclick fires on disabled buttons with opaque contents
   function ignoreIfTargetDisabled(event) {
     if (isDisabled(event.target)) {
       event.stopPropagation();

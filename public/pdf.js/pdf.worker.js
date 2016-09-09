@@ -2713,7 +2713,7 @@ var Page = (function PageClosure() {
       } else if (isStream(content)) {
         stream = content;
       } else {
-        // replacing non-existent page content with empty one
+        // replacing non-existent page contents with empty one
         stream = new NullStream();
       }
       return stream;
@@ -4108,7 +4108,7 @@ var XRef = (function XRefClosure() {
     },
 
     indexObjects: function XRef_indexObjects() {
-      // Simple scan through the PDF content to find objects,
+      // Simple scan through the PDF contents to find objects,
       // trailers and XRef streams.
       function readToken(data, offset) {
         var token = '', ch = data[offset];
@@ -4664,7 +4664,7 @@ var FileSpec = (function FileSpecClosure() {
             'content');
         }
       } else {
-        warn('Embedded file specification does not have a content');
+        warn('Embedded file specification does not have a contents');
       }
       return content;
     },
@@ -18179,7 +18179,7 @@ var Font = (function FontClosure() {
 
       function foldTTTable(table, content) {
         if (content.length > 1) {
-          // concatenating the content items
+          // concatenating the contents items
           var newLength = 0;
           var j, jj;
           for (j = 0, jj = content.length; j < jj; j++) {
@@ -19832,7 +19832,7 @@ var Type1Font = function Type1Font(name, file, properties) {
                        (pfbHeader[3] << 8) | pfbHeader[2];
   }
 
-  // Decrypt the data blocks and retrieve it's content
+  // Decrypt the data blocks and retrieve it's contents
   var eexecBlock = new Stream(file.getBytes(eexecBlockLength));
   var eexecBlockParser = new Type1Parser(eexecBlock, true);
   var data = eexecBlockParser.extractFontProgram();
@@ -30294,7 +30294,7 @@ var Parser = (function ParserClosure() {
               error('End of file inside dictionary');
             }
 
-            // Stream objects are not allowed inside content streams or
+            // Stream objects are not allowed inside contents streams or
             // object streams.
             if (isCmd(this.buf2, 'stream')) {
               return (this.allowStreams ?
@@ -35916,7 +35916,7 @@ var JpxImage = (function JpxImageClosure() {
             case 0xFF58: // Packet length, tile-part header (PLT)
             case 0xFF64: // Comment (COM)
               length = readUint16(data, position);
-              // skipping content
+              // skipping contents
               break;
             case 0xFF53: // Coding style component (COC)
               throw new Error('JPX Error: Codestream code 0xFF53 (COC) is ' +

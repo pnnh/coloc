@@ -4,10 +4,6 @@ class CreateChannels < ActiveRecord::Migration
       t.string :name
       t.string :description
 
-      t.integer :channel_id
-      t.integer :tag_id
-      t.integer :plus_number
-      t.integer :minus_number
 
       t.timestamps null: false
     end

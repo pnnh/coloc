@@ -13,6 +13,6 @@ FactoryGirl.define do
   factory :item do
     title "newitem"
     markup "markdown"
-    content "new item content"
+    content "new item contents"
   end
 end

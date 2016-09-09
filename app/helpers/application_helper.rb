@@ -20,4 +20,12 @@ module ApplicationHelper
       "信息"
     end
   end
+
+  def parent_params
+    {parent_type:params[:parent_type].singularize.capitalize, parent_id:params[:parent_id]}
+  end
+
+  def parent_url(action)
+    {action:action, parent_type:params[:parent_type], parent_id:params[:parent_id]}
+  end
 end

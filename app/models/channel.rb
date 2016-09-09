@@ -1,6 +1,8 @@
 class Channel < ActiveRecord::Base
-  belongs_to :channel
-  validates :channel_id, presence: true
+  has_many :children, class_name:"Content", as: :parent
+  has_many :parents, class_name:"Content", as: :child
 
-  has_many :channels
+  has_many :tags, through: :children, source: :child, source_type: "Tag"
+  has_many :channels, through: :children, source: :child, source_type: "Channel"
+  has_many :belong_channels, through: :parents, source: :parent, source_type: "Channel"
 end

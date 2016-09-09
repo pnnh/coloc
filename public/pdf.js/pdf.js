@@ -1665,7 +1665,7 @@ PDFJS.workerSrc = (PDFJS.workerSrc === undefined ? null : PDFJS.workerSrc);
 
 /**
  * Disable range request loading of PDF files. When enabled and if the server
- * supports partial content requests then the PDF will be fetched in chunks.
+ * supports partial contents requests then the PDF will be fetched in chunks.
  * Enabled (false) by default.
  * @var {boolean}
  */
@@ -2077,7 +2077,7 @@ var PDFDocumentProxy = (function PDFDocumentProxyClosure() {
     },
     /**
      * @return {Promise} A promise that is resolved with a lookup table for
-     * mapping named attachments to their content.
+     * mapping named attachments to their contents.
      */
     getAttachments: function PDFDocumentProxy_getAttachments() {
       return this.transport.getAttachments();
@@ -2416,7 +2416,7 @@ var PDFPageProxy = (function PDFPageProxyClosure() {
 
     /**
      * @return {Promise} That is resolved a {@link TextContent}
-     * object that represent the page text content.
+     * object that represent the page text contents.
      */
     getTextContent: function PDFPageProxy_getTextContent() {
       return this.transport.messageHandler.sendWithPromise('GetTextContent', {
@@ -4951,7 +4951,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       // that ignore this setting. Notes from Rik on implmenting:
       // - When you encounter an transparency group, create a new canvas with
       // the dimensions of the bbox
-      // - copy the content from the previous canvas to the new canvas
+      // - copy the contents from the previous canvas to the new canvas
       // - draw as usual
       // - remove the backdrop alpha:
       // alphaNew = 1 - (1 - alpha)/(1 - alphaBackdrop) with 'alpha' the alpha
@@ -5365,23 +5365,23 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         this.ctx.fillRect(0, 0, 1, 1);
     },
 
-    // Marked content
+    // Marked contents
 
     markPoint: function CanvasGraphics_markPoint(tag) {
-      // TODO Marked content.
+      // TODO Marked contents.
     },
     markPointProps: function CanvasGraphics_markPointProps(tag, properties) {
-      // TODO Marked content.
+      // TODO Marked contents.
     },
     beginMarkedContent: function CanvasGraphics_beginMarkedContent(tag) {
-      // TODO Marked content.
+      // TODO Marked contents.
     },
     beginMarkedContentProps: function CanvasGraphics_beginMarkedContentProps(
                                         tag, properties) {
-      // TODO Marked content.
+      // TODO Marked contents.
     },
     endMarkedContent: function CanvasGraphics_endMarkedContent() {
-      // TODO Marked content.
+      // TODO Marked contents.
     },
 
     // Compatibility

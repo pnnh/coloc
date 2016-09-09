@@ -11,34 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160821140233) do
+ActiveRecord::Schema.define(version: 20160830154432) do
 
   create_table "channels", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "channel_id"
-    t.integer  "tag_id"
-    t.integer  "plus_number"
-    t.integer  "minus_number"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
+
+  create_table "contents", force: :cascade do |t|
+    t.integer  "parent_id"
+    t.string   "parent_type"
+    t.integer  "child_id"
+    t.string   "child_type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "contents", ["child_type", "child_id"], name: "index_contents_on_child_type_and_child_id"
+  add_index "contents", ["parent_type", "parent_id"], name: "index_contents_on_parent_type_and_parent_id"
 
   create_table "items", force: :cascade do |t|
     t.string   "title"
-    t.string   "content"
+    t.string   "contents"
+    t.string   "slug"
+    t.string   "markup"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "markup"
-    t.string   "slug"
   end
 
   add_index "items", ["slug"], name: "index_items_on_slug"
 
   create_table "tags", force: :cascade do |t|
     t.string   "title"
-    t.string   "content"
-    t.integer  "channel_id"
+    t.string   "contents"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,12 +55,12 @@ ActiveRecord::Schema.define(version: 20160821140233) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "slug"
+    t.boolean  "admin",           default: false
+    t.string   "remember_token"
+    t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_digest"
-    t.string   "remember_token"
-    t.boolean  "admin",           default: false
-    t.string   "slug"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
