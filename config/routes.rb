@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   match '/contact', to: 'static_pages#contact', via: 'get'
 
   match '/:parent_type/:parent_id/:controller/:action', as: 'content', via: 'get'
-
+  match ':controller/:action', via: [:get, :post]
 end

@@ -4,12 +4,27 @@
 <% content_for :head do %>
     <script type="text/javascript">
       $(function() {
-        var container = $('.masonry-container');
-        container.masonry({
+        $('.masonry-container').masonry({
           columnWidth: '.item',
           itemSelector: '.item'
         });
+
+        var stop=true;
+        $(window).scroll(function(){
+          var totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
+          if($(document).height() <= totalheight){
+            if(stop==true){
+              stop=false;
+              $.post("/channels/json", {start:1, n:50},function(txt){
+                var boxes = $(txt);
+                $('.masonry-container').append( boxes).masonry('appended', boxes);
+                stop=true;
+              },"text");
+            }
+          }
+        });
       });
+      //document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
     </script>
 <% end %>
 <% content_for :navbar do %>
@@ -69,8 +84,8 @@
         <div class="thumbnail">
           <div class="caption">
             <%= render content.child %>
-            </div>
           </div>
+        </div>
       </div>
   <%end%>
 </div>

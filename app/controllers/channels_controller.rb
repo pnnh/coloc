@@ -10,6 +10,29 @@ class ChannelsController < ApplicationController
     @contents = Content.where parent_type:"Channel", parent_id:id
   end
 
+  def json
+    str = '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 item" style="position: absolute; left: 292px; top: 384px;">
+        <div class="thumbnail">
+          <div class="caption">
+
+<a href="/channels/14">qqqq</a>
+
+qqqqqqqqq<br>
+qqqqqqqqq<br>
+qqqqqqqqq<br>
+qqqqqqqqq<br>
+qqqqqqqqq<br>
+qqqqqqqqq<br>
+qqqqqqqqq<br>
+qqqqqqqqq<br>
+qqqqqqqqq<br>
+qqqqqqqqq<br>
+          </div>
+        </div>
+      </div>'
+    render text:  str+str
+  end
+
   def create
     @channel = Channel.new(params.require(:channel).permit(:channel_id, :name, :description))
     if @channel.save
