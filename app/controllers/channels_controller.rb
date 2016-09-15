@@ -4,37 +4,22 @@ class ChannelsController < ApplicationController
   end
 
   def show
-    id = params[:id] || 1
+    id = (params[:id].to_i || 1).to_i
 
-    @channel = Channel.find id
-    @contents = Content.where parent_type:"Channel", parent_id:id
-  end
+    start = (params[:start] || 1).to_i
 
-  def json
-    str = '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 item" style="position: absolute; left: 292px; top: 384px;">
-        <div class="thumbnail">
-          <div class="caption">
+    @contents = Content.where(parent_type:"Channel", parent_id:id)
+                    .offset(start - 1).limit(5)
 
-<a href="/channels/14">qqqq</a>
-
-qqqqqqqqq<br>
-qqqqqqqqq<br>
-qqqqqqqqq<br>
-qqqqqqqqq<br>
-qqqqqqqqq<br>
-qqqqqqqqq<br>
-qqqqqqqqq<br>
-qqqqqqqqq<br>
-qqqqqqqqq<br>
-qqqqqqqqq<br>
-          </div>
-        </div>
-      </div>'
-    render text:  str+str
+    if start > 1
+      render partial: "contents"
+    else
+      @channel = Channel.find id
+    end
   end
 
   def create
-    @channel = Channel.new(params.require(:channel).permit(:channel_id, :name, :description))
+    @channel = Channel.new(params.require(:channel).permit(:name, :description))
     if @channel.save
       @channel.parents.create view_context.parent_params
       redirect_to @channel

@@ -1,10 +1,7 @@
 
-  <%= link_to item.title, item %>
-
-  <%=item.content%><br/>
-  <%=item.content%><br/>
-  <%=item.content%><br/>
-  <%=item.content%><br/>
-  <%=item.content%><br/>
-  <%=item.content%><br/>
-  <%=item.content%><br/>
+<div class="item">
+  <%= link_to item.title, item, class: "title" %>
+  <p class="content">
+    <%= truncate(item.content)%>
+  </p>
+</div>

@@ -1,13 +1,8 @@
 
-<%= link_to channel.name, channel %>
+<div class="channel">
+  <%= link_to channel.name, channel, class:"name" %>
 
-<%=channel.description%><br/>
-<%=channel.description%><br/>
-<%=channel.description%><br/>
-<%=channel.description%><br/>
-<%=channel.description%><br/>
-<%=channel.description%><br/>
-<%=channel.description%><br/>
-<%=channel.description%><br/>
-<%=channel.description%><br/>
-<%=channel.description%><br/>
+  <p class="description">
+    <%= truncate(channel.description)%>
+  </p>
+</div>

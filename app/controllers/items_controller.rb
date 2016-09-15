@@ -21,9 +21,10 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(params.require(:item).permit(:title, :contents, :markup))
+    @item = Item.new(params.require(:item).permit(:title, :content, :markup))
     if @item.save
       #save_pdf(@item)
+      @item.parents.create view_context.parent_params
       redirect_to @item
     else
       render 'new'

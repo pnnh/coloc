@@ -2,30 +2,8 @@
    provide(:info, channels_path)%>
 
 <% content_for :head do %>
-    <script type="text/javascript">
-      $(function() {
-        $('.masonry-container').masonry({
-          columnWidth: '.item',
-          itemSelector: '.item'
-        });
-
-        var stop=true;
-        $(window).scroll(function(){
-          var totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
-          if($(document).height() <= totalheight){
-            if(stop==true){
-              stop=false;
-              $.post("/channels/json", {start:1, n:50},function(txt){
-                var boxes = $(txt);
-                $('.masonry-container').append( boxes).masonry('appended', boxes);
-                stop=true;
-              },"text");
-            }
-          }
-        });
-      });
-      //document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-    </script>
+    <script type="text/javascript" src="assets/masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="assets/channels.js"></script>
 <% end %>
 <% content_for :navbar do %>
     <li  class="dropdown">
@@ -79,13 +57,10 @@
 <% end %>
 
 <div class="row masonry-container">
-  <% for content in @contents%>
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 item">
-        <div class="thumbnail">
-          <div class="caption">
-            <%= render content.child %>
-          </div>
-        </div>
-      </div>
-  <%end%>
+  <%= render "contents" %>
+</div>
+<div class="row">
+  <div class=" text-center loading">
+    <img src="assets/loading.gif" />
+  </div>
 </div>

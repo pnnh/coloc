@@ -28,4 +28,8 @@ module ApplicationHelper
   def parent_url(action)
     {action:action, parent_type:params[:parent_type], parent_id:params[:parent_id]}
   end
+
+  def truncate(content)
+    content.truncate(100, separator: ' ')
+  end
 end

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :channels
   resources :sessions, only: [:new, :create, :destory]
 
-  root to: 'channels#show'
+  root to: 'channels#show', id:1
 
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'

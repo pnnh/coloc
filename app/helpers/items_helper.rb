@@ -36,4 +36,5 @@ module ItemsHelper
   def markup(markup, content)
     Pipeline.to_html(content, filename: "." + markup)
   end
+
 end
