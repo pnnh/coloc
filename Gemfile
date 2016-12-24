@@ -1,5 +1,5 @@
 # coding: utf-8
-source "https://rubygems.org"
+source "https://gems.ruby-china.org/"
 
 gem 'rails'
 gem 'sass-rails'

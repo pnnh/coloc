@@ -25,10 +25,10 @@ production:
   #database: db/production.sqlite3
   adapter: postgresql
   encoding: utf8
-  database: <%= ENV["COLOC_DB"] %>
-  username: <%= ENV["COLOC_DBUSER"] %>
-  password: <%= ENV["COLOC_DBPASS"] %>
+  database: coloc
+  username: coloc
+  password: 123
   pool: 5
   timeout: 5000
-  host: <%= ENV["COLOC_DBHOST"] %>
-  port: <%= ENV["COLOC_DBPORT"] %>
+  host: localhost
+  port: 5432

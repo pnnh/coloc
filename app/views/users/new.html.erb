@@ -1,8 +1,7 @@
 <% provide(:title, 'Sign up')
    provide(:info, users_path) %>
 
-<div class="row">
-  <div class="col-md-12">  
+  <div class="col-md-12  col-lg-4">
     <%= form_for(@user) do |f| %>
     <%= render :partial => 'shared/errors', :object => @user.errors %>
     <div class="form-group">
@@ -24,4 +23,3 @@
     <%= f.submit "注册", class:"btn btn-default" %>
     <% end %>
   </div>
-</div>

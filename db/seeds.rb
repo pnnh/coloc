@@ -6,4 +6,5 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+User.create name:'larry', email:'larry@coloc.cc', password:'123456', admin:true
 Channel.create name:"root", description:"root"

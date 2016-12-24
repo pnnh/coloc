@@ -1,7 +1,7 @@
 <% provide(:title, "编辑用户")
    provide(:info, users_path) %>
 
-<div class="col-md-12">  
+<div class="col-md-12 col-lg-4">
   <%= form_for(@user) do |f| %>
   <%= render :partial => 'shared/errors', :object => @user.errors %>
   <div class="form-group">

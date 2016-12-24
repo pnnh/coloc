@@ -4,18 +4,18 @@ class ChannelsController < ApplicationController
   end
 
   def show
-    id = (params[:id].to_i || 1).to_i
-
-    start = (params[:start] || 1).to_i
-
-    @contents = Content.where(parent_type:"Channel", parent_id:id)
-                    .offset(start - 1).limit(5)
-
-    if start > 1
-      render partial: "contents"
-    else
-      @channel = Channel.find id
-    end
+     id = (params[:id].to_i || 1).to_i
+    #
+    # start = (params[:start] || 1).to_i
+    #
+     @contents = Content.where(parent_type:"Channel", parent_id:id)
+    #
+    # if start > 1
+    #   render partial: "contents"
+    # else
+    #   @channel = Channel.find id
+    # end
+    @channel = Channel.new
   end
 
   def create

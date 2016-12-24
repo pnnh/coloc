@@ -69,6 +69,9 @@ footer {
 	}
     }
 }
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+  line-height: 36px;
+}
 /* miscellaneous */
 /*.debug_dump {
     clear: both;

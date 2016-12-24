@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -21,36 +20,33 @@ ActiveRecord::Schema.define(version: 20160830154432) do
   end
 
   create_table "contents", force: :cascade do |t|
-    t.integer  "parent_id"
     t.string   "parent_type"
-    t.integer  "child_id"
+    t.integer  "parent_id"
     t.string   "child_type"
+    t.integer  "child_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["child_type", "child_id"], name: "index_contents_on_child_type_and_child_id"
+    t.index ["parent_type", "parent_id"], name: "index_contents_on_parent_type_and_parent_id"
   end
-
-  add_index "contents", ["child_type", "child_id"], name: "index_contents_on_child_type_and_child_id"
-  add_index "contents", ["parent_type", "parent_id"], name: "index_contents_on_parent_type_and_parent_id"
 
   create_table "items", force: :cascade do |t|
     t.string   "title"
-    t.string   "contents"
+    t.string   "content"
     t.string   "slug"
     t.string   "markup"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["slug"], name: "index_items_on_slug"
   end
-
-  add_index "items", ["slug"], name: "index_items_on_slug"
 
   create_table "tags", force: :cascade do |t|
     t.string   "title"
-    t.string   "contents"
+    t.string   "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_tags_on_title"
   end
-
-  add_index "tags", ["title"], name: "index_tags_on_title"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -61,10 +57,9 @@ ActiveRecord::Schema.define(version: 20160830154432) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["remember_token"], name: "index_users_on_remember_token"
+    t.index ["slug"], name: "index_users_on_slug"
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
-  add_index "users", ["slug"], name: "index_users_on_slug"
 
 end
