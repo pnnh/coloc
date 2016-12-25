@@ -15,7 +15,7 @@ Pipeline = HTML::Pipeline.new [
   HTML::Pipeline::SyntaxHighlightFilter
 ]
 
-module ItemsHelper
+module ArticlesHelper
   def prettify_markup(markup)
     case
     when markup == "markdown"

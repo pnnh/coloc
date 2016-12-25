@@ -1,10 +1,10 @@
 <% provide(:title, "编辑条目")
-   provide(:info, items_path) %>
+   provide(:info, articles_path) %>
 
 <% content_for :navbar do %>
-<li><%= link_to "创建", new_item_path %></li>
-<li><%= link_to "阅读", item_path(@item) %></li>
-<li class="active"><%= link_to "编辑", edit_item_path(@item) %></li>
+<li><%= link_to "创建", new_article_path %></li>
+<li><%= link_to "阅读", article_path(@article) %></li>
+<li class="active"><%= link_to "编辑", edit_article_path(@item) %></li>
 <% end %> 
 
 <div class="row">

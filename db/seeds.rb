@@ -7,4 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create name:'larry', email:'larry@coloc.cc', password:'123456', admin:true
-Channel.create name:"root", description:"root"
+channel = Channel.create name:"root", description:"root channel"
+Content.create content_id: 0, entity_id: channel.id, entity_type: "Channel", name:channel.name, namespace:"", description:channel.description

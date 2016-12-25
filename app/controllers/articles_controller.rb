@@ -1,18 +1,18 @@
-class ItemsController < ApplicationController
+class ArticlesController < ApplicationController
   def new
-    @item = Item.new
+    @item = Article.new
     @item.title = params[:title]
   end
 
   def show
     id = params[:id]
     if(id.to_i > 0)
-      @item = Item.find id
+      @item = Article.find id
     elsif(!id.blank?)
-      @item = Item.friendly.find id rescue nil
+      @item = Article.friendly.find id rescue nil
       if(@item.nil?)
         @keyword = id
-        @items = Item.where("title LIKE :q", q: "%#{@keyword}%").limit(100)
+        @items = Article.where("title LIKE :q", q: "%#{@keyword}%").limit(100)
         render 'index'
       end
     end
@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(params.require(:item).permit(:title, :content, :markup))
+    @item = Article.new(params.require(:item).permit(:title, :content, :markup))
     if @item.save
       #save_pdf(@item)
       @item.parents.create view_context.parent_params
@@ -32,11 +32,11 @@ class ItemsController < ApplicationController
   end
   
   def edit
-    @item = Item.find(params[:id])
+    @item = Article.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
+    @item = Article.find(params[:id])
     if @item.update_attributes(params.require(:item).permit(:markup, :contents))
       #save_pdf(@item)
       redirect_to @item
@@ -46,8 +46,8 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    Item.find(params[:id]).destroy
-    redirect_to items_url
+    Article.find(params[:id]).destroy
+    redirect_to articles_url
   end
 
   private

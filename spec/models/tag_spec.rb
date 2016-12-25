@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Item, :type => :model do
+RSpec.describe Article, :type => :model do
   before do
     @tag = Tag.new(title: "new tag", contents: "new tag contents")
   end

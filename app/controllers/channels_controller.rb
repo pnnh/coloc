@@ -1,14 +1,18 @@
 class ChannelsController < ApplicationController
   def new
-    @channel = Channel.new
+    @channel = Channel.new(parent_id: params[:parent_id])
+  end
+
+  def index
+    @channel = Channel.find params[:id].to_i
+    @contents = @channel.contents
   end
 
   def show
-     id = (params[:id].to_i || 1).to_i
     #
     # start = (params[:start] || 1).to_i
     #
-     @contents = Content.where(parent_type:"Channel", parent_id:id)
+    @contents = Content.where(parent_type:"Channel", parent_id:params[:id].to_i)
     #
     # if start > 1
     #   render partial: "contents"
@@ -21,8 +25,9 @@ class ChannelsController < ApplicationController
   def create
     @channel = Channel.new(params.require(:channel).permit(:name, :description))
     if @channel.save
-      @channel.parents.create view_context.parent_params
-      redirect_to @channel
+      content = Content.find(params[:parent_id])
+      content.contents.create(entity_type: "Channel", entity_id: @channel.id, name: @channel.name, namespace: content.namespace + "::" + content.name, description: @channel.description)
+      redirect_to contents_url(id: content.id)
     else
        render 'new'
     end

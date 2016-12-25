@@ -1,0 +1,20 @@
+<% provide(:title, "发现") %>
+
+<% content_for :nav do %>
+    <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to "添加", new_channel_url(parent_id: @channel.id) %></li>
+    </ul>
+<% end %>
+
+<div class="col-md-12">
+  <% for c in @contents %>
+      <div class="form-group">
+            <span style="color:#105cb6;font-size:14px;">
+              <%= link_to c.name, "/" + c.content_type.downcase.pluralize + "/" + c.content_id.to_s %>
+            </span>
+            <span style="margin-left:10px;">
+              <%= c.description %>
+            </span>
+      </div>
+  <%end%>
+</div>

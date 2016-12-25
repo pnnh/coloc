@@ -6,14 +6,14 @@ RSpec.describe "ItemPages", :type => :request do
 
   describe "index" do
     let(:item) { FactoryGirl.create(:item) }
-    before { visit item_path(item) }
+    before { visit article_path(item) }
     
     #it { should have_title('条目列表') }
     it { should have_content('new item contents') }
 
     describe "搜索条目" do
       FactoryGirl.create(:item, title:"emacs", markup:"markdown", contents:"emacs contents")
-      before {visit item_path('e')}
+      before {visit article_path('e')}
       #it{raise page.body}
       it {should have_content('newitem')}
       it {should have_content('emacs')}
@@ -22,7 +22,7 @@ RSpec.describe "ItemPages", :type => :request do
   
   describe "show page" do
     let(:item) { FactoryGirl.create(:item) }
-    before { visit item_path(item) }
+    before { visit article_path(item) }
     it { should have_title(item.title) }
     it { should have_content(item.title) }
     it { should have_content(item.content) }
@@ -33,25 +33,25 @@ RSpec.describe "ItemPages", :type => :request do
         let(:admin) { FactoryGirl.create(:admin) }
         before do
           sign_in admin
-          visit item_path(item)
+          visit article_path(item)
         end
-        it { should have_link('delete', href: item_path(item)) }
+        it { should have_link('delete', href: article_path(item)) }
         it "should be able to delete item" do
           expect do
             click_link('delete')
-          end.to change(Item, :count).by(-1)
+          end.to change(Article, :count).by(-1)
         end
       end
     end
   end
 
   describe "create item" do
-    before { visit new_item_path }
+    before { visit new_article_path }
     let(:submit) { "Create" }
 
     describe "with invalid information" do
       it "should not create a item" do
-        expect { click_button submit }.not_to change(Item, :count)
+        expect { click_button submit }.not_to change(Article, :count)
       end
     end
 
@@ -61,14 +61,14 @@ RSpec.describe "ItemPages", :type => :request do
         fill_in "Content", with: "First Item Content"
       end
       it "should create a item" do
-        expect { click_button submit }.to change(Item, :count).by(1)
+        expect { click_button submit }.to change(Article, :count).by(1)
       end
     end
   end
 
   describe "edit" do
     let(:item) { FactoryGirl.create(:item) }
-    before { visit edit_item_path(item) }
+    before { visit edit_article_path(item) }
     describe "page" do
       it { should have_content("Update Item") }
       it { should have_title("Edit item") }

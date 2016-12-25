@@ -1,4 +1,4 @@
-class Item < ActiveRecord::Base
+class Article < ActiveRecord::Base
   validates :title, presence: true
   validates :content, presence: true
 
@@ -9,7 +9,4 @@ class Item < ActiveRecord::Base
   def normalize_friendly_id(input)
     input.to_s.to_slug.normalize.to_s.gsub("-", "_")
   end
-
-  has_many :parents, class_name:"Content", as: :child
-  has_many :belong_channels, through: :parents, source: :parent, source_type: "Channel"
 end

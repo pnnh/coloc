@@ -12,6 +12,16 @@
 
 ActiveRecord::Schema.define(version: 20160830154432) do
 
+  create_table "articles", force: :cascade do |t|
+    t.string   "title"
+    t.string   "content"
+    t.string   "slug"
+    t.string   "markup"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["slug"], name: "index_articles_on_slug"
+  end
+
   create_table "channels", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -20,24 +30,16 @@ ActiveRecord::Schema.define(version: 20160830154432) do
   end
 
   create_table "contents", force: :cascade do |t|
-    t.string   "parent_type"
-    t.integer  "parent_id"
-    t.string   "child_type"
-    t.integer  "child_id"
+    t.integer  "content_id"
+    t.string   "entity_type"
+    t.integer  "entity_id"
+    t.string   "name"
+    t.string   "namespace"
+    t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["child_type", "child_id"], name: "index_contents_on_child_type_and_child_id"
-    t.index ["parent_type", "parent_id"], name: "index_contents_on_parent_type_and_parent_id"
-  end
-
-  create_table "items", force: :cascade do |t|
-    t.string   "title"
-    t.string   "content"
-    t.string   "slug"
-    t.string   "markup"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["slug"], name: "index_items_on_slug"
+    t.index ["content_id"], name: "index_contents_on_content_id"
+    t.index ["entity_type", "entity_id"], name: "index_contents_on_entity_type_and_entity_id"
   end
 
   create_table "tags", force: :cascade do |t|

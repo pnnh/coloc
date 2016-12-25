@@ -1,8 +1,8 @@
 <% provide(:title, '新建条目')
-   provide(:info, items_path) %>
+   provide(:info, articles_path) %>
 
 <% content_for :navbar do %> 
-<li class="active"><%= link_to "创建", new_item_path %></li>
+<li class="active"><%= link_to "创建", new_article_path %></li>
 <% end %>
 
 <div class="row">

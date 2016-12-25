@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Item, :type => :model do
+RSpec.describe Article, :type => :model do
   before do
-    @item = Item.new(title: "new item", contents: "new item contents")
+    @item = Article.new(title: "new item", contents: "new item contents")
   end
   subject { @item }
   

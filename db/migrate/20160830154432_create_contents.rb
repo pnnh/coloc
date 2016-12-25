@@ -1,8 +1,11 @@
 class CreateContents < ActiveRecord::Migration
   def change
     create_table :contents do |t|
-      t.references :parent, polymorphic: true, index: true
-      t.references :child, polymorphic: true, index: true
+      t.references :content, index: true
+      t.references :entity, polymorphic: true, index: true
+      t.string     :name
+      t.string     :namespace
+      t.string     :description
 
       t.timestamps null: false
     end

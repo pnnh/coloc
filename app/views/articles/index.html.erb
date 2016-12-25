@@ -1,8 +1,8 @@
 <% provide(:title, '条目列表')
-   provide(:info, items_path) %>
+   provide(:info, articles_path) %>
 
 <% content_for :navbar do %> 
-<li><%= link_to "创建", new_item_path %></li>
+<li><%= link_to "创建", new_article_path %></li>
 <% end %>
 
   <%if @items.count > 0%>

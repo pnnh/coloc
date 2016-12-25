@@ -1,6 +1,6 @@
-class CreateItems < ActiveRecord::Migration
+class CreateArticles < ActiveRecord::Migration
   def change
-    create_table :items do |t|
+    create_table :articles do |t|
 	    t.string :title
       t.string :content
       t.string :slug
@@ -9,6 +9,6 @@ class CreateItems < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :items, :slug
+    add_index :articles, :slug
   end
 end

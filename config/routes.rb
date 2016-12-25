@@ -1,12 +1,13 @@
 # coding: utf-8
 Rails.application.routes.draw do
   resources :users, only: [:new, :edit, :create, :show, :update]
-  resources :items, only: [:new, :edit, :create, :show, :update]
+  resources :articles, only: [:new, :edit, :create, :show, :update]
   resources :tags
   resources :channels
   resources :sessions, only: [:new, :create, :destory]
+  resources :contents
 
-  root to: 'channels#show', id:1
+  root to: 'contents#index', id: 1
 
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
