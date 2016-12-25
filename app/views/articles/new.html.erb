@@ -1,5 +1,4 @@
-<% provide(:title, '新建条目')
-   provide(:info, articles_path) %>
+<% provide(:title, '新建条目') %>
 
 <% content_for :navbar do %> 
 <li class="active"><%= link_to "创建", new_article_path %></li>
@@ -7,8 +6,8 @@
 
 <div class="row">
   <div class="col-md-12">
-    <%= render partial: 'shared/errors', object: @item.errors %>
-    <%= form_for @item, url: parent_url("create") do |f| %>
+    <%= form_for @article do |f| %>
+    <%= render partial: 'shared/errors', object: @article.errors %>
     <div class="form-group">
       <%= f.label :title, "标题" %>
       <%= f.text_field :title, class:"form-control" %>

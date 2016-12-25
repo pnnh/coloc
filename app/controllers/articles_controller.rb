@@ -1,31 +1,23 @@
 class ArticlesController < ApplicationController
   def new
-    @item = Article.new
-    @item.title = params[:title]
+    @article = Article.new
   end
 
   def show
-    id = params[:id]
-    if(id.to_i > 0)
-      @item = Article.find id
-    elsif(!id.blank?)
-      @item = Article.friendly.find id rescue nil
-      if(@item.nil?)
-        @keyword = id
-        @items = Article.where("title LIKE :q", q: "%#{@keyword}%").limit(100)
-        render 'index'
-      end
+    content_id = params[:content_id]
+    if !content_id.nil?
+      @article = Content.find(content_id.to_i).entity
+    else
+      @article = Article.find(params[:id])
     end
-
-    #send_data(pdf, :filename=>item.title + '.pdf', :disposition => "inline", :type => "application/pdf; charset=utf-8")
   end
 
   def create
-    @item = Article.new(params.require(:item).permit(:title, :content, :markup))
-    if @item.save
-      #save_pdf(@item)
-      @item.parents.create view_context.parent_params
-      redirect_to @item
+    @article = Article.new(params.require(:article).permit(:title, :content, :markup))
+    if @article.save
+      content = Content.find(params[:parent_id])
+      content.contents.create(entity_type: "Article", entity_id: @article.id, name: @article.title, description: @article.content)
+      redirect_to @article
     else
       render 'new'
     end

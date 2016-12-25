@@ -17,7 +17,7 @@
           <%= yield :nav %>
         </div>
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "频道", root_url   %></li>
+          <li><%= link_to "首页", root_url   %></li>
           <li><%= link_to "关注", "#"   %></li>
           <li>
             <% if signed_in? %>
@@ -31,9 +31,7 @@
     </div>
   </nav>
   <div class="container">
-    <div class="row">
       <%= yield %>
-    </div>
   </div>
   <%= render 'layouts/footer' %>
 </body>

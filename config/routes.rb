@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destory]
   resources :contents
 
-  root to: 'contents#index', id: 1
+  root to: 'contents#show', id: 1
 
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
@@ -17,5 +17,7 @@ Rails.application.routes.draw do
   match '/contact', to: 'static_pages#contact', via: 'get'
 
   #match '/:parent_type/:parent_id/:controller/:action', as: 'content', via: 'get'
-  #match ':controller/:action', via: [:get, :post]
+  match ':controller/:action/:id', as: 'default', via: [:get, :post]
+  match ':controller/show/:id', as: 'default_show', via: [:get, :post], action: 'show'
+  #match 'contents/:controller/show/:content_id', as: 'content_show', action: 'show', via: [:get, :post]
 end

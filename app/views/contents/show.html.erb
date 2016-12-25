@@ -1,0 +1,25 @@
+<% provide(:title, @content.name) %>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <%= render @content.entity %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <% for c in @content.contents %>
+        <div class="form-group">
+          <p>
+                <span style="color:#105cb6;font-size:14px;">
+                  <%= link_to c.name, content_url(c) %>
+                </span>
+          </p>
+          <p>
+            <%= c.description %>
+          </p>
+        </div>
+    <%end%>
+  </div>
+</div>

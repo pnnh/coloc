@@ -21,12 +21,12 @@ module ApplicationHelper
     end
   end
 
-  def parent_params
-    {parent_type:params[:parent_type].singularize.capitalize, parent_id:params[:parent_id]}
+  def parse_type(word)
+    word.singularize.capitalize
   end
 
-  def parent_url(action)
-    {action:action, parent_type:params[:parent_type], parent_id:params[:parent_id]}
+  def parse_controller(word)
+    word.pluralize.downcase
   end
 
   def truncate(content)

@@ -1,0 +1,14 @@
+
+<% content_for :nav do %>
+    <ul class="nav navbar-nav">
+      <li><%= link_to "修改", edit_article_url(article) %></li>
+      <li><%= link_to "评论", "#" %></li>
+    </ul>
+<% end %>
+
+<div class="article">
+  <%= link_to article.title, article, class: "title" %>
+  <p class="content">
+    <%= article.content %>
+  </p>
+</div>

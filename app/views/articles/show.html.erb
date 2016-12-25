@@ -1,5 +1,4 @@
-<% provide(:title, @item.title )
-   provide(:info, articles_path)%>
+<% provide(:title, @article.title ) %>
 
 <% content_for :head do %>
 <style type="text/css">
@@ -7,12 +6,6 @@
 </style>
 <% end %>
 
-<% content_for :navbar do %>
-<li><%= link_to "创建", new_article_path %></li>
-<li class="active"><%= link_to "阅读", article_path(@item) %></li>
-<li><%= link_to "编辑", edit_article_path(@item) %></li>
-<% end %> 
-
-  <div class="col-md-12">
-    <%= raw markup(@item.markup, @item.content) %>
-  </div>
+<div class="col-md-12">
+  <%= raw markup(@article.markup, @article.content) %>
+</div>

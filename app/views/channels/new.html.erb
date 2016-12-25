@@ -3,7 +3,7 @@
 
 <div class="col-md-12 col-lg-4">
   <%= render partial: 'shared/errors', object: @channel.errors %>
-  <%= form_for @channel, url: parent_url("create") do |f| %>
+  <%= form_for @channel do |f| %>
     <%= f.hidden_field :parent_id %>
   <div class="form-group">
     <%= f.label :name, "名称" %>

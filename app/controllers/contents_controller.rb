@@ -4,4 +4,8 @@ class ContentsController < ApplicationController
     @content = Content.find(id)
     @contents = Content.where(content_id: id)
   end
+
+  def show
+    @content = Content.find(params[:id])
+  end
 end
