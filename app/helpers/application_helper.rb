@@ -10,7 +10,7 @@ module ApplicationHelper
     end
   end
   
-  def info_name(info = "infos")
+    def info_name(info = "infos")
     case
     when info == articles_path
       "条目"
@@ -19,17 +19,21 @@ module ApplicationHelper
     else
       "信息"
     end
-  end
+    end
 
-  def parse_type(word)
-    word.singularize.capitalize
-  end
+    def parse_type(word)
+        word.singularize.capitalize
+    end
 
-  def parse_controller(word)
-    word.pluralize.downcase
-  end
+    def parse_controller(word)
+        word.pluralize.downcase
+    end
 
-  def truncate(content)
-    content.truncate(100, separator: ' ')
-  end
+    def truncate(content)
+        content.truncate(100, separator: ' ')
+    end
+
+    def show_content(c)
+        show_content_url(content_id: c.id, controller: parse_controller(c.entity_type), action:'show', id: c.entity_id)
+    end
 end

@@ -1,9 +1,9 @@
 class Content < ActiveRecord::Base
-  has_many :contents
-  belongs_to :content
+  has_many :children, class_name: 'Content', foreign_key: 'parent_id'
+  belongs_to :parent, class_name: 'Content', foreign_key: 'parent_id'
 
   belongs_to :entity, polymorphic: true
 
-  has_many :channels, through: :contents, source: :entity, source_type: "Channel"
-  has_many :articles, through: :contents, source: :entity, source_type: "Article"
+  has_many :channels, through: :children, source: :entity, source_type: "Channel"
+  has_many :articles, through: :children, source: :entity, source_type: "Article"
 end

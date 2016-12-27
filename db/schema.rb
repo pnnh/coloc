@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 20160830154432) do
     t.string   "title"
     t.string   "content"
     t.string   "slug"
-    t.string   "markup"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["slug"], name: "index_articles_on_slug"
@@ -30,16 +29,15 @@ ActiveRecord::Schema.define(version: 20160830154432) do
   end
 
   create_table "contents", force: :cascade do |t|
-    t.integer  "content_id"
+    t.integer  "parent_id"
     t.string   "entity_type"
     t.integer  "entity_id"
     t.string   "name"
-    t.string   "namespace"
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["content_id"], name: "index_contents_on_content_id"
     t.index ["entity_type", "entity_id"], name: "index_contents_on_entity_type_and_entity_id"
+    t.index ["parent_id"], name: "index_contents_on_parent_id"
   end
 
   create_table "tags", force: :cascade do |t|

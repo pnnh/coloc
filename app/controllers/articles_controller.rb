@@ -4,34 +4,28 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    content_id = params[:content_id]
-    if !content_id.nil?
-      @article = Content.find(content_id.to_i).entity
-    else
       @article = Article.find(params[:id])
-    end
+      @content = Content.find(params[:content_id])
   end
 
   def create
-    @article = Article.new(params.require(:article).permit(:title, :content, :markup))
+    @article = Article.new(params.require(:article).permit(:title, :content))
     if @article.save
-      content = Content.find(params[:parent_id])
-      content.contents.create(entity_type: "Article", entity_id: @article.id, name: @article.title, description: @article.content)
-      redirect_to @article
+      content = Content.create(parent_id: params[:content_id], entity_type: "Article", entity_id: @article.id, name: @article.title, description: @article.content)
+      redirect_to show_content_url(content_id: content.id, id: @article.id)
     else
       render 'new'
     end
   end
   
   def edit
-    @item = Article.find(params[:id])
+    @article = Article.find(params[:id])
   end
 
   def update
-    @item = Article.find(params[:id])
-    if @item.update_attributes(params.require(:item).permit(:markup, :contents))
-      #save_pdf(@item)
-      redirect_to @item
+    @article = Article.find(params[:id])
+    if @article.update_attributes(params.require(:article).permit(:title, :content))
+      redirect_to show_article_url(id:@article.id)
     else
       render 'edit'
     end

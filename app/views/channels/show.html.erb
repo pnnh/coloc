@@ -2,7 +2,22 @@
 
 <% content_for :nav do %>
     <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to "修改", edit_channel_url(@channel) %></li>
+      <li><%= link_to "修改", edit_channel_url %></li>
+      <li class="dropdown">
+        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+          添加 <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-left">
+          <li><%= link_to "文章", new_article_url %></li>
+          <li class="divider"></li>
+          <li>
+            <%= link_to "频道", new_channel_url %>
+          </li>
+        </ul>
+      </li>
+        <% if (@content.id != 1) %>
+        <li><%= link_to "返回", show_content(@content.parent) %></li>
+        <% end %>
     </ul>
 <% end %>
 
@@ -14,5 +29,22 @@
     <div class="form-group">
       <%= @channel.description %>
     </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <% for c in @contents %>
+        <div class="form-group">
+          <p>
+            <span style="color:#105cb6;font-size:14px;">
+              <%= link_to c.name, show_content_url(content_id: c.id, controller: parse_controller(c.entity_type), action:'show', id: c.entity_id) %>
+            </span>
+          </p>
+          <p>
+            <%= c.description %>
+          </p>
+        </div>
+    <%end%>
   </div>
 </div>

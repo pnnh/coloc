@@ -9,12 +9,12 @@
 
 <div class="row">
   <div class="col-md-12">
-    <% for c in @content.contents %>
+    <% for c in @content.children %>
         <div class="form-group">
           <p>
-                <span style="color:#105cb6;font-size:14px;">
-                  <%= link_to c.name, content_url(c) %>
-                </span>
+            <span style="color:#105cb6;font-size:14px;">
+              <%= link_to c.name, content_url(c) %>
+            </span>
           </p>
           <p>
             <%= c.description %>

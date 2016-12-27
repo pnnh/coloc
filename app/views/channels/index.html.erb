@@ -2,7 +2,7 @@
 
 <% content_for :nav do %>
     <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to "添加", new_channel_url(parent_id: @channel.id) %></li>
+      <li><%= link_to "添加", new_channel_url(content_id: @channel.id) %></li>
     </ul>
 <% end %>
 

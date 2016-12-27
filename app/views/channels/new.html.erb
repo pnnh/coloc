@@ -1,10 +1,8 @@
-<% provide(:title, '新建条目')
-   provide(:info, channels_path) %>
+<% provide(:title, '新建条目') %>
 
 <div class="col-md-12 col-lg-4">
   <%= render partial: 'shared/errors', object: @channel.errors %>
-  <%= form_for @channel do |f| %>
-    <%= f.hidden_field :parent_id %>
+  <%= form_for @channel, url: content_create_url do |f| %>
   <div class="form-group">
     <%= f.label :name, "名称" %>
     <%= f.text_field :name, class:"form-control" %>

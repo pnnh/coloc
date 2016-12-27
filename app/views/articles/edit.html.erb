@@ -1,23 +1,16 @@
-<% provide(:title, "编辑条目")
-   provide(:info, articles_path) %>
-
-<% content_for :navbar do %>
-<li><%= link_to "创建", new_article_path %></li>
-<li><%= link_to "阅读", article_path(@article) %></li>
-<li class="active"><%= link_to "编辑", edit_article_path(@item) %></li>
-<% end %> 
+<% provide(:title, "修改-" + @article.title ) %>
 
 <div class="row">
   <div class="col-md-12">  
-    <%= render partial: 'shared/errors', object: @item.errors %>
-    <%= form_for @item do |f| %>
+    <%= render partial: 'shared/errors', object: @article.errors %>
+    <%= form_for @article, url: update_article_url do |f| %>
     <div class="form-group">
-      <%= f.label :markup, "标记" %>
-      <%= f.select :markup, all_markups, {}, class:"form-control" %>
+      <%= f.label :title, "标题" %>
+      <%= f.text_field :title, class:"form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :contents, "正文" %>
-      <%= f.text_area :contents, class:"form-control", rows:30 %>
+      <%= f.label :content, "正文" %>
+      <%= f.text_area :content, class:"form-control", rows:30 %>
     </div>
     <%= f.submit "提交", class:"btn btn-default" %>
     <% end %>
