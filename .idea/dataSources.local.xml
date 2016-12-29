@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="dataSourceStorageLocal">
-    <data-source name="Sqlite (Xerial) - development.sqlite3" uuid="54e0674a-4d90-4b23-bc5e-1b6f1a24b6d1">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
-    </data-source>
-  </component>
-</project>
