@@ -38,11 +38,15 @@ module ApplicationHelper
     end
 
     def content_current
-        "/#{params[:controller]}/#{params[:content_id]}/#{params[:id]}"
+        if !params[:id].nil?
+          "/#{params[:controller]}/#{params[:content_id]}/#{params[:id]}"
+        else
+            content(Content.find(params[:content_id]))
+        end
     end
 
     def content_parent
-        content(Content.find(params[:content_id]).parent)
+      content(Content.find(params[:content_id]).parent)
     end
 
     def edit_content(c)
@@ -54,7 +58,7 @@ module ApplicationHelper
     end
 
     def new_content(c)
-        "/#{parse_controller(c)}/#{params[:content_id]}/#{params[:id]}/new"
+        "/#{parse_controller(c)}/#{params[:content_id]}/new"
     end
 
     def contents_current

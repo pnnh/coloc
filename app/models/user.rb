@@ -7,9 +7,6 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }
 
-  extend FriendlyId
-  friendly_id :name, :use => [:slugged, :finders]
-  
   def normalize_friendly_id(input)
     input.to_s.to_slug.normalize.to_s.gsub("-", "_")
   end

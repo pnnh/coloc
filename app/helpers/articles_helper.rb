@@ -11,8 +11,8 @@ end
 
 Pipeline = HTML::Pipeline.new [
   MarkupFilter,
-  HTML::Pipeline::TableOfContentsFilter,
-  HTML::Pipeline::SyntaxHighlightFilter
+  HTML::Pipeline::TableOfContentsFilter#,
+  #HTML::Pipeline::SyntaxHighlightFilter
 ]
 
 module ArticlesHelper
@@ -29,10 +29,6 @@ module ArticlesHelper
     end
   end
 
-  def all_markups
-    [["Markdown", "markdown"], ["reStructuredText", "rst"], ["MediaWiki", "mediawiki"]]
-  end
-  
   def markup(markup, content)
     Pipeline.to_html(content, filename: "." + markup)
   end

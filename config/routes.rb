@@ -47,7 +47,7 @@ Rails.application.routes.draw do
   #match 'contents/:content_id/:controller/:action/:id', as: 'content', via: [:get, :post]
   #match ':controller/show/:id', as: 'default_show', via: [:get, :post], action: 'show'
     match ':controller/:content_id/:id/edit', action: 'edit', via: [:get]
-    match ':controller/:content_id/:id/new', action: 'new', via: [:get]
+    match ':controller/:content_id/new', action: 'new', via: [:get]
     match ':controller/:content_id/:id', action: 'show', via: [:get]
     match ':controller/:content_id', action: 'index', via: [:get]
     match ':controller/:content_id/', action: 'create', via: [:post]
