@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="Rails coloc: production" uuid="0e5c5986-ec18-4fbb-9a3b-39aa64bda5cd">
-      <database-info product="PostgreSQL" version="9.5.5" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
-        <identifier-quote-string>&quot;</identifier-quote-string>
-      </database-info>
-      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
-      <user-name>coloc</user-name>
-      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df88dfe9dfe5dfe6dfe5dfe9dff5dfeedfe8dffadfebdff9dff9df88dff7df8adf8fdf94</user-password>
-      <resolve-scope>coloc:coloc,public</resolve-scope>
-    </data-source>
-    <data-source name="Rails coloc: development" uuid="de98c9fc-1765-4d0e-8b4f-311634621ffd">
-      <database-info product="SQLite" version="3.8.11" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native" />
-      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
-      <auth-required>false</auth-required>
+    <data-source name="Sqlite (Xerial) - development.sqlite3" uuid="54e0674a-4d90-4b23-bc5e-1b6f1a24b6d1">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
     </data-source>
   </component>
 </project>

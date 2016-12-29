@@ -22,13 +22,13 @@ test:
 
 production:
   <<: *default
-  #database: db/production.sqlite3
-  adapter: postgresql
-  encoding: utf8
-  database: coloc
-  username: coloc
-  password: 123
-  pool: 5
-  timeout: 5000
-  host: localhost
-  port: 5432
+  database: db/production.sqlite3
+#  adapter: postgresql
+#  encoding: utf8
+#  database: coloc
+#  username: coloc
+#  password: 123
+#  pool: 5
+#  timeout: 5000
+#  host: localhost
+#  port: 5432
