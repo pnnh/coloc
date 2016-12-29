@@ -33,7 +33,31 @@ module ApplicationHelper
         content.truncate(100, separator: ' ')
     end
 
-    def show_content(c)
-        show_content_url(content_id: c.id, controller: parse_controller(c.entity_type), action:'show', id: c.entity_id)
+    def content(c)
+        "/#{parse_controller(c.entity_type)}/#{c.id}/#{c.entity_id}"
+    end
+
+    def content_current
+        "/#{params[:controller]}/#{params[:content_id]}/#{params[:id]}"
+    end
+
+    def content_parent
+        content(Content.find(params[:content_id]).parent)
+    end
+
+    def edit_content(c)
+      "/#{parse_controller(c.entity_type)}/#{c.id}/#{c.entity_id}/edit"
+    end
+
+    def edit_current_content
+        "/#{params[:controller]}/#{params[:content_id]}/#{params[:id]}/edit"
+    end
+
+    def new_content(c)
+        "/#{parse_controller(c)}/#{params[:content_id]}/#{params[:id]}/new"
+    end
+
+    def contents_current
+        "/#{params[:controller]}/#{params[:content_id]}"
     end
 end

@@ -1,16 +1,22 @@
 <% provide(:title, '新建条目') %>
 
-<div class="col-md-12 col-lg-4">
+<% content_for :nav do %>
+    <ul class="nav navbar-nav">
+        <li><%= link_to "返回", content_current  %></li>
+    </ul>
+<% end %>
+
+<div class="col-md-12">
   <%= render partial: 'shared/errors', object: @channel.errors %>
-  <%= form_for @channel, url: content_create_url do |f| %>
+  <%= form_for @channel, url: contents_current do |f| %>
   <div class="form-group">
     <%= f.label :name, "名称" %>
     <%= f.text_field :name, class:"form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :description, "描述" %>
-    <%= f.text_area :description, class:"form-control", rows:5 %>
+    <%= f.text_area :description, class:"form-control", rows:10 %>
   </div>
-  <%= f.submit "提交", class:"btn btn-default" %>
+    <%= f.submit "确定", class:"btn btn-default" %>
   <% end %>
 </div>

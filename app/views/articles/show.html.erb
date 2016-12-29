@@ -2,8 +2,8 @@
 
 <% content_for :nav do %>
     <ul class="nav navbar-nav">
-        <li><%= link_to "修改", edit_article_url  %></li>
-        <li><%= link_to "返回", show_content(@content.content)  %></li>
+        <li><%= link_to "修改", edit_current_content  %></li>
+        <li><%= link_to "返回", content_parent  %></li>
     </ul>
 <% end %>
 

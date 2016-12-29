@@ -1,8 +1,14 @@
 <% provide(:title, '新建条目') %>
 
+<% content_for :nav do %>
+    <ul class="nav navbar-nav">
+        <li><%= link_to "返回", content_current  %></li>
+    </ul>
+<% end %>
+
 <div class="row">
   <div class="col-md-12">
-    <%= form_for @article, url: create_article_url do |f| %>
+    <%= form_for @article, url: contents_current do |f| %>
     <%= render partial: 'shared/errors', object: @article.errors %>
     <div class="form-group">
       <%= f.label :title, "标题" %>
@@ -12,7 +18,7 @@
       <%= f.label :content, "正文" %>
       <%= f.text_area :content, class:"form-control", rows:30 %>
     </div>
-    <%= f.submit "提交", class:"btn btn-default" %>
+        <%= f.submit "确定", class:"btn btn-default" %>
     <% end %>
   </div>
 </div>
