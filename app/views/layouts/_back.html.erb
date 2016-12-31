@@ -5,17 +5,17 @@
     id = (params[:id] || 0).to_i
 %>
 
-<% if content_id > 0 && (content_id != 1 || id != 1 || action != "show")
-       url = ""
-       if action == "new"
+<% if content_id > 0 && (content_id != 1 || id != 1 || action != 'show')
+       url = ''
+       if action == 'new'
            url = content_current
-       elsif action == "edit"
+       elsif action == 'edit'
            url = content_current
-       elsif action == "show"
+       elsif action == 'show'
            url = content_parent
        end
 %>
     <ul class="nav navbar-nav">
-      <li><%= link_to "返回", url %></li>
+      <li><%= link_to '返回', url %></li>
     </ul>
 <% end %>

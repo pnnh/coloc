@@ -6,6 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create name:'larry', email:'larry@coloc.cc', password:'123456', admin:true
-channel = Channel.create name:"root", description:"root channel"
-Content.create parent_id: 0, entity_id: channel.id, entity_type: "Channel", name:channel.name, description:channel.description
+admin = User.create name:'larry', email:'larry@coloc.cc', password:'123456', admin:true
+channel = admin.channels.create name: 'root', description: 'root channel'
+admin.contents.create parent_id: 0, entity_id: channel.id, entity_type: 'Channel', name:channel.name

@@ -1,24 +1,13 @@
 # coding: utf-8
 
 module ApplicationHelper
-  def full_title(page_title)
-    base_title = "宇哲"
-    if page_title.empty?
-      base_title
-    else
-      "#{page_title} - #{base_title}"
-    end
-  end
-  
-    def info_name(info = "infos")
-    case
-    when info == articles_path
-      "条目"
-    when info == users_path
-      "用户"
-    else
-      "信息"
-    end
+    def full_title(page_title)
+        base_title = '宇哲'
+        if page_title.empty?
+          base_title
+        else
+          "#{page_title} - #{base_title}"
+        end
     end
 
     def parse_type(word)
@@ -34,12 +23,12 @@ module ApplicationHelper
     end
 
     def content(c)
-        "/#{parse_controller(c.entity_type)}/#{c.id}/#{c.entity_id}"
+        "/contents/#{c.id}/#{parse_controller(c.entity_type)}/#{c.entity_id}"
     end
 
     def content_current
         if !params[:id].nil?
-          "/#{params[:controller]}/#{params[:content_id]}/#{params[:id]}"
+          "/contents/#{params[:content_id]}/#{params[:controller]}/#{params[:id]}"
         else
             content(Content.find(params[:content_id]))
         end
@@ -50,18 +39,18 @@ module ApplicationHelper
     end
 
     def edit_content(c)
-      "/#{parse_controller(c.entity_type)}/#{c.id}/#{c.entity_id}/edit"
+      "/contents/#{c.id}/#{parse_controller(c.entity_type)}/#{c.entity_id}/edit"
     end
 
     def edit_current_content
-        "/#{params[:controller]}/#{params[:content_id]}/#{params[:id]}/edit"
+        "/contents/#{params[:content_id]}/#{params[:controller]}/#{params[:id]}/edit"
     end
 
     def new_content(c)
-        "/#{parse_controller(c)}/#{params[:content_id]}/new"
+        "/contents/#{params[:content_id]}/#{parse_controller(c)}/new"
     end
 
     def contents_current
-        "/#{params[:controller]}/#{params[:content_id]}"
+        "/contents/#{params[:content_id]}/#{params[:controller]}"
     end
 end

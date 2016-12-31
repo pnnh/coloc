@@ -1,5 +1,5 @@
 # coding: utf-8
-source "https://gems.ruby-china.org/"
+source 'https://gems.ruby-china.org/'
 
 gem 'rails'
 gem 'turbolinks'

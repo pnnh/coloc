@@ -8,10 +8,10 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(params.require(:article).permit(:title, :content))
+    @article = current_user.articles.new(params.require(:article).permit(:title, :content))
     if @article.save
-      content = Content.create(parent_id: params[:content_id], entity_type: "Article", entity_id: @article.id,
-                               name: @article.title, description: @article.content)
+      content = current_user.contents.create(parent_id: params[:content_id], entity_type: 'Article',
+                                             entity_id: @article.id, name: @article.title)
       redirect_to view_context.content(content)
     end
   end

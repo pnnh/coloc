@@ -13,15 +13,16 @@
 ActiveRecord::Schema.define(version: 20160830154432) do
 
   create_table "articles", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "title"
     t.string   "content"
-    t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["slug"], name: "index_articles_on_slug"
+    t.index ["title"], name: "index_articles_on_title"
   end
 
   create_table "channels", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "name"
     t.string   "description"
     t.datetime "created_at",  null: false
@@ -29,29 +30,20 @@ ActiveRecord::Schema.define(version: 20160830154432) do
   end
 
   create_table "contents", force: :cascade do |t|
+    t.integer  "user_id"
     t.integer  "parent_id"
     t.string   "entity_type"
     t.integer  "entity_id"
     t.string   "name"
-    t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["entity_type", "entity_id"], name: "index_contents_on_entity_type_and_entity_id"
     t.index ["parent_id"], name: "index_contents_on_parent_id"
   end
 
-  create_table "tags", force: :cascade do |t|
-    t.string   "title"
-    t.string   "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["title"], name: "index_tags_on_title"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "slug"
     t.boolean  "admin",           default: false
     t.string   "remember_token"
     t.string   "password_digest"
@@ -59,7 +51,6 @@ ActiveRecord::Schema.define(version: 20160830154432) do
     t.datetime "updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["remember_token"], name: "index_users_on_remember_token"
-    t.index ["slug"], name: "index_users_on_slug"
   end
 
 end

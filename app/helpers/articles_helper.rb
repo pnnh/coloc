@@ -16,21 +16,7 @@ Pipeline = HTML::Pipeline.new [
 ]
 
 module ArticlesHelper
-  def prettify_markup(markup)
-    case
-    when markup == "markdown"
-      "Markdown"
-    when markup == "rst"
-      "reStructuredText"
-    when markup == "mediawiki"
-      "MediaWiki"
-    else
-      "unknown"
-    end
-  end
-
   def markup(markup, content)
     Pipeline.to_html(content, filename: "." + markup)
   end
-
 end

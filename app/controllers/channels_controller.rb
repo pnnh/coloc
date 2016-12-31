@@ -13,9 +13,9 @@ class ChannelsController < ApplicationController
   end
 
   def create
-    @channel = Channel.new(params.require(:channel).permit(:name, :description))
+    @channel = current_user.channels.new(params.require(:channel).permit(:name, :description))
     if @channel.save
-      content = Content.create(parent_id: params[:content_id], entity_type: "Channel", entity_id: @channel.id, name: @channel.name, description: @channel.description)
+      content = current_user.contents.create(parent_id: params[:content_id], entity_type: 'Channel', entity_id: @channel.id, name: @channel.name)
       redirect_to view_context.content(content)
     else
        render 'new'
