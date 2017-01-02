@@ -16,7 +16,7 @@ class ChannelsController < ApplicationController
     @channel = current_user.channels.new(params.require(:channel).permit(:name, :description))
     if @channel.save
       content = current_user.contents.create(parent_id: params[:content_id], entity_type: 'Channel', entity_id: @channel.id, name: @channel.name)
-      redirect_to view_context.content(content)
+      redirect_to view_context.content_entity_url(content)
     else
        render 'new'
     end
@@ -29,7 +29,7 @@ class ChannelsController < ApplicationController
   def update
     @channel = Channel.find params[:id]
     if @channel.update_attributes(params.require(:channel).permit(:name, :description))
-      redirect_to view_context.content_current
+      redirect_to view_context.content_entity_url
     else
       render 'edit'
     end

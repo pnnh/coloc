@@ -1,9 +1,15 @@
 <% provide(:title, "修改-" + @article.title ) %>
 
+<% content_for :nav do %>
+    <ul class="nav navbar-nav">
+        <li><%= link_to '返回', content_entity_url %></li>
+    </ul>
+<% end %>
+
 <div class="row">
   <div class="col-md-12">  
     <%= render partial: 'shared/errors', object: @article.errors %>
-    <%= form_for @article, url: content_current do |f| %>
+    <%= form_for @article, url: content_entity_url do |f| %>
     <div class="form-group">
       <%= f.label :title, "标题" %>
       <%= f.text_field :title, class:"form-control" %>

@@ -7,14 +7,17 @@
                 添加 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu dropdown-menu-left">
-                <li><%= link_to "文章", new_content("articles") %></li>
+                <li><%= link_to '文章', new_content_entity_url('Article') %></li>
                 <li class="divider"></li>
                 <li>
-                    <%= link_to "频道", new_content("channels") %>
+                    <%= link_to '频道', new_content_entity_url('Channel') %>
                 </li>
             </ul>
         </li>
-        <li><%= link_to "修改", edit_current_content %></li>
+        <li><%= link_to '修改', edit_content_entity_url %></li>
+        <% if content_id != 1 %>
+            <li><%= link_to '返回', parent_content_entity_url %></li>
+        <% end %>
     </ul>
 <% end %>
 
@@ -35,7 +38,7 @@
         <div class="form-group">
           <p>
             <span style="color:#105cb6;font-size:14px;">
-              <%= link_to c.name, content(c) %>
+              <%= link_to c.name, content_entity_url(c) %>
             </span>
           </p>
         </div>

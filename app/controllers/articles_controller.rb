@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
     if @article.save
       content = current_user.contents.create(parent_id: params[:content_id], entity_type: 'Article',
                                              entity_id: @article.id, name: @article.title)
-      redirect_to view_context.content(content)
+      redirect_to view_context.content_entity_url(content)
     end
   end
   
@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
     if @article.update_attributes(params.require(:article).permit(:title, :content))
-      redirect_to view_context.content_current
+      redirect_to view_context.content_entity_url
     end
   end
 

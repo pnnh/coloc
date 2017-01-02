@@ -1,9 +1,15 @@
 <% provide(:title, '新建条目') %>
 
+<% content_for :nav do %>
+    <ul class="nav navbar-nav">
+        <li><%= link_to '返回', content_entity_url %></li>
+    </ul>
+<% end %>
+
 <div class="row">
     <div class="col-md-12">
       <%= render partial: 'shared/errors', object: @channel.errors %>
-      <%= form_for @channel, url: contents_current do |f| %>
+      <%= form_for @channel, url: content_entities_url('Channel') do |f| %>
       <div class="form-group">
         <%= f.label :name, "名称" %>
         <%= f.text_field :name, class:"form-control" %>

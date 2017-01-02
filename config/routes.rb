@@ -1,26 +1,28 @@
 # coding: utf-8
 Rails.application.routes.draw do
-  resources :users, only: [:new, :edit, :create, :show, :update]
-  resources :sessions, only: [:new, :create, :destory]
-  resources :contents, only: [] do
-      resources :channels, :articles
-  end
+    resources :users, only: [:new, :edit, :create, :show, :update]
+    resources :sessions, only: [:new, :create, :destory]
 
-  root to: 'channels#show', id: 1, content_id: 1
+    root to: 'channels#show', id: 1, content_type: 'Content', content_id: 1
 
-  match '/signup', to: 'users#new', via: 'get'
-  match '/signin', to: 'sessions#new', via: 'get'
-  match '/signout', to: 'sessions#destroy', via: 'delete'
-  match '/help', to: 'static_pages#help', via: 'get'
-  match '/about', to: 'static_pages#about', via: 'get'
-  match '/contact', to: 'static_pages#contact', via: 'get'
+    match '/signup', to: 'users#new', via: 'get'
+    match '/signin', to: 'sessions#new', via: 'get'
+    match '/signout', to: 'sessions#destroy', via: 'delete'
+    match '/help', to: 'static_pages#help', via: 'get'
+    match '/about', to: 'static_pages#about', via: 'get'
+    match '/contact', to: 'static_pages#contact', via: 'get'
 
-    # match ':controller/:content_id/:id/edit', action: 'edit', via: [:get]
-    # match ':controller/:content_id/new', action: 'new', via: [:get]
-    # match ':controller/:content_id/:id', action: 'show', via: [:get]
-    # match ':controller/:content_id', action: 'index', via: [:get]
-    # match ':controller/:content_id/', action: 'create', via: [:post]
-    # match ':controller/:content_id/:id', action: 'update', via: [:patch, :put]
-    # match ':controller/:content_id/:id', action: 'destroy', via: [:delete]
+    %w(contents).each do |controller|
+        match "#{controller}/:id", controller: controller, action: 'destroy', via: [:delete]
+    end
 
+    %w(channels articles).each do |controller|
+        match ":content_type/:content_id/#{controller}/:id/edit", controller: controller, action: 'edit', via: [:get]
+        match ":content_type/:content_id/#{controller}/new", controller: controller, action: 'new', via: [:get]
+        match ":content_type/:content_id/#{controller}/:id", controller: controller, action: 'show', via: [:get]
+        match ":content_type/:content_id/#{controller}/:id", controller: controller, action: 'update', via: [:patch, :put]
+        match ":content_type/:content_id/#{controller}/:id", controller: controller, action: 'destroy', via: [:delete]
+        match ":content_type/:content_id/#{controller}", controller: controller, action: 'index', via: [:get]
+        match ":content_type/:content_id/#{controller}", controller: controller, action: 'create', via: [:post]
+    end
 end
