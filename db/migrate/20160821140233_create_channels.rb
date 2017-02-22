@@ -2,7 +2,7 @@ class CreateChannels < ActiveRecord::Migration
   def change
     create_table :channels do |t|
       t.references :user
-      t.string :name
+      t.string :title
       t.string :description
 
       t.timestamps null: false

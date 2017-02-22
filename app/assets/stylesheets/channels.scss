@@ -2,17 +2,46 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.channels {
+    .post {
+        margin-bottom: 10px;
+        h2 {
+            font-size: 22px;
+            letter-spacing: -1px;
+            background: url(dotsH.gif) repeat-x bottom left;
+            margin: 0;
+            padding: 6px 0;
+            font-weight: normal;
+            line-height: 120%;
+        }
+        small {
+            font-size: 12px;
+            letter-spacing: normal;
+            color: #ababab;
+            display: block;
+            text-align: right;
+        }
+        ul.postmetadata {
+            border-top: 3px double #eee;
+            border-bottom: 3px double #eee;
+            padding: 4px 0;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            font-size: 12px;
 
-.container .loading {display:none;}
-.container .loading img{ width:85px;height:15px;}
-
-.masonry-container .item .title {
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 1.5;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
-  display: inline-block;
+            li {
+                padding: 2px 0 5px 20px;
+                background: no-repeat 0 -170px;
+                .icon_bullet {
+                    background-image: url(icon_bullet.gif);
+                }
+            }
+        }
+    }
+    .entry {
+        font-family: "Trebuchet MS" ,Georgia,"Times New Roman",Times,sans-serif;
+        font: 14px Georgia,"Times New Roman",Times,sans-serif;
+        line-height: 1.8;
+        word-break: break-all;
+    }
 }

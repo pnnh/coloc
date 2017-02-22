@@ -10,20 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160830154432) do
+ActiveRecord::Schema.define(version: 20170206192332) do
 
   create_table "articles", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "title"
     t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["title"], name: "index_articles_on_title"
   end
 
   create_table "channels", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "name"
+    t.string   "title"
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -31,14 +29,20 @@ ActiveRecord::Schema.define(version: 20160830154432) do
 
   create_table "contents", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "parent_id"
     t.string   "entity_type"
     t.integer  "entity_id"
-    t.string   "name"
+    t.string   "title"
+    t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["entity_type", "entity_id"], name: "index_contents_on_entity_type_and_entity_id"
-    t.index ["parent_id"], name: "index_contents_on_parent_id"
+  end
+
+  create_table "interactions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "channel_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

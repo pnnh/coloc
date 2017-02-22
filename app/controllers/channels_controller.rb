@@ -1,9 +1,9 @@
 class ChannelsController < ApplicationController
   def new
-    @channel = Channel.new
   end
 
   def index
+    @channels = Channel.all.limit(100)
   end
 
   def show
