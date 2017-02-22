@@ -1,47 +1,24 @@
-<% provide(:title, @channel.name) %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%=@channel.title%></title>
+    <%= render 'layouts/header' %>
+</head>
+<body>
 
-<% content_for :nav do %>
-    <ul class="nav navbar-nav">
-        <li class="dropdown">
-            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                添加 <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-left">
-                <li><%= link_to '文章', new_content_entity_url('Article') %></li>
-                <li class="divider"></li>
-                <li>
-                    <%= link_to '频道', new_content_entity_url('Channel') %>
-                </li>
-            </ul>
-        </li>
-        <li><%= link_to '修改', edit_content_entity_url %></li>
-        <% if content_id != 1 %>
-            <li><%= link_to '返回', parent_content_entity_url %></li>
-        <% end %>
-    </ul>
-<% end %>
-
-<div class="row">
-  <div class="col-md-12">
-    <div class="form-group">
-      <%= @channel.name %>
-    </div>
-    <div class="form-group">
-      <%= @channel.description %>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-    <% for c in @contents %>
-        <div class="form-group">
-          <p>
-            <span style="color:#105cb6;font-size:14px;">
-              <%= link_to c.name, content_entity_url(c) %>
-            </span>
-          </p>
+<div class="container channels">
+    <% for c in @channels%>
+        <div class="post post-list-item">
+            <h2>
+                <%= link_to c.title, c %>
+            </h2>
+            <small>&nbsp;</small>
+            <div class="entry">
+                <div class="c_b_p_desc"><%= c.description %></div>
+            </div>
         </div>
     <%end%>
-  </div>
 </div>
+<%= render 'layouts/footer' %>
+</body>
+</html>

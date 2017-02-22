@@ -1,26 +1,37 @@
-<% provide(:title, @article.title ) %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%=@content.title%></title>
+    <%= render 'layouts/header' %>
+</head>
+<body>
 
-<% content_for :nav do %>
-    <ul class="nav navbar-nav">
-        <li><%= link_to '修改', edit_content_entity_url  %></li>
-        <li><%= link_to '删除', content_url, method: 'delete' %></li>
-        <li><%= link_to '返回', parent_content_entity_url %></li>
-    </ul>
-<% end %>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <%= render 'layouts/navlogo' %>
 
-<% content_for :head do %>
-    <style type="text/css">
-      <%=Pygments.css('.highlight')%>
-    </style>
-<% end %>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse">
+            <%= render 'layouts/navmenu' %>
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a href="#">编辑</a></li>
+                <li><a href="#">删除</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
 
-<div class="row">
-  <div class="col-md-12">
-    <p style="font-size: 25px;font-weight: bolder;">
-      <%= @article.title %>
-    </p>
-    <div>
-      <%= raw markup('markdown', @article.content) %>
-    </div>
-  </div>
+<div class="container channels">
+        <div class="post post-list-item">
+            <h2>
+                <%= @content.title %>
+            </h2>
+            <small>&nbsp;</small>
+            <div class="entry">
+                <%= @article.text %>
+            </div>
+        </div>
 </div>
+<%= render 'layouts/footer' %>
+</body>
+</html>

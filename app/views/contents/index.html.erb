@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>频道</title>
+    <title><%=@channel.title%></title>
     <%= render 'layouts/header' %>
 </head>
 <body>
@@ -26,10 +26,10 @@
     </div><!-- /.container-fluid -->
 </nav>
 <div class="container channels">
-    <% for c in @channels%>
+    <% for c in @contents %>
             <div class="post post-list-item">
                 <h2>
-                    <%= link_to c.title, channel_contents_url(c) %>
+                    <%= link_to c.title, c.entity %>
                 </h2>
                 <small>&nbsp;</small>
                 <div class="entry">

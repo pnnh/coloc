@@ -1,0 +1,18 @@
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">收藏</a></li>
+    <li><a href="#">创建</a></li>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人
+            <span class="caret"></span></a>
+        <% if signed_in? %>
+            <ul class="dropdown-menu">
+                <li><%= link_to '信息', current_user %></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">注销</a></li>
+            </ul>
+        <% else %>
+            <%= link_to '登录', signin_path %>
+        <% end %>
+    </li>
+</ul>
