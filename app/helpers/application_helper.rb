@@ -13,4 +13,12 @@ module ApplicationHelper
     def truncate(content)
         content.truncate(100, separator: ' ')
     end
+
+    def parse_type(word)
+        word.singularize.capitalize
+    end
+
+    def parse_controller(word)
+        word.pluralize.downcase
+    end
 end

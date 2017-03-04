@@ -2,11 +2,12 @@
 Rails.application.routes.draw do
     resources :users, only: [:new, :edit, :create, :show, :update]
     resources :sessions, only: [:new, :create, :destory]
-    resources :interactions
     resources :channels do
-        resources :contents
+        resources :articles
     end
+    resources :channels
     resources :articles
+
     root to: 'channels#index'
 
     match '/signup', to: 'users#new', via: 'get'

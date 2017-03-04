@@ -22,19 +22,23 @@
             text-align: right;
         }
         ul.postmetadata {
-            border-top: 3px double #eee;
-            border-bottom: 3px double #eee;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
             padding: 4px 0;
             margin-bottom: 10px;
             margin-top: 10px;
             font-size: 12px;
 
             li {
-                padding: 2px 0 5px 20px;
+                padding: 2px 0 5px 0px;
                 background: no-repeat 0 -170px;
                 .icon_bullet {
                     background-image: url(icon_bullet.gif);
                 }
+            }
+            li.icon_r {
+                float: right;
+                padding: 0 0 0 20px;
             }
         }
     }

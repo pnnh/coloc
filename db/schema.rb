@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 20170206192332) do
 
   create_table "articles", force: :cascade do |t|
     t.integer  "user_id"
+    t.string   "title"
     t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -29,10 +30,9 @@ ActiveRecord::Schema.define(version: 20170206192332) do
 
   create_table "contents", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "channel_id"
     t.string   "entity_type"
     t.integer  "entity_id"
-    t.string   "title"
-    t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["entity_type", "entity_id"], name: "index_contents_on_entity_type_and_entity_id"

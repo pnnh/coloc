@@ -1,8 +1,6 @@
 class User < ActiveRecord::Base
-    has_many :contents
     has_many :channels
     has_many :articles
-    has_many :interactions
 
     before_save { self.email = email.downcase }
     before_create :create_remember_token
