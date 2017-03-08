@@ -18,13 +18,18 @@
 <div class="container">
     <div class="post post-list-item">
         <div class="entry">
-            <%= render partial: 'shared/errors', object: @article.errors %>
-            <%= form_for @article, url: channel_articles_path do |f| %>
+            <%= form_for @article, url: request.path.sub('/new', '') do |f| %>
                 <div class="form-group">
+                    <%= f.label :title, '标题' %>
                     <%= f.text_field :title, class: 'form-control' %>
                 </div>
                 <div class="form-group">
+                    <%= f.label :content, '正文' %>
                     <%= f.text_area :content, class: 'form-control', rows: 30 %>
+                </div>
+                <div class="form-group">
+                    <%= f.label :tags, '标签' %>
+                    <%= f.text_field :tags, class: 'form-control' %>
                 </div>
                 <%= f.submit '提交', class: 'btn btn-default' %>
             <% end %>

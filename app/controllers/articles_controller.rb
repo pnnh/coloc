@@ -19,26 +19,22 @@ class ArticlesController < ApplicationController
     end
 
     def create
-        article = Article.new title: params[:article][:title],
-                              content: params[:article][:content],
-                              user: current_user
-        content = Content.new entity: article,
-                              channel_id: params[:channel_id],
-                              user: current_user
+        p = params[:article]
+        article = Article.new title: p[:title], content: p[:content], tags: p[:tags],
+            user_id: current_user.id, channel_id: params[:channel_id]
 
-        if article.save && content.save
-            redirect_to channel_article_path(params[:channel_id], article)
+        if article.save
+            redirect_to request.path + '/' + article.id.to_s
         end
     end
 
     def edit
         @article = Article.find(params[:id])
-        @content = @article.content
     end
 
     def update
         article = Article.find params[:id]
-        if article.update_attributes(params.require(:article).permit(:title, :content))
+        if article.update_attributes(params.require(:article).permit(:title, :content, :tags))
             redirect_to request.path
         end
     end

@@ -38,7 +38,10 @@
             }
             li.icon_r {
                 float: right;
-                padding: 0 0 0 20px;
+                padding: 2px 0 5px 0px;
+                a {
+                    margin-left:5px;
+                }
             }
         }
     }

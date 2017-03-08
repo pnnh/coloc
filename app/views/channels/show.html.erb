@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%=@channel.title%></title>
+    <title><%=@channel.title %>></title>
     <%= render 'layouts/header' %>
 </head>
 <body>
 
-<div class="container channels">
-    <% for c in @channels%>
-        <div class="post post-list-item">
-            <h2>
-                <%= link_to c.title, c %>
-            </h2>
-            <small>&nbsp;</small>
-            <div class="entry">
-                <div class="c_b_p_desc"><%= c.description %></div>
-            </div>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <%= render 'layouts/navlogo' %>
+        <div class="collapse navbar-collapse">
+            <%= render 'layouts/navmenu' %>
         </div>
-    <%end%>
+    </div>
+</nav>
+
+<div class="container channels">
+    <div class="post post-list-item">
+        <h2>
+            <%= @channel.title %>
+        </h2>
+        <small>&nbsp;</small>
+        <div class="entry">
+            <%= @channel.description %>
+        </div>
+        <ul class="postmetadata">
+            <li class="icon_bullet">
+                <% (@channel.tags || '').split(',').map do |t| %>
+                    <%= link_to t, root_path + '?keyword=' + t.strip %>&nbsp;
+                <% end %>&nbsp;
+            </li>
+        </ul>
+    </div>
 </div>
 <%= render 'layouts/footer' %>
 </body>

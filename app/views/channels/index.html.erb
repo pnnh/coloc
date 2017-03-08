@@ -9,34 +9,40 @@
     <div class="container">
         <%= render 'layouts/navlogo', search: true %>
 
-        <div class="collapse navbar-collapse"  id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <%= render 'layouts/navmenu' %>
-            <ul class="nav navbar-nav navbar-right">
-                <li><%= link_to '新增', new_channel_path %></li>
-            </ul>
+            <% if signed_in? %>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><%= link_to '新增', new_channel_path %></li>
+                </ul>
+            <% end %>
         </div>
     </div>
 </nav>
 <div class="container channels">
-    <% @channels.each do |channel|%>
-            <div class="post">
-                <h2>
-                    <%= link_to channel.title, '/channels/' + channel.id.to_s + '/' +
-                            parse_controller(channel.ctype) %>
-                </h2>
-                <small>&nbsp;</small>
-                <div class="entry">
-                    <div class="c_b_p_desc"><%= channel.description %></div>
-                </div>
-                <ul class="postmetadata">
-                    <li class="icon_comment icon_r">
-                        <%= link_to '编辑', edit_channel_path(channel)  %>
-                    </li>
-                    <li class="icon_bullet">
-                        <%= channel.tags %>
-                </ul>
+    <% @channels.each do |channel| %>
+        <div class="post">
+            <h2>
+                <%= link_to channel.title, '/channels/' + channel.id.to_s + '/' +
+                        parse_controller(channel.ctype) %>
+            </h2>
+            <small>&nbsp;</small>
+            <div class="entry">
+                <div class="c_b_p_desc"><%= channel.description %></div>
             </div>
-        <%end%>
+            <ul class="postmetadata">
+                <li class="icon_comment icon_r">
+                    <%= link_to '详情', channel_path(channel) %>
+                    <%= link_to '编辑', edit_channel_path(channel) %>
+                </li>
+                <li class="icon_bullet">
+                    <% (channel.tags || '').split(',').map do |t| %>
+                        <%= link_to t, request.path + '?keyword=' + t.strip %>&nbsp;
+                    <% end %>&nbsp;
+                </li>
+            </ul>
+        </div>
+    <% end %>
 </div>
 <%= render 'layouts/footer' %>
 </body>

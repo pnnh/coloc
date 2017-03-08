@@ -15,7 +15,9 @@
             <%= render 'layouts/navmenu' %>
             <ul class="nav navbar-nav navbar-right">
                 <li><%= link_to '上级', root_path %></li>
-                <li><%= link_to '新增', new_channel_article_path %></li>
+                <% if signed_in? %>
+                    <li><%= link_to '新增', new_channel_article_path %></li>
+                <% end %>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -30,6 +32,19 @@
             <div class="entry">
                 <div class="c_b_p_desc"><%= truncate(article.content) %></div>
             </div>
+            <% if article.tags %>
+                <ul class="postmetadata">
+                    <li class="icon_comment icon_r">
+                        <%= link_to '详情', request.path + '/' + article.id.to_s %>
+                        <%= link_to '编辑', request.path + '/' + article.id.to_s + '/edit' %>
+                    </li>
+                    <li class="icon_bullet">
+                        <% article.tags.split(',').map do |t| %>
+                            <%= link_to t, request.path + '?keyword=' + t.strip %>&nbsp;
+                        <% end %>&nbsp;
+                    </li>
+                </ul>
+            <% end %>
         </div>
     <%end%>
 </div>

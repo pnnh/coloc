@@ -1,24 +1,41 @@
-<% provide(:title, "编辑条目") %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= @channel.title %>-修改</title>
+    <%= render 'layouts/header' %>
+</head>
+<body>
 
-<% content_for :nav do %>
-    <ul class="nav navbar-nav">
-        <li><%= link_to '返回', content_entity_url %></li>
-    </ul>
-<% end %>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <%= render 'layouts/navlogo' %>
+        <div class="collapse navbar-collapse">
+            <%= render 'layouts/navmenu' %>
+        </div>
+    </div>
+</nav>
 
-<div class="row">
-  <div class="col-md-12">  
-    <%= render partial: 'shared/errors', object: @channel.errors %>
-    <%= form_for @channel, url: content_entity_url do |f| %>
-      <div class="form-group">
-        <%= f.label :name, "名称" %>
-        <%= f.text_field :name, class:"form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :description, "描述" %>
-        <%= f.text_area :description, class:"form-control", rows:10 %>
-      </div>
-      <%= f.submit "提交", class:"btn btn-default" %>
-    <% end %>
-  </div>
+<div class="container channels">
+    <div class="post post-list-item">
+        <div class="entry">
+            <%= form_for @channel, url: request.path.sub('/edit', '') do |f| %>
+                <div class="form-group">
+                    <%= f.label :title, '标题' %>
+                    <%= f.text_field :title, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                    <%= f.label :description, '描述' %>
+                    <%= f.text_area :description, class: 'form-control', rows:10 %>
+                </div>
+                <div class="form-group">
+                    <%= f.label :tags, '标签' %>
+                    <%= f.text_field :tags, class: 'form-control' %>
+                </div>
+                <%= f.submit '提交', class: 'btn btn-default' %>
+            <% end %>
+        </div>
+    </div>
 </div>
+<%= render 'layouts/footer' %>
+</body>
+</html>
