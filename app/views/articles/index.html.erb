@@ -36,7 +36,9 @@
                 <ul class="postmetadata">
                     <li class="icon_comment icon_r">
                         <%= link_to '详情', request.path + '/' + article.id.to_s %>
-                        <%= link_to '编辑', request.path + '/' + article.id.to_s + '/edit' %>
+                        <% if current_user?(article.user) %>
+                            <%= link_to '编辑', request.path + '/' + article.id.to_s + '/edit' %>
+                        <% end %>
                     </li>
                     <li class="icon_bullet">
                         <% article.tags.split(',').map do |t| %>

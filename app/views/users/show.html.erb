@@ -1,22 +1,36 @@
-<% provide(:title, @user.name) %>
-
-<% content_for :nav do %>
-    <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to "设置", edit_user_path(current_user) %></li>
-      <li><%= link_to "注销", signout_path, method: "delete" %></li>
-    </ul>
-<% end %>
-
-<div class="row">
-    <div class="col-md-12">
-      <div class="form-group">
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= @user.name %></title>
+    <%= render 'layouts/header' %>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <%= render 'layouts/navlogo', search: false %>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <%= render 'layouts/navmenu' %>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="form-group">
+        <%= label_tag '姓名' %>
         <%= @user.name %>
-      </div>
-      <div class="form-group">
+    </div>
+    <div class="form-group">
+        <%= label_tag '邮箱' %>
         <%= @user.email %>
-      </div>
-      <div class="form-group">
-        <%= @user.created_at.strftime('%Y-%m-%d') %>
-      </div>
+    </div>
+    <div class="form-group">
+        <%= label_tag '注册日期' %>
+        <%= @user.created_at %>
+    </div>
+    <div class="form-group">
+        <%= label_tag '是否管理员' %>
+        <%= @user.admin ? '是' : '否' %>
     </div>
 </div>
+<%= render 'layouts/footer' %>
+</body>
+</html>

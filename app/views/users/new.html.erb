@@ -1,25 +1,39 @@
-<% provide(:title, 'Sign up')
-   provide(:info, users_path) %>
-
-  <div class="col-md-12  col-lg-4">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>注册</title>
+    <%= render 'layouts/header' %>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <%= render 'layouts/navlogo', search: false %>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <%= render 'layouts/navmenu' %>
+        </div>
+    </div>
+</nav>
+<div class="container">
     <%= form_for(@user) do |f| %>
-    <%= render :partial => 'shared/errors', :object => @user.errors %>
-    <div class="form-group">
-      <%= f.label :name, "姓名" %>
-      <%= f.text_field :name, class:"form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :email, "邮箱" %>
-      <%= f.text_field :email, class:"form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password, "密码" %>
-      <%= f.password_field :password, class:"form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password_confirmation, "确认密码" %>
-      <%= f.password_field :password_confirmation, class:"form-control" %>
-    </div>
-    <%= f.submit "注册", class:"btn btn-default" %>
+        <div class="form-group">
+            <%= f.label :name, '姓名' %>
+            <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+            <%= f.label :email, '邮箱' %>
+            <%= f.text_field :email, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+            <%= f.label :password, "密码" %>
+            <%= f.password_field :password, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+            <%= f.label :password_confirmation, '确认密码' %>
+            <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
+        <%= f.submit '注册', class: 'btn btn-default' %>
     <% end %>
-  </div>
+</div>
+<%= render 'layouts/footer' %>
+</body>
+</html>

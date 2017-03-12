@@ -33,7 +33,9 @@
             <ul class="postmetadata">
                 <li class="icon_comment icon_r">
                     <%= link_to '详情', channel_path(channel) %>
-                    <%= link_to '编辑', edit_channel_path(channel) %>
+                    <% if current_user?(channel.user) %>
+                        <%= link_to '编辑', edit_channel_path(channel) %>
+                    <% end %>
                 </li>
                 <li class="icon_bullet">
                     <% (channel.tags || '').split(',').map do |t| %>

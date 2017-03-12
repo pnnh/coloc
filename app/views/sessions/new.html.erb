@@ -1,17 +1,32 @@
-<% provide(:title, "Sign in") %>
-
-<div class="col-md-4"></div>
-  <div class="col-md-4">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>登陆</title>
+    <%= render 'layouts/header' %>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <%= render 'layouts/navlogo', search: false %>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <%= render 'layouts/navmenu' %>
+        </div>
+    </div>
+</nav>
+<div class="container">
     <%= form_for(:session, url: sessions_path) do |f| %>
-    <div class="form-group">
-      <%= f.label :email, "邮箱" %>
-      <%= f.text_field :email, class:"form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password, "密码" %>
-      <%= f.password_field :password, class:"form-control" %>
-    </div>
-    <%= f.submit "登录", class:"btn btn-default" %>
-    <%= link_to "注册", signup_path , class:"btn btn-default"%>
+        <div class="form-group">
+            <%= f.label :email, '邮箱' %>
+            <%= f.text_field :email, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+            <%= f.label :password, '密码' %>
+            <%= f.password_field :password, class: 'form-control' %>
+        </div>
+        <%= f.submit '登录', class: 'btn btn-default' %>
+        <%= link_to '注册', signup_path , class: 'btn btn-default'%>
     <% end %>
-  </div>
+</div>
+<%= render 'layouts/footer' %>
+</body>
+</html>
