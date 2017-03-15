@@ -30,14 +30,14 @@
             </h2>
             <small>&nbsp;</small>
             <div class="entry">
-                <div class="c_b_p_desc"><%= truncate(article.content) %></div>
+                <div class="c_b_p_desc"><%= trunc_desc(article.content) %></div>
             </div>
             <% if article.tags %>
                 <ul class="postmetadata">
                     <li class="icon_comment icon_r">
                         <%= link_to '详情', request.path + '/' + article.id.to_s %>
                         <% if current_user?(article.user) %>
-                            <%= link_to '编辑', request.path + '/' + article.id.to_s + '/edit' %>
+                            <%= link_to '修改', request.path + '/' + article.id.to_s + '/edit' %>
                         <% end %>
                     </li>
                     <li class="icon_bullet">

@@ -11,6 +11,10 @@
         <%= render 'layouts/navlogo' %>
         <div class="collapse navbar-collapse">
             <%= render 'layouts/navmenu' %>
+            <ul class="nav navbar-nav navbar-right">
+                <li><%= link_to '上级', root_path %></li>
+                <li><%= link_to '内容', @channel.contents_path %></li>
+            </ul>
         </div>
     </div>
 </nav>

@@ -17,7 +17,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><%= link_to '上级', request.path.sub(article_path(@article), '/articles') %></li>
                 <% if current_user?(@article.user) %>
-                    <li ><%=link_to '编辑', request.path + '/edit' %></li>
+                    <li ><%=link_to '修改', request.path + '/edit' %></li>
                 <% end %>
             </ul>
         </div>

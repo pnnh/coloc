@@ -10,8 +10,9 @@ module ApplicationHelper
         end
     end
 
-    def truncate(content)
-        content.truncate(100, separator: ' ')
+    def trunc_desc(content)
+        i = content.index(/\n/)
+        (!i.nil? ? content[0..i] : content).truncate(100, separator: ' ')
     end
 
     def parse_type(word)

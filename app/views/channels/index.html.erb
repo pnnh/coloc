@@ -23,8 +23,7 @@
     <% @channels.each do |channel| %>
         <div class="post">
             <h2>
-                <%= link_to channel.title, '/channels/' + channel.id.to_s + '/' +
-                        parse_controller(channel.ctype) %>
+                <%= link_to channel.title, channel.contents_path %>
             </h2>
             <small>&nbsp;</small>
             <div class="entry">
@@ -34,7 +33,7 @@
                 <li class="icon_comment icon_r">
                     <%= link_to '详情', channel_path(channel) %>
                     <% if current_user?(channel.user) %>
-                        <%= link_to '编辑', edit_channel_path(channel) %>
+                        <%= link_to '修改', edit_channel_path(channel) %>
                     <% end %>
                 </li>
                 <li class="icon_bullet">

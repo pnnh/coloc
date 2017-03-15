@@ -3,4 +3,8 @@ class Channel < ActiveRecord::Base
     has_many :articles
 
     validates :title, presence: true, uniqueness: true
+
+    def contents_path
+        '/channels/' + id.to_s + '/' + ctype.pluralize.downcase
+    end
 end
