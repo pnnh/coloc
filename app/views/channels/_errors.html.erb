@@ -1,0 +1,12 @@
+
+<div class="errors">
+    <% errors.details.each do |msg|%>
+        <div class="alert alert-error">
+            <% if msg[0] == :title %>
+                <% if msg[1][0][:error] == :taken %>
+                    频道名称已存在
+                <% end %>
+            <% end %>
+        </div>
+    <% end %>
+</div>

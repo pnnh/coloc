@@ -13,19 +13,21 @@
         </div>
     </div>
 </nav>
-<div class="container">
-    <%= form_for(:session, url: sessions_path) do |f| %>
-        <div class="form-group">
-            <%= f.label :email, '邮箱' %>
-            <%= f.text_field :email, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-            <%= f.label :password, '密码' %>
-            <%= f.password_field :password, class: 'form-control' %>
-        </div>
-        <%= f.submit '登录', class: 'btn btn-default' %>
-        <%= link_to '注册', signup_path , class: 'btn btn-default'%>
-    <% end %>
+<div class="container signin">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <%= form_for(:session, url: sessions_path) do |f| %>
+            <div class="form-group">
+                <%= f.text_field :email, placeholder: '邮箱', class: 'form-control' %>
+            </div>
+            <div class="form-group">
+                <%= f.password_field :password, placeholder: '密码', class: 'form-control' %>
+            </div>
+            <%= f.submit '登录', class: 'btn btn-default login' %>
+            <%= link_to '注册', signup_path , class: 'btn btn-default register'%>
+        <% end %>
+    </div>
+    <div class="col-md-4"></div>
 </div>
 <%= render 'layouts/footer' %>
 </body>

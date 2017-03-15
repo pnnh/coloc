@@ -18,18 +18,16 @@
 <div class="container channels">
     <div class="post post-list-item">
         <div class="entry">
+            <%= render :partial => 'errors', :object => @channel.errors %>
             <%= form_for @channel, url: request.path.sub('/new', '') do |f| %>
                 <div class="form-group">
-                    <%= f.label :title, '标题' %>
-                    <%= f.text_field :title, class: 'form-control' %>
+                    <%= f.text_field :title, placeholder: '标题', class: 'form-control' %>
                 </div>
                 <div class="form-group">
-                    <%= f.label :description, '描述' %>
-                    <%= f.text_area :description, class: 'form-control', rows:10 %>
+                    <%= f.text_area :description, placeholder: '描述', class: 'form-control', rows:10 %>
                 </div>
                 <div class="form-group">
-                    <%= f.label :tags, '标签' %>
-                    <%= f.text_field :tags, class: 'form-control' %>
+                    <%= f.text_field :tags, placeholder: '标签', class: 'form-control' %>
                 </div>
                 <%= f.submit '提交', class: 'btn btn-default' %>
             <% end %>

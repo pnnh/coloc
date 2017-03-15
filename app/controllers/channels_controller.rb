@@ -22,6 +22,8 @@ class ChannelsController < ApplicationController
             tags: p[:tags], user_id: current_user.id, ctype: 'Article')
         if @channel.save
             redirect_to @channel
+        else
+            render 'new'
         end
     end
 

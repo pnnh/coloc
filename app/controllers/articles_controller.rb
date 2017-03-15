@@ -20,11 +20,13 @@ class ArticlesController < ApplicationController
 
     def create
         p = params[:article]
-        article = Article.new title: p[:title], content: p[:content], tags: p[:tags],
+        @article = Article.new title: p[:title], content: p[:content], tags: p[:tags],
             user_id: current_user.id, channel_id: params[:channel_id]
 
-        if article.save
-            redirect_to request.path + '/' + article.id.to_s
+        if @article.save
+            redirect_to request.path + '/' + @article.id.to_s
+        else
+            render 'new'
         end
     end
 

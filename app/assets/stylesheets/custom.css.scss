@@ -35,6 +35,26 @@ ul {
     .navbar-form input.search {width:160px;}
 }
 
+div.errors {
+    .alert {
+        padding: 0;
+        margin-bottom: 5px;
+        color: red;
+    }
+}
+
+div.signin {
+    .login { width: 100%; }
+    .register{ margin-top:15px; width: 100%; }
+}
+
+div.signup {
+    .register{
+        padding:0;
+        input { width: 100%; }
+    }
+}
+
 /* mixins, variables, etc. */
 $gray-medium-light: #eaeaea;
 /* 底部导航 */
