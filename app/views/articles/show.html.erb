@@ -12,7 +12,7 @@
     <div class="container">
         <%= render 'layouts/navlogo', search: false %>
 
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse"  id="bs-example-navbar-collapse-1">
             <%= render 'layouts/navmenu' %>
             <ul class="nav navbar-nav navbar-right">
                 <li><%= link_to '上级', request.path.sub(article_path(@article), '/articles') %></li>

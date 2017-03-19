@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170206192332) do
+ActiveRecord::Schema.define(version: 20160821140233) do
 
   create_table "articles", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title"
     t.string   "content"
+    t.string   "tags"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -24,25 +25,10 @@ ActiveRecord::Schema.define(version: 20170206192332) do
     t.integer  "user_id"
     t.string   "title"
     t.string   "description"
+    t.string   "tags"
+    t.string   "ctype"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "contents", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "channel_id"
-    t.string   "entity_type"
-    t.integer  "entity_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["entity_type", "entity_id"], name: "index_contents_on_entity_type_and_entity_id"
-  end
-
-  create_table "interactions", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "channel_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

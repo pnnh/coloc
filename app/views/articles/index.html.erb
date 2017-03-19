@@ -10,8 +10,7 @@
     <div class="container">
         <%= render 'layouts/navlogo', search: true %>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <%= render 'layouts/navmenu' %>
             <ul class="nav navbar-nav navbar-right">
                 <li><%= link_to '上级', root_path %></li>
@@ -19,8 +18,8 @@
                     <li><%= link_to '新增', new_channel_article_path %></li>
                 <% end %>
             </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+    </div>
 </nav>
 <div class="container channels">
     <% @articles.each do |article| %>

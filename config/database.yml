@@ -25,9 +25,9 @@ production:
   encoding: utf8
   database: coloc
   username: coloc
-  password: 123
+  password: il+fDo3Gv)dFg(FK
   pool: 5
   timeout: 5000
-  host: localhost
+  host: 112.124.102.83
   port: 5432
 
