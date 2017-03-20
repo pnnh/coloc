@@ -21,13 +21,6 @@ test:
   database: db/test.sqlite3
 
 production:
-  adapter: postgresql
-  encoding: utf8
-  database: coloc
-  username: coloc
-  password: il+fDo3Gv)dFg(FK
-  pool: 5
-  timeout: 5000
-  host: 112.124.102.83
-  port: 5432
+  <<: *default
+  database: db/production.sqlite3
 
