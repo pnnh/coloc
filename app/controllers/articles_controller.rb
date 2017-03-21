@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
     end
 
     def new
-        @article = Article.new
+        @article = Article.new(channel_id: params[:channel_id])
     end
 
     def show

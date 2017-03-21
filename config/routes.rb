@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :channels
     resources :articles
 
-    root to: 'channels#index'
+    root to: 'static_pages#index'
 
     match '/signup', to: 'users#new', via: 'get'
     match '/signin', to: 'sessions#new', via: 'get'

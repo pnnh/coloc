@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>宇哲</title>
+    <%= render 'layouts/header' %>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <%= render 'layouts/navlogo'%>
+        <form method="get" action="<%= channels_path %>" class="navbar-form navbar-left search">
+            <div class="form-group">
+                <input name="keyword" type="text" value="<%= params[:keyword]%>"
+                       class="form-control search" maxlength="30"
+                       placeholder="搜索频道">
+            </div>
+        </form>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <%= render 'layouts/navmenu' %>
+        </div>
+
+    </div>
+</nav>
+<div class="container channels">
+    <div class="jumbotron">
+        <h1>宇哲</h1>
+        <p><%= @slogan.words %></p>
+    </div>
+</div>
+<%= render 'layouts/footer' %>
+</body>
+</html>

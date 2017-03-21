@@ -10,8 +10,15 @@
 
 <nav class="navbar navbar-default">
     <div class="container">
-        <%= render 'layouts/navlogo', search: false %>
+        <%= render 'layouts/navlogo' %>
 
+        <form method="get" action="<%= channel_articles_path(@article.channel) %>" class="navbar-form navbar-left search">
+            <div class="form-group">
+                <input name="keyword" type="text" value="<%= params[:keyword]%>"
+                       class="form-control search" maxlength="30"
+                       placeholder="搜索文章">
+            </div>
+        </form>
         <div class="collapse navbar-collapse"  id="bs-example-navbar-collapse-1">
             <%= render 'layouts/navmenu' %>
             <ul class="nav navbar-nav navbar-right">

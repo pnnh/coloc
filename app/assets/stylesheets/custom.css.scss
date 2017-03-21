@@ -1,5 +1,9 @@
 @import "bootstrap";
 
+body {
+    min-width: 320px;
+    overflow-x: hidden;
+}
 
 ul {
     list-style: none;
@@ -31,10 +35,6 @@ ul {
     margin-left: auto !important;
 }
 
-@media (max-width: 300px) {
-    .navbar-form input.search {width:160px;}
-}
-
 div.errors {
     .alert {
         padding: 0;
@@ -54,25 +54,15 @@ div.signup {
     }
 }
 
-/* mixins, variables, etc. */
-$gray-medium-light: #eaeaea;
-/* 底部导航 */
-footer {
-    a {
-	color: $gray;
-	&:hover {
-	    color: $gray-darker;
-	}
-    }
-    small {
-	float: left;
-    }
-    ul {
-	float: right;
-	list-style: none;
-	li {
-	    float: left;
-	    margin-left: 10px;
-	}
+div.jumbotron {
+    background-color: #f8f8f8;
+}
+
+@media(max-width: 768px) {
+    .navbar form.search {
+        margin-top: -42px;
     }
 }
+
+/* 底部导航 */
+div.cnzz { display: none; }

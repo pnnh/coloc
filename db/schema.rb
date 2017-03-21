@@ -10,25 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160821140233) do
+ActiveRecord::Schema.define(version: 20170320225834) do
 
   create_table "articles", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title"
     t.string   "content"
-    t.string   "tags"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "tags"
+    t.integer  "channel_id"
   end
 
   create_table "channels", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "title"
-    t.string   "description"
-    t.string   "tags"
-    t.string   "ctype"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer "user_id"
+    t.text    "title"
+    t.text    "description"
+    t.text    "created_at",  null: false
+    t.text    "updated_at",  null: false
+    t.text    "tags"
+    t.text    "ctype"
+  end
+
+  create_table "slogans", force: :cascade do |t|
+    t.string   "words"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["words"], name: "index_slogans_on_words", unique: true
   end
 
   create_table "users", force: :cascade do |t|
