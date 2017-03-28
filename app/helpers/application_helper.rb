@@ -22,4 +22,5 @@ module ApplicationHelper
     def parse_controller(word)
         word.pluralize.downcase
     end
+
 end

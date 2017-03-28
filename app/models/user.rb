@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
     has_many :channels
+    has_many :favorite_channels, through: :user_channels, source: :channel
+    has_many :user_channels
     has_many :articles
 
     before_save { self.email = email.downcase }

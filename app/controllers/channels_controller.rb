@@ -8,7 +8,8 @@ class ChannelsController < ApplicationController
         if !keyword.nil? && !keyword.blank? and keyword.length > 1
             @channels = Channel.where('title like ? or tags like ?', "%#{keyword}%", "%#{keyword}%").limit(100)
         else
-            @channels = Channel.all.limit(100)
+            #@channels = Channel.all.limit(100)
+            redirect_to root_path
         end
     end
 

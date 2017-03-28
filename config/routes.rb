@@ -5,8 +5,9 @@ Rails.application.routes.draw do
     resources :channels do
         resources :articles
     end
-    resources :channels
     resources :articles
+    resources :user_channels
+    resources :favorite_channels
 
     root to: 'static_pages#index'
 
