@@ -1,4 +1,4 @@
-class FavoriteChannelsController < ApplicationController
+class FollowsController < ApplicationController
     def index
         keyword = params[:keyword]
         query = 'SELECT c.id, c.user_id, c.tags, c.description, c.title,

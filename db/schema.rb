@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321213734) do
+ActiveRecord::Schema.define(version: 20170331232734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 20170321213734) do
     t.integer  "minus"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "entity_type"
+    t.integer  "entity_id"
+    t.integer  "vote",        default: 0
+    t.integer  "favorite",    default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["entity_type", "entity_id"], name: "index_follows_on_entity_type_and_entity_id", using: :btree
+    t.index ["user_id"], name: "index_follows_on_user_id", using: :btree
   end
 
   create_table "slogans", force: :cascade do |t|

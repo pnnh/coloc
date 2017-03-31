@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%=@channel.title%></title>
+    <title><%=@channel.title%>-宇哲</title>
     <%= render 'layouts/header' %>
+    <meta name="keywords" content="<%=@channel.tags%>">
+    <meta name="description" content="<%=trunc_desc(@channel.description)%>" />
 </head>
 <body>
 
 <nav class="navbar navbar-default">
     <div class="container">
-        <%= render 'layouts/navlogo' %>
-
-        <form method="get" action="<%= channel_articles_path(@channel) %>" class="navbar-form navbar-left search">
-            <div class="form-group">
-                <input name="keyword" type="text" value="<%= params[:keyword]%>"
-                       class="form-control search" maxlength="30"
-                       placeholder="搜索文章">
-            </div>
-        </form>
+        <%= render 'layouts/navlogo', form: true, placeholder: '搜索文章',
+                   action: channel_articles_path(@channel) %>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <%= render 'layouts/navmenu' %>
             <ul class="nav navbar-nav navbar-right">
-                <li><%= link_to '上级', root_path %></li>
-                <% if signed_in? %>
-                    <li><%= link_to '新增', new_channel_article_path %></li>
-                <% end %>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        频道<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <% if signed_in? %>
+                            <li><%= link_to '写文章', new_channel_article_path %></li>
+                            <li role="separator" class="divider"></li>
+                        <% end %>
+                        <li><%= link_to '查看详情', channel_path(@channel) %></li>
+                    </ul>
+                </li>
+                <%= render 'layouts/navmenu' %>
             </ul>
         </div>
     </div>
 </nav>
+
 <div class="container channels">
     <% @articles.each do |article| %>
         <div class="post post-list-item">
@@ -40,12 +45,6 @@
             </div>
             <% if article.tags %>
                 <ul class="postmetadata">
-                    <li class="icon_comment icon_r">
-                        <%= link_to '详情', request.path + '/' + article.id.to_s %>
-                        <% if current_user?(article.user) %>
-                            <%= link_to '修改', request.path + '/' + article.id.to_s + '/edit' %>
-                        <% end %>
-                    </li>
                     <li class="icon_bullet">
                         <% article.tags.split(',').map do |t| %>
                             <%= link_to t, request.path + '?keyword=' + t.strip %>&nbsp;

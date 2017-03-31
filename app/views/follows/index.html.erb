@@ -23,27 +23,31 @@
     </div>
 </nav>
 <div class="container channels">
-    <% @user_channels.each do |user_channel|
-        channel = user_channel.channel %>
+    <% @favorites.each do |c| %>
         <div class="post">
             <h2>
-                <%= link_to channel.title, channel.contents_path %>
+                <%= link_to c['title'], contents_path(c['id'], c['ctype']) %>
             </h2>
             <small>&nbsp;</small>
             <div class="entry">
-                <div class="c_b_p_desc"><%= channel.description %></div>
+                <div class="c_b_p_desc"><%= c['description'] %></div>
             </div>
+
             <ul class="postmetadata">
                 <li class="icon_comment icon_r">
-                    <%= link_to '详情', channel_path(channel) %>
-                    <% if current_user?(channel.user) %>
-                        <%= link_to '加', user_channels_path(channel_id: channel.id, plus: 1, back: request.fullpath), method: 'post' %>
-                        <%= link_to '减', user_channels_path(channel_id: channel.id, minus: 1, back: request.fullpath), method: 'post' %>
-                        <%= link_to '修改', edit_channel_path(channel) %>
+                    <%= link_to '详情', channel_path(c['id']) %>
+                    <% if current_user?(c['user_id']) %>
+                        <%= link_to '收藏', favorite_channels_path(channel_id: c['id'],
+                         favorite: ~c['favorite']), method: 'post' %>
+                        <%= link_to '加', user_channels_path(channel_id: c['id'], plus: 1,
+                        back: request.fullpath), method: 'post' %>
+                        <%= link_to '减', user_channels_path(channel_id: c['id'], minus: 1,
+                        back: request.fullpath), method: 'post' %>
+                        <%= link_to '修改', edit_channel_path(c['id']) %>
                     <% end %>
                 </li>
                 <li class="icon_bullet">
-                    <% (channel.tags || '').split(',').map do |t| %>
+                    <% (c['tags'] || '').split(',').map do |t| %>
                         <%= link_to t, request.path + '?keyword=' + t.strip %>&nbsp;
                     <% end %>&nbsp;
                 </li>

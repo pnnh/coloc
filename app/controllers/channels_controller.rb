@@ -5,12 +5,18 @@ class ChannelsController < ApplicationController
 
     def index
         keyword = params[:keyword]
-        if !keyword.nil? && !keyword.blank? and keyword.length > 1
-            @channels = Channel.where('title like ? or tags like ?', "%#{keyword}%", "%#{keyword}%").limit(100)
-        else
-            #@channels = Channel.all.limit(100)
-            redirect_to root_path
+        query = 'SELECT c.id, c.user_id, c.tags, c.description, c.title,
+    c.ctype, coalesce(uc.favorite, 0) as favorite, coalesce(uc.vote, 0) as vote
+FROM "channels" as c left join "user_channels" as uc ON c."id" = uc."channel_id"'
+        query_params = [query]
+        unless keyword.blank?
+            query += ' where (c.title like ? or tags like ?)'
+            query_params = [query, "%#{keyword}%", "%#{keyword}%"]
         end
+        query += ' limit 100;'
+        query_params[0] = query
+        query = ActiveRecord::Base.send :sanitize_sql, query_params
+        @channels = ActiveRecord::Base.connection.execute(query)
     end
 
     def show
@@ -20,7 +26,7 @@ class ChannelsController < ApplicationController
     def create
         p = params[:channel]
         @channel = Channel.new(title: p[:title], description: p[:description],
-            tags: p[:tags], user_id: current_user.id, ctype: 'Article')
+            tags: p[:tags], user_id: current_user.id, ctype: 'Article', plus: 0, minus: 0)
         if @channel.save
             redirect_to @channel
         else
