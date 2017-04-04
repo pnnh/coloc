@@ -12,7 +12,7 @@
             收藏<span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-            <li><%= link_to '频道', user_channels_path %></li>
+            <li><%= link_to '频道', channel_follows_path %></li>
             <li><%= link_to '文章', '#' %></li>
         </ul>
     </li>
@@ -33,7 +33,6 @@
     <li><%= link_to '注册', signup_path %></li>
     <li><%= link_to '登录', signin_path %></li>
 <% end %>
-
 
 <% if isWrapper %>
     </ul>

@@ -1,8 +1,8 @@
-class CreateFollows < ActiveRecord::Migration
+class CreateChannelFollows < ActiveRecord::Migration
     def change
-        create_table :follows do |t|
+        create_table :channel_follows do |t|
             t.references :user, index: true
-            t.references :entity,polymorphic: true, index: true
+            t.references :channel, index: true
             t.integer    :vote, default: 0
             t.integer    :favorite, default: 0
 

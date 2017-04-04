@@ -46,7 +46,7 @@
             <ul class="postmetadata">
                 <li class="icon_bullet">
                     <% (@article.tags || '').split(',').map do |t| %>
-                        <%= link_to t, request.path.sub('/' + @article.id.to_s, '') + '?keyword=' + t.strip %>&nbsp;
+                        <%= t.strip %>&nbsp;
                     <% end %>&nbsp;
                 </li>
             </ul>

@@ -22,6 +22,11 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><%= link_to '查看内容', @channel.contents_path %></li>
+                        <% if signed_in? && !current_user?(@channel.user_id) %>
+                            <li role="separator" class="divider"></li>
+                            <li><%= link_to '收藏', channel_follows_path(channel_id: @channel.id),
+                            method: 'post' %></li>
+                        <% end %>
                         <% if current_user?(@channel.user_id) %>
                             <li role="separator" class="divider"></li>
                             <li><%= link_to '修改', edit_channel_path(@channel) %></li>
@@ -46,7 +51,7 @@
         <ul class="postmetadata">
             <li class="icon_bullet">
                 <% (@channel.tags || '').split(',').map do |t| %>
-                    <%= link_to t, root_path + '?keyword=' + t.strip %>&nbsp;
+                    <%= t.strip %>&nbsp;
                 <% end %>&nbsp;
             </li>
         </ul>

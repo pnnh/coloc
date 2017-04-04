@@ -23,6 +23,17 @@
                         <% if signed_in? %>
                             <li><%= link_to '写文章', new_channel_article_path %></li>
                             <li role="separator" class="divider"></li>
+                            <% if !current_user?(@channel.user_id)
+                               favorite_id = @channel.favorite_id(current_user.id)
+                                if !favorite_id.nil? && favorite_id > 0 %>
+                                <li><%= link_to '取消收藏', channel_follow_path(favorite_id),
+                                                method: 'delete' %></li>
+                                    <% else %>
+                                <li><%= link_to '收藏', channel_follows_path(channel_id: @channel.id),
+                                method: 'post' %></li>
+                                    <% end %>
+                                <li role="separator" class="divider"></li>
+                            <% end %>
                         <% end %>
                         <li><%= link_to '查看详情', channel_path(@channel) %></li>
                     </ul>
@@ -43,15 +54,6 @@
             <div class="entry">
                 <div class="c_b_p_desc"><%= trunc_desc(article.content) %></div>
             </div>
-            <% if article.tags %>
-                <ul class="postmetadata">
-                    <li class="icon_bullet">
-                        <% article.tags.split(',').map do |t| %>
-                            <%= link_to t, request.path + '?keyword=' + t.strip %>&nbsp;
-                        <% end %>&nbsp;
-                    </li>
-                </ul>
-            <% end %>
         </div>
     <%end%>
 </div>

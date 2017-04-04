@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>频道</title>
+    <title>频道收藏</title>
     <%= render 'layouts/header' %>
 </head>
 <body>
 
 <nav class="navbar navbar-default">
     <div class="container">
-        <%= render 'layouts/navlogo', form: true, action: channels_path,
-                   placeholder: '搜索频道' %>
+        <%= render 'layouts/navlogo', form: true, action: channel_follows_path,
+                   placeholder: '搜索收藏的频道' %>
         <%= render 'layouts/navmenu', wrapper: true %>
     </div>
 </nav>
 
 <div class="container channels">
-    <% @channels.each do |c|
-        channel = Channel.new(id: c['id'], title: c['title'], ctype: c['ctype'],
+    <% @follows.each do |c|
+        channel = Channel.new(id: c['channel_id'], title: c['title'], ctype: c['ctype'],
             description: c['description']) %>
         <div class="post">
             <%= render channel %>

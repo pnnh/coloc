@@ -6,7 +6,7 @@ Rails.application.routes.draw do
         resources :articles
     end
     resources :articles
-    resources :follows
+    resources :channel_follows
 
     root to: 'static_pages#index'
 
