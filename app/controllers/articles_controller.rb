@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 
         keyword = params[:keyword]
         if !keyword.nil? && !keyword.blank? and keyword.length > 1
-            @articles = @channel.articles.where('title like ? or tags like ?', "%#{keyword}%", "%#{keyword}%").limit(100)
+            @articles = @channel.articles.where('title ~* ? or tags ~* ?', keyword, keyword).limit(100)
         else
             @articles = @channel.articles.all.limit(100)
         end

@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%=@article.title%>-宇哲</title>
+    <title><%=@article.title%>-文章详情-宇哲</title>
     <link href="/highlight.js/styles/github.css" rel="stylesheet">
-    <script src="/highlight.js/highlight.pack.js"></script>
     <%= render 'layouts/header' %>
     <meta name="keywords" content="<%=@article.tags%>">
     <meta name="description" content="<%=trunc_desc(@article.content)%>" />
@@ -17,16 +16,9 @@
                    action: channel_articles_path(@article.channel_id) %>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+                <li ><%=link_to '上级', request.path.sub(@article.id.to_s, '') %></li>
                 <% if current_user?(@article.user) %>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-haspopup="true" aria-expanded="false">
-                            文章<span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li ><%=link_to '修改', request.path + '/edit' %></li>
-                        </ul>
-                    </li>
+                    <li ><%=link_to '修改', request.path + '/edit' %></li>
                 <% end %>
                 <%= render 'layouts/navmenu' %>
             </ul>
@@ -53,10 +45,9 @@
         </div>
 </div>
 <%= render 'layouts/footer' %>
+<script src="/highlight.js/highlight.pack.js"></script>
 <script type="text/javascript">
-    $(function(){
-        hljs.initHighlightingOnLoad();
-    })
+    if(window.hljs) window.hljs.initHighlighting();
 </script>
 </body>
 </html>

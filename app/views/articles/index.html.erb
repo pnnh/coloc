@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%=@channel.title%>-宇哲</title>
+    <title><%=@channel.title%>-频道内容-宇哲</title>
     <%= render 'layouts/header' %>
     <meta name="keywords" content="<%=@channel.tags%>">
     <meta name="description" content="<%=trunc_desc(@channel.description)%>" />
@@ -14,30 +14,27 @@
                    action: channel_articles_path(@channel) %>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                       aria-haspopup="true" aria-expanded="false">
-                        频道<span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <% if signed_in? %>
-                            <li><%= link_to '写文章', new_channel_article_path %></li>
-                            <li role="separator" class="divider"></li>
-                            <% if !current_user?(@channel.user_id)
-                               favorite_id = @channel.favorite_id(current_user.id)
-                                if !favorite_id.nil? && favorite_id > 0 %>
+                <% if signed_in? %>
+                    <li><%= link_to '写文章', new_channel_article_path %></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                            频道<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <% favorite_id = @channel.favorite_id(current_user.id)
+                               if !favorite_id.nil? && favorite_id > 0 %>
                                 <li><%= link_to '取消收藏', channel_follow_path(favorite_id),
                                                 method: 'delete' %></li>
-                                    <% else %>
+                            <% else %>
                                 <li><%= link_to '收藏', channel_follows_path(channel_id: @channel.id),
-                                method: 'post' %></li>
-                                    <% end %>
-                                <li role="separator" class="divider"></li>
+                                                method: 'post' %></li>
                             <% end %>
-                        <% end %>
-                        <li><%= link_to '查看详情', channel_path(@channel) %></li>
-                    </ul>
-                </li>
+                            <li role="separator" class="divider"></li>
+                            <li><%= link_to '详情', channel_path(@channel) %></li>
+                        </ul>
+                    </li>
+                <% end %>
                 <%= render 'layouts/navmenu' %>
             </ul>
         </div>

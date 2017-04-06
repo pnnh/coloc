@@ -5,13 +5,12 @@ class ChannelsController < ApplicationController
 
     def index
         keyword = params[:keyword]
-        query = 'SELECT c.id, c.user_id, c.tags, c.description, c.title,
-    c.ctype, coalesce(uc.favorite, 0) as favorite, coalesce(uc.vote, 0) as vote
-FROM "channels" as c left join "user_channels" as uc ON c."id" = uc."channel_id"'
+        query = 'SELECT c.id, c.user_id, c.tags, c.description, c.title, c.ctype
+FROM "channels" as c'
         query_params = [query]
         unless keyword.blank?
-            query += ' where (c.title like ? or tags like ?)'
-            query_params = [query, "%#{keyword}%", "%#{keyword}%"]
+            query += ' where c.title ~* ? or c.tags ~* ?'
+            query_params = [query, keyword, keyword]
         end
         query += ' limit 100;'
         query_params[0] = query
