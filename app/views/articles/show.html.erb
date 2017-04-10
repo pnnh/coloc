@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default">
+<nav class="header navbar navbar-default">
     <div class="container">
         <%= render 'layouts/navlogo', form: true, placeholder: '搜索文章',
                    action: channel_articles_path(@article.channel_id) %>
@@ -26,7 +26,7 @@
     </div>
 </nav>
 
-<div class="container channels">
+<div class="body container channels">
         <div class="post post-list-item">
             <h2>
                 <%= @article.title %>

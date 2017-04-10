@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default">
+<nav class="header navbar navbar-default">
     <div class="container">
         <%= render 'layouts/navlogo', form: true, action: channels_path,
            placeholder: '搜索频道' %>
@@ -23,7 +23,7 @@
     </div>
 </nav>
 
-<div class="container channels">
+<div class="body container channels">
     <div class="post post-list-item">
         <h2>
             <%= @channel.title %>

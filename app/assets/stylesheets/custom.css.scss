@@ -60,9 +60,17 @@ div.jumbotron {
 }
 
 /*顶部导航*/
+nav.header {
+    border-top-width: 0;
+    position: fixed; width: 100%;
+}
 a.navbar-brand {
     padding: 8px 8px 8px 0;
     img { height: 34px; }
+}
+/*主体样式*/
+div.body{
+    padding-top:60px;
 }
 /* 底部导航 */
 div.footer {
