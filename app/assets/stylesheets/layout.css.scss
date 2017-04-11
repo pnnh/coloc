@@ -1,5 +1,8 @@
 @import "bootstrap";
 
+
+/*默认样式*/
+
 body {
     min-width: 320px;
     overflow-x: hidden;
@@ -9,6 +12,15 @@ ul {
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+
+/*顶部导航*/
+
+@media(max-width: 768px) {
+    .navbar form.search {
+        margin-top: -42px;
+    }
 }
 
 .navbar-form {
@@ -28,6 +40,24 @@ ul {
 .container-fluid > .navbar-collapse {
     margin-right: -15px;
     margin-left: auto !important;
+}
+
+nav.header {
+    border-top-width: 0;
+    position: fixed; width: 100%;
+}
+a.navbar-brand {
+    padding: 8px 8px 8px 0;
+    img { height: 34px; }
+}
+/*主体样式*/
+div.body{
+    padding-top:60px;
+}
+/* 底部导航 */
+div.footer {
+    margin-top:10px;
+    div.cnzz { display: none; }
 }
 
 div.errors {
@@ -51,29 +81,4 @@ div.signup {
 
 div.jumbotron {
     background-color: #f8f8f8;
-}
-
-@media(max-width: 768px) {
-    .navbar form.search {
-        margin-top: -42px;
-    }
-}
-
-/*顶部导航*/
-nav.header {
-    border-top-width: 0;
-    position: fixed; width: 100%;
-}
-a.navbar-brand {
-    padding: 8px 8px 8px 0;
-    img { height: 34px; }
-}
-/*主体样式*/
-div.body{
-    padding-top:60px;
-}
-/* 底部导航 */
-div.footer {
-    margin-top:10px;
-    div.cnzz { display: none; }
 }

@@ -1,7 +1,7 @@
 // Place all the styles related to the Items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import "base.css.scss";
+@import "highlight.css.scss";
 
 div.article {
     pre[lang]{ padding:0; }
@@ -9,7 +9,7 @@ div.article {
     h1 {
         background: url(dotsH.gif) repeat-x bottom left;
         padding: 6px 0;
-        font-family: $font-family;
+        font-family: "Trebuchet MS",Georgia,"Times New Roman","Microsoft YaHei","Times,WenQuanYi Micro Hei",sans-serif;
     }
     small {
         display: block;

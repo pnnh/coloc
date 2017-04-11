@@ -12,19 +12,14 @@
 
 ActiveRecord::Schema.define(version: 20170401233845) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "articles", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "channel_id"
     t.string   "title"
     t.string   "content"
     t.string   "tags"
-    t.integer  "plus"
-    t.integer  "minus"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "channel_id"
   end
 
   create_table "channel_follows", force: :cascade do |t|
@@ -34,8 +29,8 @@ ActiveRecord::Schema.define(version: 20170401233845) do
     t.integer  "favorite",   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["channel_id"], name: "index_channel_follows_on_channel_id", using: :btree
-    t.index ["user_id"], name: "index_channel_follows_on_user_id", using: :btree
+    t.index ["channel_id"], name: "index_channel_follows_on_channel_id"
+    t.index ["user_id"], name: "index_channel_follows_on_user_id"
   end
 
   create_table "channels", force: :cascade do |t|
@@ -44,38 +39,15 @@ ActiveRecord::Schema.define(version: 20170401233845) do
     t.string   "description"
     t.string   "tags"
     t.string   "ctype"
-    t.integer  "plus"
-    t.integer  "minus"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "follows", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "entity_type"
-    t.integer  "entity_id"
-    t.integer  "vote",        default: 0
-    t.integer  "favorite",    default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["entity_type", "entity_id"], name: "index_follows_on_entity_type_and_entity_id", using: :btree
-    t.index ["user_id"], name: "index_follows_on_user_id", using: :btree
   end
 
   create_table "slogans", force: :cascade do |t|
     t.string   "words"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["words"], name: "index_slogans_on_words", unique: true, using: :btree
-  end
-
-  create_table "user_channels", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "channel_id"
-    t.integer  "vote",       default: 0
-    t.integer  "favorite",   default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.index ["words"], name: "index_slogans_on_words", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -86,8 +58,8 @@ ActiveRecord::Schema.define(version: 20170401233845) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["remember_token"], name: "index_users_on_remember_token", using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["remember_token"], name: "index_users_on_remember_token"
   end
 
 end

@@ -2,8 +2,8 @@
 <html>
 <head>
     <title><%=@article.title%>-文章详情-宇哲</title>
-    <link href="/highlight.js/styles/github.css" rel="stylesheet">
     <%= render 'layouts/header' %>
+    <%= stylesheet_link_tag  'articles', media: 'all', 'data-turbolinksxb-track' => true %>
     <meta name="keywords" content="<%=@article.tags%>">
     <meta name="description" content="<%=trunc_desc(@article.content)%>" />
     <meta name="author" content="<%=@article.user.name%>">
@@ -45,9 +45,5 @@
     </div>
 </div>
 <%= render 'layouts/footer' %>
-<script src="/highlight.js/highlight.pack.js"></script>
-<script type="text/javascript">
-    //if(window.hljs) window.hljs.initHighlighting();
-</script>
 </body>
 </html>

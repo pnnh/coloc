@@ -10,11 +10,18 @@ class ApplicationController < ActionController::Base
     # Highlight code with Pygments
     class HTMLwithPygments < Redcarpet::Render::HTML
         def block_code(code, language)
+            #print '===', code, '----', language, '++++'
             language = 'text' if language.blank?
             sha = Digest::SHA1.hexdigest(code)
-            Rails.cache.fetch ['code', language, sha].join('-') do
-                Pygments.highlight(code, :lexer => language)
-            end
+            # Rails.cache.fetch ['code', language, sha].join('-') do
+            #     abc = 'dddddd' #Pygments.highlight(code, :lexer => language, :options => {:cssclass => "ssssss"})
+            #     print '-----', abc, '======'
+            #     abc
+            # end
+            result = Pygments.highlight(code, :lexer => language)
+            #print '-----', result.insert('<div class="highlight'.length, ' ' + language), '======\n'
+            language = 'csharp' if language == 'c#'
+            result.insert('<div class="highlight'.length, ' ' + language)
         end
     end
 
