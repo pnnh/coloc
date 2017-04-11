@@ -1,6 +1,7 @@
 // Place all the styles related to the channels controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "base.css.scss";
 
 .channels {
     .post {
@@ -44,7 +45,7 @@
         }
     }
     .entry {
-        font-family: "Trebuchet MS",Georgia,"Times New Roman","Microsoft YaHei","Times,WenQuanYi Micro Hei",sans-serif;
+        font-family: $font-family;
         font-size: 15px;
         line-height: 1.8;
         word-break: break-all;

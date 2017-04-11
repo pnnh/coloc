@@ -27,27 +27,27 @@
 </nav>
 
 <div class="body container channels">
-        <div class="post post-list-item">
-            <h2>
-                <%= @article.title %>
-            </h2>
-            <small>&nbsp;</small>
-            <div class="entry">
-                <%= raw markup('markdown', @article.content) %>
-            </div>
-            <ul class="postmetadata">
-                <li class="icon_bullet">
-                    <% (@article.tags || '').split(',').map do |t| %>
-                        <%= t.strip %>&nbsp;
-                    <% end %>&nbsp;
-                </li>
-            </ul>
+    <div class="article">
+        <h1>
+            <%= @article.title %>
+        </h1>
+        <small>&nbsp;</small>
+        <div class="entry">
+            <%= markdown @article.content %>
         </div>
+        <ul class="postmetadata">
+            <li class="icon_bullet">
+                <% (@article.tags || '').split(',').map do |t| %>
+                    <%= t.strip %>&nbsp;
+                <% end %>&nbsp;
+            </li>
+        </ul>
+    </div>
 </div>
 <%= render 'layouts/footer' %>
 <script src="/highlight.js/highlight.pack.js"></script>
 <script type="text/javascript">
-    if(window.hljs) window.hljs.initHighlighting();
+    //if(window.hljs) window.hljs.initHighlighting();
 </script>
 </body>
 </html>
