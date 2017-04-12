@@ -16,7 +16,7 @@
                    action: channel_articles_path(@article.channel_id) %>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li ><%=link_to '上级', request.path.sub(@article.id.to_s, '') %></li>
+                <li ><%=link_to '上级', request.path.sub(article_path(@article), articles_path) %></li>
                 <% if current_user?(@article.user) %>
                     <li ><%=link_to '修改', request.path + '/edit' %></li>
                 <% end %>
