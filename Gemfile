@@ -21,9 +21,9 @@ gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 #文本标记
-gem 'github-markup'
-gem 'github-markdown'
-gem 'github-linguist'
+#gem 'github-markup'
+#gem 'github-markdown'
+#gem 'github-linguist'
 ##Markdown解析
 gem 'redcarpet'
 gem 'html-pipeline'
@@ -34,8 +34,8 @@ gem 'html-pipeline'
 gem 'pygments.rb'
 
 group :development, :test do
-  gem 'sqlite3'
-  gem 'spring'
+#  gem 'sqlite3'
+#  gem 'spring'
 #  gem 'rspec-rails'
 #  gem 'rspec-its'
 end
