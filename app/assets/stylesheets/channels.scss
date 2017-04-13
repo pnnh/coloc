@@ -5,8 +5,7 @@
 .channels {
     .post {
         margin-bottom: 10px;
-        h2 {
-            font-size: 22px;
+        h4 {
             letter-spacing: -1px;
             background: url(dotsH.gif) repeat-x bottom left;
             margin: 0;
@@ -21,30 +20,8 @@
             display: block;
             text-align: right;
         }
-        ul.postmetadata {
-            padding: 4px 0;
-            margin-bottom: 10px;
-            margin-top: 10px;
-            font-size: 12px;
-
-            li {
-                padding: 2px 0 5px 0px;
-                background: no-repeat 0 -170px;
-                .icon_bullet {
-                    background-image: url(icon_bullet.gif);
-                }
-            }
-            li.icon_r {
-                float: right;
-                padding: 2px 0 5px 0px;
-                a {
-                    margin-left:5px;
-                }
-            }
-        }
     }
     .entry {
-        font-family: "Trebuchet MS",Georgia,"Times New Roman","Microsoft YaHei","Times,WenQuanYi Micro Hei",sans-serif;
         font-size: 15px;
         line-height: 1.8;
         word-break: break-all;

@@ -4,15 +4,35 @@
 @import "highlight.css.scss";
 
 div.article {
-    pre[lang]{ padding:0; }
     margin-bottom: 10px;
-    h1 {
-        background: url(dotsH.gif) repeat-x bottom left;
-        margin:0;
-        padding: 6px 0;
-        font-family: "Trebuchet MS",Georgia,"Times New Roman","Microsoft YaHei","Times,WenQuanYi Micro Hei",sans-serif;
-    }
+    pre[lang]{ padding:0; }
+    h5 {font-weight: bold;border-bottom:dashed 1px #ccc;margin-bottom:6px;}
+    h6 {font-weight: bolder;}
     small {
         display: block;
+    }
+    p {
+        font-size:16px;
+        font-weight:400;
+        line-height:1.7;
+    }
+}
+
+div.post {
+    margin-bottom: 10px;
+    h4 {
+        letter-spacing: -1px;
+        background: url(dotsH.gif) repeat-x bottom left;
+        margin: 0;
+        padding: 6px 0;
+        font-weight: normal;
+        line-height: 120%;
+    }
+    small {
+        font-size: 12px;
+        letter-spacing: normal;
+        color: #ababab;
+        display: block;
+        text-align: right;
     }
 }

@@ -14,7 +14,7 @@ gem 'jquery-rails'
 gem 'bcrypt'
 #url美化
 #gem 'friendly_id'
-gem 'babosa'
+#gem 'babosa'
 #自动化任务
 gem 'faker'
 #分页

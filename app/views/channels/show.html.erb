@@ -15,6 +15,7 @@
            placeholder: '搜索频道' %>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+                <li ><%=link_to '上级', root_path %></li>
                 <li><%= link_to '查看内容', @channel.contents_path %></li>
                 <li><%= link_to '修改', edit_channel_path(@channel) %></li>
                 <%= render 'layouts/navmenu' %>

@@ -2,9 +2,10 @@
 <html>
 <head>
     <title><%=@channel.title%>-频道内容-宇哲</title>
-    <%= render 'layouts/header' %>
     <meta name="keywords" content="<%=@channel.tags%>">
     <meta name="description" content="<%=trunc_desc(@channel.description)%>" />
+    <%= render 'layouts/header' %>
+    <%= stylesheet_link_tag  'articles' %>
 </head>
 <body>
 
@@ -45,9 +46,9 @@
 <div class="body container channels">
     <% @articles.each do |article| %>
         <div class="post post-list-item">
-            <h2>
+            <h4>
                 <%= link_to article.title, channel_article_path(@channel, article) %>
-            </h2>
+            </h4>
             <small>&nbsp;</small>
             <div class="entry">
                 <div class="c_b_p_desc"><%= trunc_desc(article.content) %></div>
