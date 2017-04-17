@@ -1,39 +1,27 @@
 @import "bootstrap";
 
-
 /*默认样式*/
 
 body {
+    color: #000;
     min-width: 320px;
     overflow-x: hidden;
-    font-family: "Trebuchet MS",Georgia,"Times New Roman","Microsoft YaHei","Times,WenQuanYi Micro Hei",sans-serif;
-    font-size: 16px;
+    font-family: "Microsoft YaHei","WenQuanYi Micro Hei", sans-serif;
+    font-size: 1.6em;
 }
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 6px 0;
-    font-weight: bold;
+    font-weight: 500;
 }
 
-h1 {
-    font-size: 28px;
-}
-h2 {
-    font-size: 26px;
-}
-h3 {
-    font-size: 24px;
-}
-h4 {
-    font-size: 22px;
-}
-h5 {
-    font-size: 20px;
-}
-h6 {
-    font-size: 18px;
-}
+h1 { font-size: 2.0em; }
+h2 { font-size: 1.8em; }
+h3 { font-size: 1.6em; }
+h4 { font-size: 1.4em; }
+h5 { font-size: 1.2em; }
+h6 { font-size: 1.0em; }
 
 ul {
     list-style: none;
@@ -49,6 +37,35 @@ a {
 a:hover {
     color: #000;
     text-decoration: underline;
+}
+
+// 表格
+table{
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    border-left: none;
+    word-break: normal;
+    tr:nth-of-type(even) {
+        background-color: rgba(180,180,180,0.1);
+    }
+    thead th {
+        vertical-align: middle;
+        text-align: inherit;
+        background-color: rgba(180, 180, 180, 0.1)
+    }
+    th, td {
+        padding: 8px;
+        border: 1px solid #ddd;
+        line-height: 20px;
+        vertical-align: middle;
+    }
+    th { font-weight: bold }
+    .image-package {
+        width: auto;
+        margin-left: 0;
+    }
 }
 
 /*版式布局*/

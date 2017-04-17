@@ -6,15 +6,16 @@
 div.article {
     margin-bottom: 10px;
     pre[lang]{ padding:0; }
-    h5 {font-weight: bold;border-bottom:dashed 1px #ccc;margin-bottom:6px;}
-    h6 {font-weight: bolder;}
+    h5 {border-bottom:dashed 1px #ccc;margin-bottom:6px;}
+
     small {
         display: block;
     }
     p {
-        font-size:16px;
         font-weight:400;
-        line-height:1.7;
+        line-height: 1.9;
+        word-spacing: 1px;
+        letter-spacing: 0.01em;
     }
 }
 

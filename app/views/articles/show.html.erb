@@ -28,9 +28,9 @@
 
 <div class="body container channels">
     <div class="article">
-        <h3>
+        <h2 class="title">
             <%= @article.title %>
-        </h3>
+        </h2>
         <small>&nbsp;</small>
         <div class="entry">
             <%= markdown @article.content %>
@@ -45,5 +45,6 @@
     </div>
 </div>
 <%= render 'layouts/footer' %>
+<%= render 'layouts/baidu' %>
 </body>
 </html>
