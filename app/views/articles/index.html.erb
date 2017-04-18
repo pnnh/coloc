@@ -45,7 +45,7 @@
 
 <div class="body container channels">
     <% @articles.each do |article| %>
-        <div class="post post-list-item">
+        <div class="post block">
             <h4>
                 <%= link_to article.title, channel_article_path(@channel, article) %>
             </h4>

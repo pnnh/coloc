@@ -20,7 +20,7 @@
     <% @channels.each do |c|
         channel = Channel.new(id: c['id'], title: c['title'], ctype: c['ctype'],
             description: c['description']) %>
-        <div class="post">
+        <div class="post block">
             <%= render channel %>
         </div>
     <% end %>
