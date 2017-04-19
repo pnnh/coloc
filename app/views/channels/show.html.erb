@@ -26,21 +26,24 @@
 
 <div class="body container channels">
     <div class="block">
-        <h2>
+        <h2 class="title">
             <%= @channel.title %>
         </h2>
-        <small>&nbsp;</small>
-        <div class="entry">
-            <%= @channel.description %>
-        </div>
-        <ul class="postmetadata">
-            <li class="icon_bullet">
-                <% (@channel.tags || '').split(',').map do |t| %>
-                    <%= t.strip %>&nbsp;
-                <% end %>&nbsp;
-            </li>
-        </ul>
     </div>
+    <div class="entry block">
+        <%= @channel.description %>
+    </div>
+    <% if !@channel.tags.blank? %>
+        <div class="block">
+            <ul class="postmetadata">
+                <li class="icon_bullet">
+                    <% @channel.tags.split(',').map do |t| %>
+                        <%= t.strip %>&nbsp;
+                    <% end %>&nbsp;
+                </li>
+            </ul>
+        </div>
+    <% end %>
 </div>
 <%= render 'layouts/footer' %>
 </body>
