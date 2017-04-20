@@ -1,3 +1,6 @@
+<% result = markdown @article.content
+   toc = result[1] %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +19,21 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li ><%=link_to '上级', request.path.sub(article_path(@article), articles_path) %></li>
+                <% if toc.length > 0 %>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                            目录<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" data-turbolinks="false">
+                            <%  l = toc.map { |m| m[0].to_i }.min
+                                toc.each  do |m| %>
+                                <li><a href="#<%=m[1]%>"><%== '&nbsp;' * 3 * (m[0].to_i - l) %><%=m[2]%></a></li>
+                            <% end %>
+                        </ul>
+                    </li>
+                <% end %>
+
                 <% if current_user?(@article.user) %>
                     <li ><%=link_to '修改', request.path + '/edit' %></li>
                 <% end %>
@@ -24,8 +42,9 @@
         </div>
     </div>
 </nav>
+<div class="nav-placeholder" style="height:60px;"></div>
 
-<div class="body container channels">
+<div class="body container channels" style="padding-top:0;">
     <div class="article">
         <div class="block">
             <h3 class="title">
@@ -33,7 +52,7 @@
             </h3>
         </div>
         <div class="entry block">
-            <%= markdown @article.content %>
+            <%= result[0] %>
         </div>
         <% if !@article.tags.blank? %>
             <div class="block">

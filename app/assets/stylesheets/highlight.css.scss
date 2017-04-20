@@ -3,11 +3,13 @@ div.highlight {
     stroke-width: 1;
     fill: #aaa;
     font-family: Consolas, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', serif;
-
+    margin-bottom: 10px;
+    border: dashed 1px #ccc;
+    border-left: solid #6ce26c;
     pre {
-        background-color:#f8f8f8;
+        background-color:inherit;
         border-width:0;
-        font-size:12px;
+        font-size:14px;
     }
 
     .hll{background-color:#ffc}

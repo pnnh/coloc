@@ -4,24 +4,18 @@ class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
     include SessionsHelper
 
-
     helper_method [:markdown]
 
     # Highlight code with Pygments
     class HTMLwithPygments < Redcarpet::Render::HTML
         def block_code(code, language)
-            #print '===', code, '----', language, '++++'
             language = 'text' if language.blank?
-            sha = Digest::SHA1.hexdigest(code)
-            # Rails.cache.fetch ['code', language, sha].join('-') do
-            #     abc = 'dddddd' #Pygments.highlight(code, :lexer => language, :options => {:cssclass => "ssssss"})
-            #     print '-----', abc, '======'
-            #     abc
-            # end
-            result = Pygments.highlight(code, :lexer => language)
-            #print '-----', result.insert('<div class="highlight'.length, ' ' + language), '======\n'
-            language = 'csharp' if language == 'c#'
-            result.insert('<div class="highlight'.length, ' ' + language)
+            #sha = Digest::SHA1.hexdigest(code)
+            #Rails.cache.fetch ['code', language, sha].join('-') do
+                result = Pygments.highlight(code, :lexer => language)
+                language = 'csharp' if language == 'c#'
+                result.insert('<div class="highlight'.length, ' ' + language)
+            #end
         end
     end
 
@@ -29,14 +23,17 @@ class ApplicationController < ActionController::Base
 
     # Markdown with Redcarpet
     def markdown(text)
-        renderer = HTMLwithPygments.
-                new({
-                    :filter_html => true,
-                    :hard_wrap => true,
-                    :link_attributes => {:rel => 'external nofollow'}
-                })
+        sha = Digest::SHA1.hexdigest(text)
+        #Rails.cache.fetch ['article', sha].join('-') do
+            options = {
+                :filter_html => true,
+                :hard_wrap => true,
+                :link_attributes => {:rel => 'external nofollow'},
+                :with_toc_data => true
+            }
+            renderer = HTMLwithPygments.new(options)
 
-        options = {
+            options = {
                 :autolink => true,
                 :no_intra_emphasis => true,
                 :fenced_code_blocks => true,
@@ -44,8 +41,13 @@ class ApplicationController < ActionController::Base
                 :strikethrough => true,
                 :superscript => true,
                 :tables => true
-        }
+            }
 
-        Redcarpet::Markdown.new(renderer, options).render(text).html_safe
+            html = Redcarpet::Markdown.new(renderer, options).render(text).html_safe
+
+            arr = html.scan(/^<h(\d) id="(part-\w+)">([^<]+)<\/h\1>$/)
+            [html, arr]
+        #end
+
     end
 end

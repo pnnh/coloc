@@ -5,8 +5,11 @@
 
 div.article {
     margin-bottom: 10px;
-    pre[lang]{ padding:0; }
-    h5 {border-bottom:dashed 1px #ccc;margin-bottom:6px;}
+    pre{
+        padding: 10px;
+        margin: 0;
+    }
+    h5 {margin-bottom:6px;}
 
     small {
         display: block;
@@ -17,27 +20,13 @@ div.article {
         word-spacing: 1px;
         letter-spacing: 0.01em;
     }
-}
-
-div.post {
-    margin-bottom: 10px;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-
-    h4 {
-        letter-spacing: -1px;
-        background: url(dotsH.gif) repeat-x bottom left;
-        margin: 0;
-        padding: 6px 0;
-        font-weight: normal;
-        line-height: 120%;
+    blockquote {
+        font-size: inherit;
+        padding: 0px 20px;
+        margin: 0 0 10px;
     }
-    small {
-        font-size: 12px;
-        letter-spacing: normal;
-        color: #ababab;
-        display: block;
-        text-align: right;
+    [id^=part-] {
+        margin-top: -60px;
+        padding-top: 60px;
     }
 }
