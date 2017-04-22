@@ -21,7 +21,13 @@
         channel = Channel.new(id: c['id'], title: c['title'], ctype: c['ctype'],
             description: c['description']) %>
         <div class="post block">
-            <%= render channel %>
+            <h4>
+                <%= link_to channel.title, contents_path(channel.id, channel.ctype), class: 'title' %>
+            </h4>
+            <small>&nbsp;</small>
+            <div class="entry">
+                <div class="c_b_p_desc"><%= trunc_desc(channel.description) %></div>
+            </div>
         </div>
     <% end %>
 </div>

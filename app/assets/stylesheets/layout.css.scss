@@ -7,14 +7,15 @@ body {
     min-width: 320px;
     overflow-x: hidden;
     font-family: "Microsoft YaHei","WenQuanYi Micro Hei", sans-serif;
-    font-size: 1.6em;
+    font-size: 1.4em;
     background-color: rgba(245, 245, 245, 0.5);
 }
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 6px 0;
-    font-weight: 500;
+    font-weight: normal;
+    color: #0c94d7;
 }
 
 h1 { font-size: 2.0em; }
@@ -35,9 +36,9 @@ a {
     cursor: pointer;
     text-decoration: none;
 }
-a:hover {
+a:hover, a:focus {
     color: #000;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 // 表格

@@ -42,30 +42,25 @@
         </div>
     </div>
 </nav>
-<div class="nav-placeholder" style="height:60px;"></div>
 
-<div class="body container channels" style="padding-top:0;">
-    <div class="article">
-        <div class="block">
-            <h3 class="title">
-                <%= @article.title %>
-            </h3>
-        </div>
-        <div class="entry block">
-            <%= result[0] %>
-        </div>
-        <% if !@article.tags.blank? %>
-            <div class="block">
-                <ul class="postmetadata">
-                    <li class="icon_bullet">
-                        <% @article.tags.split(',').map do |t| %>
-                            <%= t.strip %>&nbsp;
-                        <% end %>&nbsp;
-                    </li>
-                </ul>
-            </div>
-        <% end %>
+<div class="body container article">
+    <div class="block main-title">
+        <%= @article.title %>
     </div>
+    <div class="entry block">
+        <%= result[0] %>
+    </div>
+    <% if !@article.tags.blank? %>
+        <div class="block">
+            <ul class="postmetadata">
+                <li class="icon_bullet">
+                    <% @article.tags.split(',').map do |t| %>
+                        <%= t.strip %>&nbsp;
+                    <% end %>&nbsp;
+                </li>
+            </ul>
+        </div>
+    <% end %>
 </div>
 <%= render 'layouts/footer' %>
 </body>

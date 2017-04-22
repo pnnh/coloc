@@ -11,9 +11,12 @@ div.article {
     }
     h5 {margin-bottom:6px;}
 
-    small {
-        display: block;
+    .block.main-title{
+        padding: 5px 10px;
+        font-size: 1.6em;
+        color: #0c94d7;
     }
+
     p {
         font-weight:400;
         line-height: 1.9;
@@ -22,11 +25,30 @@ div.article {
     }
     blockquote {
         font-size: inherit;
-        padding: 0px 20px;
+        padding: 0 20px;
         margin: 0 0 10px;
     }
     [id^=part-] {
         margin-top: -60px;
         padding-top: 60px;
+    }
+}
+
+div.articles .item {
+    .name {
+        border-bottom: dashed 1px #ddd;
+        padding: 5px 0 10px 0;
+        .nickname {font-size: 1em;}
+        .time {
+            color: #969696;
+            font-size: 0.9em;
+        }
+    }
+    .title {
+        margin: 0;
+        padding: 10px 0;
+        font-size: 1.4em;
+        color: #0c94d7;
+        display: block;
     }
 }

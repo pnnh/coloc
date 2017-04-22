@@ -3,11 +3,17 @@ class ArticlesController < ApplicationController
         @channel = Channel.find(params[:channel_id])
 
         keyword = params[:keyword]
-        if !keyword.nil? && !keyword.blank? and keyword.length > 1
-            @articles = @channel.articles.where('title ~* ? or tags ~* ?', keyword, keyword).limit(100)
-        else
-            @articles = @channel.articles.all.limit(100)
+        query = 'SELECT c.id, c.title, c.user_id, c.tags, c.content, c.updated_at, u.name
+FROM "articles" as c left join "users" as u on c.user_id = u.id where c.channel_id = ? '
+        query_params = [query, @channel.id]
+        unless keyword.blank?
+            query += ' c.title ~* ? or c.tags ~* ?'
+            query_params = [query, @channel.id, keyword, keyword]
         end
+        query += ' order by c.updated_at desc limit 100;'
+        query_params[0] = query
+        query = ActiveRecord::Base.send :sanitize_sql, query_params
+        @articles = ActiveRecord::Base.connection.execute(query)
     end
 
     def new
