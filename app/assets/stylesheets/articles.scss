@@ -37,7 +37,7 @@ div.article {
 div.articles .item {
     .name {
         border-bottom: dashed 1px #ddd;
-        padding: 5px 0 10px 0;
+        padding: 0 0 5px 0;
         .nickname {font-size: 1em;}
         .time {
             color: #969696;
@@ -46,7 +46,7 @@ div.articles .item {
     }
     .title {
         margin: 0;
-        padding: 10px 0;
+        padding: 10px 0 5px 0;
         font-size: 1.4em;
         color: #0c94d7;
         display: block;
