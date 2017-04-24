@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%=@channel.title%>-频道内容-宇哲</title>
     <meta name="keywords" content="<%=@channel.tags%>">
     <meta name="description" content="<%=trunc_desc(@channel.description)%>" />
-    <%= render 'layouts/header' %>
+    <%= render 'layouts/header', title: @channel.title %>
     <%= stylesheet_link_tag  'articles' %>
 </head>
 <body>
@@ -33,7 +32,9 @@
                                                 method: 'post' %></li>
                             <% end %>
                             <li role="separator" class="divider"></li>
-                            <li><%= link_to '详情', channel_path(@channel) %></li>
+                            <% if current_user?(@channel.user_id) %>
+                                <li><%= link_to '修改', edit_channel_path(@channel) %></li>
+                            <% end %>
                         </ul>
                     </li>
                 <% end %>
@@ -42,10 +43,17 @@
         </div>
     </div>
 </nav>
+<div class="channel-title">
+    <div class="container">
+        <h3 class="title">
+            <%= @channel.title %>
+        </h3>
+    </div>
+</div>
 
 <div class="body container articles">
     <div class="row">
-        <div class="col-md-9 items">
+        <div class="col-md-9 left">
             <% if @articles.count > 0
                @articles.each do |article|%>
                 <div class="item block">
@@ -66,18 +74,39 @@
                 </div>
             <% end%>
         </div>
-        <div class="col-md-3 recomends">
-            <div class="block">
-                <div class="title">
+        <div class="col-md-3 right">
+            <div class="block description">
+                <div class="block-title">
+                    频道简介
+                </div>
+                <p>
+                    <%= @channel.description %>
+                </p>
+            </div>
+            <div class="block tags">
+                <div class="block-title">
+                    频道标签
+                </div>
+                <div class="tagcloud">
+                    <% if !@tags.nil? && @tags.length > 0
+                       @tags.each do |t|  %>
+                    <%= link_to t, channels_path(keyword: t) %>
+                    <% end else %>
+                      <p>暂无内容</p>
+                    <% end %>
+                </div>
+            </div>
+            <div class="block recomends">
+                <div class="block-title">
                     相关频道
                 </div>
                 <ul class="contents">
                     <% if !@recomends.nil? and @recomends.count > 0
-                        @recomends.each do |r| %>
-                        <li>
-                            <%= link_to r['title'], channel_articles_path(r['id'])%>
-                        </li>
-                    <% end else %>
+                           @recomends.each do |r| %>
+                            <li>
+                                <%= link_to r['title'], channel_articles_path(r['id'])%>
+                            </li>
+                        <% end else %>
                         <li>暂无内容</li>
                     <% end %>
                 </ul>

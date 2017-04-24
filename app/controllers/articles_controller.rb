@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
 FROM "articles" as c left join "users" as u on c.user_id = u.id where c.channel_id = ? '
         query_params = [query, @channel.id]
         unless keyword.blank?
-            query += ' c.title ~* ? or c.tags ~* ?'
+            query += ' and (c.title ~* ? or c.tags ~* ?)'
             query_params = [query, @channel.id, keyword, keyword]
         end
         query += ' order by c.updated_at desc limit 100;'
@@ -16,8 +16,8 @@ FROM "articles" as c left join "users" as u on c.user_id = u.id where c.channel_
         @articles = ActiveRecord::Base.connection.execute(query)
 
         unless @channel.tags.blank?
-            tags = @channel.tags.split(',')
-            tag = tags[rand(tags.length)]
+            @tags = @channel.tags.split(',')
+            tag = @tags[rand(@tags.length)]
             query = 'select id, title from channels where id <> ? and (title ~* ? or tags ~* ?) limit 5;'
             query = ActiveRecord::Base.send :sanitize_sql, [query, @channel.id, tag, tag]
             @recomends = ActiveRecord::Base.connection.execute(query)
