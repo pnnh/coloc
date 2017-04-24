@@ -14,6 +14,14 @@ FROM "articles" as c left join "users" as u on c.user_id = u.id where c.channel_
         query_params[0] = query
         query = ActiveRecord::Base.send :sanitize_sql, query_params
         @articles = ActiveRecord::Base.connection.execute(query)
+
+        unless @channel.tags.blank?
+            tags = @channel.tags.split(',')
+            tag = tags[rand(tags.length)]
+            query = 'select id, title from channels where id <> ? and (title ~* ? or tags ~* ?) limit 5;'
+            query = ActiveRecord::Base.send :sanitize_sql, [query, @channel.id, tag, tag]
+            @recomends = ActiveRecord::Base.connection.execute(query)
+        end
     end
 
     def new

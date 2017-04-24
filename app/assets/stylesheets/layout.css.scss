@@ -70,14 +70,6 @@ table{
     }
 }
 
-/*版式布局*/
-
-@media (min-width: 1200px) {
-    .container {
-        width: 970px;
-    }
-}
-
 /*顶部导航*/
 
 @media(max-width: 768px) {
@@ -95,6 +87,10 @@ table{
     margin-left:15px;
     margin-right:0;
     padding:0 0;
+}
+.container {
+    padding: 0;
+    .row { margin: 0; }
 }
 
 .container > .navbar-header,.navbar > .container .navbar-brand {

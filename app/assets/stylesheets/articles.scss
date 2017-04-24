@@ -5,6 +5,7 @@
 
 div.article {
     margin-bottom: 10px;
+    font-size: 1.1em;
     pre{
         padding: 10px;
         margin: 0;
@@ -34,21 +35,38 @@ div.article {
     }
 }
 
-div.articles .item {
-    .name {
-        border-bottom: dashed 1px #ddd;
-        padding: 0 0 5px 0;
-        .nickname {font-size: 1em;}
-        .time {
-            color: #969696;
-            font-size: 0.9em;
+div.articles {
+    .items, .recomends {
+        padding: 0;
+        position: static;
+    }
+    .recomends {
+        .title {
+            border-bottom: solid 1px #f5f5f5;
+            padding: 0 0 5px 0;
+            font-size: 1em;
+        }
+        ul {
+            margin-top: 10px;
+            li{padding-bottom: 10px;}
+            li:last-child {padding-bottom: 0;}
         }
     }
-    .title {
-        margin: 0;
-        padding: 10px 0 5px 0;
-        font-size: 1.4em;
-        color: #0c94d7;
-        display: block;
+    .item {
+        .name {
+            border-bottom: solid 1px #f5f5f5;
+            padding: 0 0 5px 0;
+            .nickname {font-size: 1em;}
+            .time {
+                color: #969696;
+                font-size: 0.9em;
+            }
+        }
+        .title {
+            padding: 10px 0 10px 0;
+            a {
+                color: #0c94d7;
+            }
+        }
     }
 }
