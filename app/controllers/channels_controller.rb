@@ -16,6 +16,14 @@ FROM "channels" as c'
         query_params[0] = query
         query = ActiveRecord::Base.send :sanitize_sql, query_params
         @channels = ActiveRecord::Base.connection.execute(query)
+
+        @tags = []
+        @channels.each do |c|
+            unless c['tags'].blank?
+                @tags |= c['tags'].split(',')
+            end
+        end
+        print '----', @tags, '\n'
     end
 
     def show

@@ -30,6 +30,14 @@ FROM "articles" as c left join "users" as u on c.user_id = u.id where c.channel_
 
     def show
         @article = Article.find(params[:id])
+
+        unless @article.tags.blank?
+            @tags = @article.tags.split(',')
+            tag = @tags[rand(@tags.length)]
+            query = 'select id, title from articles where id <> ? and channel_id = ? and (title ~* ? or tags ~* ?) limit 5;'
+            query = ActiveRecord::Base.send :sanitize_sql, [query, @article.id, @article.channel_id, tag, tag]
+            @recomends = ActiveRecord::Base.connection.execute(query)
+        end
     end
 
     def create

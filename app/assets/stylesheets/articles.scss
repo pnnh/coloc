@@ -35,7 +35,7 @@ div.article {
     }
 }
 
-div.articles {
+div.articles, div.article {
     .left {
         padding: 0 10px 0 10px;
         position: static;
@@ -55,7 +55,7 @@ div.articles {
             font-size: 0.9em;
             line-height: 20px;
             margin: 0 5px 5px 0;
-            padding: 0 5px;
+            padding: 0 8px;
             background: #f7f8fa;
             border-radius: 99px;
         }
@@ -67,6 +67,11 @@ div.articles {
             li{padding-bottom: 10px;}
             li:last-child {padding-bottom: 0;}
         }
+    }
+    .description p {
+        margin-top: 10px;
+        margin-bottom: 5px;
+        letter-spacing: 0.3px;
     }
     .item {
         .name {
@@ -87,7 +92,7 @@ div.articles {
     }
 }
 
-div.body{
+div.articles, div.article {
     padding-top:0;
     margin-top: 10px;
 }

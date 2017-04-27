@@ -42,25 +42,52 @@
         </div>
     </div>
 </nav>
+<div class="channel-title">
+    <div class="container">
+        <h3 class="title">
+            <%= @article.title %>
+        </h3>
+    </div>
+</div>
 
 <div class="body container article">
-    <div class="block main-title">
-        <%= @article.title %>
-    </div>
-    <div class="entry block">
-        <%= result[0] %>
-    </div>
-    <% if !@article.tags.blank? %>
-        <div class="block">
-            <ul class="postmetadata">
-                <li class="icon_bullet">
-                    <% @article.tags.split(',').map do |t| %>
-                        <%= t.strip %>&nbsp;
-                    <% end %>&nbsp;
-                </li>
-            </ul>
+    <div class="row">
+        <div class="col-md-9 left">
+            <div class="entry block">
+                <%= result[0] %>
+            </div>
         </div>
-    <% end %>
+        <div class="col-md-3 right">
+            <div class="block tags">
+                <div class="block-title">
+                    文章标签
+                </div>
+                <div class="tagcloud">
+                    <% if !@tags.nil? && @tags.length > 0
+                           @tags.each do |t| %>
+                            <%= link_to t, channel_articles_path(@article.channel_id, keyword: t) %>
+                        <% end else %>
+                        <p>暂无内容</p>
+                    <% end %>
+                </div>
+            </div>
+            <div class="block recomends">
+                <div class="block-title">
+                    相关文章
+                </div>
+                <ul class="contents">
+                    <% if !@recomends.nil? and @recomends.count > 0
+                           @recomends.each do |r| %>
+                            <li>
+                                <%= link_to r['title'], channel_article_path(@article.channel_id, r['id']) %>
+                            </li>
+                        <% end else %>
+                        <li>暂无内容</li>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 <%= render 'layouts/footer' %>
 </body>

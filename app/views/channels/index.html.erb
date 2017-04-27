@@ -17,18 +17,38 @@
 
 
 <div class="body container channels">
-    <% @channels.each do |c|
-        channel = Channel.new(id: c['id'], title: c['title'], ctype: c['ctype'],
-            description: c['description']) %>
-        <div class="post block">
-            <h4>
-                <%= link_to channel.title, contents_path(channel.id, channel.ctype), class: 'title' %>
-            </h4>
-            <div class="entry">
-                <div class="c_b_p_desc"><%= trunc_desc(channel.description) %></div>
+    <div class="row">
+        <div class="col-md-9 left">
+            <% @channels.each do |c|
+                channel = Channel.new(id: c['id'], title: c['title'], ctype: c['ctype'],
+                                      description: c['description']) %>
+                <div class="post block">
+                    <h4>
+                        <%= link_to channel.title, contents_path(channel.id, channel.ctype), class: 'title' %>
+                    </h4>
+                    <div class="entry">
+                        <div class="c_b_p_desc"><%= trunc_desc(channel.description) %></div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+        <div class="col-md-3 right">
+            <div class="block tags">
+                <div class="block-title">
+                    相关标签
+                </div>
+                <div class="tagcloud">
+                    <% if !@tags.nil? && @tags.length > 0
+                           for i in 0..@tags.length - 1
+                            break if i >= 20 %>
+                            <%= link_to @tags[i], channels_path(keyword: @tags[i]) %>
+                        <% end else %>
+                        <p>暂无内容</p>
+                    <% end %>
+                </div>
             </div>
         </div>
-    <% end %>
+    </div>
 </div>
 <%= render 'layouts/footer' %>
 </body>
