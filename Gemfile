@@ -32,6 +32,10 @@ gem 'html-pipeline'
 #gem 'rails-latex'
 #语法高亮
 gem 'pygments.rb'
+#验证码
+gem 'rucaptcha'
+# redis缓存
+gem 'redis-rails'
 
 group :development, :test do
 #  gem 'sqlite3'

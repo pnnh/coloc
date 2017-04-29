@@ -7,7 +7,8 @@
 <body>
 <nav class="navbar navbar-default">
     <div class="container">
-        <%= render 'layouts/navlogo' %>
+        <%= render 'layouts/navlogo', form: true, action: channels_path,
+                   placeholder: '搜索频道' %>
         <%= render 'layouts/navmenu', wrapper: true %>
     </div>
 </nav>
@@ -20,6 +21,11 @@
             </div>
             <div class="form-group">
                 <%= f.password_field :password, placeholder: '密码', class: 'form-control' %>
+            </div>
+            <div class="form-group">
+                <%= text_field_tag :_rucaptcha, '', placeholder: '输入下方验证码', class: 'form-control captcha-input' %>
+                <%= rucaptcha_image_tag(alt: '验证码', class: 'captcha', title: '换一张',
+                                        onclick: "javascript:this.src='/rucaptcha'") %>
             </div>
             <%= f.submit '登录', class: 'btn btn-default login' %>
         <% end %>

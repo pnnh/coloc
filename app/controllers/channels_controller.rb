@@ -23,7 +23,6 @@ FROM "channels" as c'
                 @tags |= c['tags'].split(',')
             end
         end
-        print '----', @tags, '\n'
     end
 
     def show

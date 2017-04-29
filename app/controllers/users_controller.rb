@@ -22,14 +22,17 @@ class UsersController < ApplicationController
   end
 
   def create
+    unless verify_rucaptcha?
+      redirect_to new_user_path
+      return
+    end
     user_params = params.require(:user).permit(:name, :email, :password, :password_confirmation)
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to the Coloc!"
       redirect_to @user
     else
-      render 'new'
+      redirect_to new_user_path
     end
   end
 

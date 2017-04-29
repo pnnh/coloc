@@ -6,7 +6,7 @@ body {
     color: #000;
     min-width: 320px;
     overflow-x: hidden;
-    font-family: STheiti, Verdana, "Microsoft YaHei","WenQuanYi Micro Hei", Arial, sans-serif;
+    font-family: STheiti, Verdana, "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
     font-size: 1.4em;
     background-color: #f7f8fa;
 }
@@ -18,12 +18,29 @@ h1, h2, h3, h4, h5, h6 {
     color: #0c94d7;
 }
 
-h1 { font-size: 2.0em; }
-h2 { font-size: 1.8em; }
-h3 { font-size: 1.6em; }
-h4 { font-size: 1.4em; }
-h5 { font-size: 1.2em; }
-h6 { font-size: 1.0em; }
+h1 {
+    font-size: 2.0em;
+}
+
+h2 {
+    font-size: 1.8em;
+}
+
+h3 {
+    font-size: 1.6em;
+}
+
+h4 {
+    font-size: 1.4em;
+}
+
+h5 {
+    font-size: 1.2em;
+}
+
+h6 {
+    font-size: 1.0em;
+}
 
 ul {
     list-style: none;
@@ -36,13 +53,14 @@ a {
     cursor: pointer;
     text-decoration: none;
 }
+
 a:hover, a:focus {
     color: #000;
     text-decoration: none;
 }
 
 // 表格
-table{
+table {
     width: 100%;
     margin-bottom: 20px;
     border: 1px solid #ddd;
@@ -50,7 +68,7 @@ table{
     border-left: none;
     word-break: normal;
     tr:nth-of-type(even) {
-        background-color: rgba(180,180,180,0.1);
+        background-color: rgba(180, 180, 180, 0.1);
     }
     thead th {
         vertical-align: middle;
@@ -63,7 +81,9 @@ table{
         line-height: 20px;
         vertical-align: middle;
     }
-    th { font-weight: bold }
+    th {
+        font-weight: bold
+    }
     .image-package {
         width: auto;
         margin-left: 0;
@@ -80,16 +100,16 @@ table{
 
 .navbar-form {
     .form-control {
-        width:auto;
+        width: auto;
     }
-    border-bottom:0;
-    border-top:0;
-    margin-left:15px;
-    margin-right:0;
-    padding:0 0;
+    border-bottom: 0;
+    border-top: 0;
+    margin-left: 15px;
+    margin-right: 0;
+    padding: 0 0;
 }
 
-.container > .navbar-header,.navbar > .container .navbar-brand {
+.container > .navbar-header, .navbar > .container .navbar-brand {
     margin-left: auto !important;
 }
 
@@ -100,26 +120,33 @@ table{
 nav.header {
     border-width: 0 0 1px 0;
 
-    position: fixed; width: 100%;
+    position: fixed;
+    width: 100%;
 
     background: #fff;
-    border-bottom: 1px solid rgba(30,35,42,.06);
-    box-shadow: 0 1px 3px 0 rgba(0,34,77,.05);
+    border-bottom: 1px solid rgba(30, 35, 42, .06);
+    box-shadow: 0 1px 3px 0 rgba(0, 34, 77, .05);
     background-clip: content-box;
 }
+
 a.navbar-brand {
     padding: 8px 8px 8px 0;
-    img { height: 34px; }
+    img {
+        height: 34px;
+    }
 }
 
 /*主体样式*/
-div.body{
-    padding-top:60px;
+div.body {
+    padding-top: 60px;
 }
+
 /* 底部导航 */
 div.footer {
-    margin-top:10px;
-    div.cnzz { display: none; }
+    margin-top: 10px;
+    div.cnzz {
+        display: none;
+    }
 }
 
 div.errors {
@@ -131,13 +158,17 @@ div.errors {
 }
 
 div.signin {
-    .login { width: 100%; }
+    .login {
+        width: 100%;
+    }
 }
 
 div.signup {
-    .register{
-        padding:0;
-        input { width: 100%; }
+    .register {
+        padding: 0;
+        input {
+            width: 100%;
+        }
     }
 }
 
@@ -151,7 +182,7 @@ div.block {
     border-radius: 2px;
     margin: 0 0 10px 0;
     border: 1px solid #e7eaf1;
-    box-shadow: 0 1px 3px rgba(0,37,55,.05);
+    box-shadow: 0 1px 3px rgba(0, 37, 55, .05);
     box-sizing: border-box;
 
     .block-title {
@@ -159,4 +190,12 @@ div.block {
         padding: 0 0 5px 0;
         font-size: 1em;
     }
+}
+
+img.captcha {
+    margin-top: 10px;
+    border-radius: 5px;
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
 }
