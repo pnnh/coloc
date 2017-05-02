@@ -7,8 +7,8 @@ class ArticlesController < ApplicationController
 FROM "articles" as c left join "users" as u on c.user_id = u.id where c.channel_id = ? '
         query_params = [query, @channel.id]
         unless keyword.blank?
-            query += ' and (c.title ~* ? or c.tags ~* ?)'
-            query_params = [query, @channel.id, keyword, keyword]
+            query += ' and (c.title like ? or c.tags like ?)'
+            query_params = [query, @channel.id, "%#{keyword}%", "%#{keyword}%"]
         end
         query += ' order by c.updated_at desc limit 100;'
         query_params[0] = query
@@ -18,8 +18,8 @@ FROM "articles" as c left join "users" as u on c.user_id = u.id where c.channel_
         unless @channel.tags.blank?
             @tags = @channel.tags.split(',')
             tag = @tags[rand(@tags.length)]
-            query = 'select id, title from channels where id <> ? and (title ~* ? or tags ~* ?) limit 5;'
-            query = ActiveRecord::Base.send :sanitize_sql, [query, @channel.id, tag, tag]
+            query = 'select id, title from channels where id <> ? and (title like ? or tags like ?) limit 5;'
+            query = ActiveRecord::Base.send :sanitize_sql, [query, @channel.id, "%#{tag}%", "%#{tag}%"]
             @recomends = ActiveRecord::Base.connection.execute(query)
         end
     end
@@ -34,8 +34,8 @@ FROM "articles" as c left join "users" as u on c.user_id = u.id where c.channel_
         unless @article.tags.blank?
             @tags = @article.tags.split(',')
             tag = @tags[rand(@tags.length)]
-            query = 'select id, title from articles where id <> ? and channel_id = ? and (title ~* ? or tags ~* ?) limit 5;'
-            query = ActiveRecord::Base.send :sanitize_sql, [query, @article.id, @article.channel_id, tag, tag]
+            query = 'select id, title from articles where id <> ? and channel_id = ? and (title like ? or tags like ?) limit 5;'
+            query = ActiveRecord::Base.send :sanitize_sql, [query, @article.id, @article.channel_id, "%#{tag}%", "%#{tag}%"]
             @recomends = ActiveRecord::Base.connection.execute(query)
         end
     end

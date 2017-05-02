@@ -15,19 +15,21 @@
 </nav>
 
 <div class="body container channels">
-    <%= render :partial => 'errors', :object => @channel.errors %>
-    <%= form_for @channel, url: request.path.sub('/new', '') do |f| %>
-        <div class="form-group">
-            <%= f.text_field :title, placeholder: '标题', class: 'form-control' %>
-        </div>
-        <div class="form-group">
-            <%= f.text_area :description, placeholder: '描述', class: 'form-control', rows:10 %>
-        </div>
-        <div class="form-group">
-            <%= f.text_field :tags, placeholder: '标签', class: 'form-control' %>
-        </div>
-        <%= f.submit '提交', class: 'btn btn-default' %>
-    <% end %>
+    <div class="block">
+        <%= render :partial => 'errors', :object => @channel.errors %>
+        <%= form_for @channel, url: request.path.sub('/new', '') do |f| %>
+            <div class="form-group">
+                <%= f.text_field :title, placeholder: '标题', class: 'form-control' %>
+            </div>
+            <div class="form-group">
+                <%= f.text_area :description, placeholder: '描述', class: 'form-control', rows:10 %>
+            </div>
+            <div class="form-group">
+                <%= f.text_field :tags, placeholder: '标签', class: 'form-control' %>
+            </div>
+            <%= f.submit '提交', class: 'btn btn-default' %>
+        <% end %>
+    </div>
 </div>
 <%= render 'layouts/footer' %>
 </body>

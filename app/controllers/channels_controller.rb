@@ -9,8 +9,8 @@ class ChannelsController < ApplicationController
 FROM "channels" as c'
         query_params = [query]
         unless keyword.blank?
-            query += ' where c.title ~* ? or c.tags ~* ?'
-            query_params = [query, keyword, keyword]
+            query += ' where c.title like ? or c.tags like ?'
+            query_params = [query, "%#{keyword}%", "%#{keyword}%"]
         end
         query += ' limit 100;'
         query_params[0] = query
@@ -36,7 +36,7 @@ FROM "channels" as c'
         if @channel.save
             redirect_to @channel
         else
-            render 'new'
+            render channel_articles_path(@channel)
         end
     end
 
@@ -47,7 +47,7 @@ FROM "channels" as c'
     def update
         @channel = Channel.find params[:id]
         if @channel.update_attributes(params.require(:channel).permit(:title, :description, :tags))
-            redirect_to @channel
+            redirect_to channel_articles_path(@channel)
         end
     end
 end
