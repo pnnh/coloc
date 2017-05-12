@@ -12,46 +12,29 @@ gem 'coffee-rails'
 gem 'uglifier'
 gem 'jquery-rails'
 gem 'bcrypt'
-#url美化
-#gem 'friendly_id'
-#gem 'babosa'
 #自动化任务
 gem 'faker'
 #分页
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-#文本标记
-#gem 'github-markup'
-#gem 'github-markdown'
-#gem 'github-linguist'
 ##Markdown解析
 gem 'redcarpet'
 gem 'html-pipeline'
-##Mediawiki解析
-#gem 'wikicloth'
-#gem 'rails-latex'
 #语法高亮
 gem 'pygments.rb'
 #验证码
 gem 'rucaptcha'
 # redis缓存
 gem 'redis-rails'
+gem 'pg'
 
 group :development, :test do
-#  gem 'sqlite3'
-#  gem 'spring'
-#  gem 'rspec-rails'
-#  gem 'rspec-its'
 end
 
 group :test do
-#  gem 'selenium-webdriver'
-#  gem 'capybara'
-#  gem 'factory_girl_rails'
 end
 
 group :production do
-    gem 'pg'
 end
 
 

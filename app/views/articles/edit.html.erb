@@ -3,6 +3,7 @@
 <head>
     <title><%= @article.title %>-文章修改-宇哲</title>
     <%= render 'layouts/header' %>
+    <%= javascript_include_tag 'articles' %>
 </head>
 <body>
 
@@ -17,6 +18,7 @@
 <div class="body container">
     <div class="block">
         <%= form_for @article, url: request.path.sub('/edit', '') do |f| %>
+            <%= f.hidden_field :visible %>
             <div class="form-group">
                 <%= f.text_field :title, placeholder: '标题', class: 'form-control' %>
             </div>
@@ -26,7 +28,8 @@
             <div class="form-group">
                 <%= f.text_field :tags, placeholder: '标签', class: 'form-control' %>
             </div>
-            <%= f.submit '提交', class: 'btn btn-default' %>
+            <%= f.submit '公开', class: 'btn btn-default', onclick: 'setVisible(0);' %>
+            <%= f.submit '匿名', class: 'btn btn-default', onclick: 'setVisible(1);' %>
         <% end %>
     </div>
 </div>

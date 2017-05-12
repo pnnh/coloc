@@ -1,8 +1,35 @@
-<% provide(:title, 'About Us') %>
-<h1>About Us</h1>
-<p>
-The <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-is a project to make a book and screencasts to teach web development
-with <a href="http://rubyonrails.org/">Ruby on Rails</a>. This
-is the sample application for the tutorial.
-</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>帮助</title>
+    <%= render 'layouts/header' %>
+</head>
+<body>
+
+<nav class="header navbar navbar-default">
+    <div class="container">
+        <%= render 'layouts/navlogo', form: true, action: channels_path,
+                   placeholder: '搜索频道' %>
+        <%= render 'layouts/navmenu', wrapper: true %>
+    </div>
+</nav>
+
+
+<div class="body container">
+    <div class="row">
+        <div class="col-md-12" style="position: static;">
+            <div class="block">
+                <p>这是一个个人站点。</p>
+                <p>意在记录分享一些个人生活，工作中遇到的问题及心得随笔。</p>
+                <p>这里开放注册。若有兴趣，可以注册帐号，并在这里写点什么。</p>
+                <p>因本站无产品、无运营、无专职开发，一切皆因个人兴趣产生。所以内容较乱，功能不完整。</p>
+                <p>有些文章是自己所写，有些文章摘抄自网络。</p>
+                <p>若内容影响了您的权益，或有什么建议，可通过以下方式联系我。感谢。</p>
+                <p>Email: larry@coloc.cc </p>
+            </div>
+        </div>
+    </div>
+</div>
+<%= render 'layouts/footer' %>
+</body>
+</html>

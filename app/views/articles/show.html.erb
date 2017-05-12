@@ -58,6 +58,18 @@
             </div>
         </div>
         <div class="col-md-3 right">
+            <div class="block">
+                <div class="block-title">
+                    文章作者
+                </div>
+                <div class="block-body">
+                    <% if @article.visible == 1  %>
+                        匿名
+                    <% else %>
+                        <%= link_to @article.user.name, user_path(@article.user_id), class: 'nickname' %>
+                    <% end %>
+                </div>
+            </div>
             <div class="block tags">
                 <div class="block-title">
                     文章标签
@@ -67,7 +79,7 @@
                            @tags.each do |t| %>
                             <%= link_to t, channel_articles_path(@article.channel_id, keyword: t) %>
                         <% end else %>
-                        <p>暂无内容</p>
+                        <p>暂无</p>
                     <% end %>
                 </div>
             </div>
@@ -82,7 +94,7 @@
                                 <%= link_to r['title'], channel_article_path(@article.channel_id, r['id']) %>
                             </li>
                         <% end else %>
-                        <li>暂无内容</li>
+                        <li>暂无</li>
                     <% end %>
                 </ul>
             </div>

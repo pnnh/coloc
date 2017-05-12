@@ -130,9 +130,9 @@ nav.header {
 }
 
 a.navbar-brand {
-    padding: 8px 8px 8px 0;
+    padding: 9px 8px 9px 0;
     img {
-        height: 34px;
+        height: 32px;
     }
 }
 
@@ -144,6 +144,7 @@ div.body {
 /* 底部导航 */
 div.footer {
     margin-top: 10px;
+    margin-bottom: 15px;
     div.cnzz {
         display: none;
     }
@@ -189,6 +190,7 @@ div.block {
         border-bottom: solid 1px #f5f5f5;
         padding: 0 0 5px 0;
         font-size: 1em;
+        margin-bottom: 10px;
     }
 }
 
@@ -198,4 +200,11 @@ img.captcha {
     width: 100%;
     height: 50px;
     cursor: pointer;
+}
+
+.btn-default, .btn-default:hover, .btn-default:active, .btn-default:active:hover,
+.btn-default.disabled:hover{
+    color: #fff;
+    background-color: #0c94d7;
+    border-width: 0;
 }

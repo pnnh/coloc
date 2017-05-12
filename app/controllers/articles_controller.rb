@@ -1,14 +1,16 @@
 class ArticlesController < ApplicationController
     def index
+        current_user_id = signed_in? ? @current_user.id : -1
         @channel = Channel.find(params[:channel_id])
 
         keyword = params[:keyword]
-        query = 'SELECT c.id, c.title, c.user_id, c.tags, c.content, c.updated_at, u.name
-FROM "articles" as c left join "users" as u on c.user_id = u.id where c.channel_id = ? '
-        query_params = [query, @channel.id]
+        query = 'SELECT c.id, c.title, c.user_id, c.tags, c.content, c.updated_at, u.name, c.visible
+FROM "articles" as c left join "users" as u on c.user_id = u.id
+where c.channel_id = ? '
+        query_params = [query, current_user_id, @channel.id]
         unless keyword.blank?
             query += ' and (c.title ~* ? or c.tags ~* ?)'
-            query_params = [query, @channel.id, keyword, keyword]
+            query_params = [query, current_user_id, @channel.id, keyword, keyword]
         end
         query += ' order by c.updated_at desc limit 100;'
         query_params[0] = query
@@ -34,8 +36,8 @@ FROM "articles" as c left join "users" as u on c.user_id = u.id where c.channel_
         unless @article.tags.blank?
             @tags = @article.tags.split(',')
             tag = @tags[rand(@tags.length)]
-            query = 'select id, title from articles where id <> ? and channel_id = ? and (title ~* ? or tags ~* ?) limit 5;'
-            query = ActiveRecord::Base.send :sanitize_sql, [query, @article.id, @article.channel_id, tag, tag]
+            query = 'select id, title from articles where id <> ? and (title ~* ? or tags ~* ?) limit 5;'
+            query = ActiveRecord::Base.send :sanitize_sql, [query, @article.id, tag, tag]
             @recomends = ActiveRecord::Base.connection.execute(query)
         end
     end
@@ -43,7 +45,7 @@ FROM "articles" as c left join "users" as u on c.user_id = u.id where c.channel_
     def create
         p = params[:article]
         @article = Article.new title: p[:title], content: p[:content], tags: p[:tags],
-            user_id: current_user.id, channel_id: params[:channel_id]
+            user_id: current_user.id, channel_id: params[:channel_id], visible: p[:visible]
 
         if @article.save
             redirect_to request.path + '/' + @article.id.to_s
@@ -58,7 +60,7 @@ FROM "articles" as c left join "users" as u on c.user_id = u.id where c.channel_
 
     def update
         article = Article.find params[:id]
-        if article.update_attributes(params.require(:article).permit(:title, :content, :tags))
+        if article.update_attributes(params.require(:article).permit(:title, :content, :tags, :visible))
             redirect_to request.path
         end
     end

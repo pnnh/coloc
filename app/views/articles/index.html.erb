@@ -5,6 +5,7 @@
     <meta name="description" content="<%=trunc_desc(@channel.description)%>" />
     <%= render 'layouts/header', title: @channel.title %>
     <%= stylesheet_link_tag  'articles' %>
+    <%= javascript_include_tag 'articles' %>
 </head>
 <body>
 
@@ -48,6 +49,12 @@
         <h3 class="title">
             <%= @channel.title %>
         </h3>
+        <p class="desc simple">
+            <span><%= @channel.description %></span>
+            <% if !@channel.description.nil? && @channel.description.length > 190 %>
+                <%= link_to '展开', 'javascript:void(0)', onclick: 'showDesc(this)' %>
+            <% end %>
+        </p>
     </div>
 </div>
 
@@ -58,7 +65,11 @@
                @articles.each do |article|%>
                 <div class="item block">
                     <div class="name">
-                        <%= link_to article['name'], user_path(article['user_id']), class: 'nickname' %>
+                        <% if article['visible'] == 1  %>
+                            匿名
+                        <% else %>
+                            <%= link_to article['name'], user_path(article['user_id']), class: 'nickname' %>
+                        <% end %>
                         <span class="time"><%=update_time(article['updated_at'].to_time)%></span>
                     </div>
                     <h4 class="title">
@@ -75,14 +86,6 @@
             <% end%>
         </div>
         <div class="col-md-3 right">
-            <div class="block description">
-                <div class="block-title">
-                    频道简介
-                </div>
-                <p>
-                    <%= @channel.description %>
-                </p>
-            </div>
             <div class="block tags">
                 <div class="block-title">
                     频道标签
@@ -92,7 +95,7 @@
                        @tags.each do |t|  %>
                     <%= link_to t, channels_path(keyword: t) %>
                     <% end else %>
-                      <p>暂无内容</p>
+                      <p>暂无</p>
                     <% end %>
                 </div>
             </div>
@@ -107,7 +110,7 @@
                                 <%= link_to r['title'], channel_articles_path(r['id'])%>
                             </li>
                         <% end else %>
-                        <li>暂无内容</li>
+                        <li>暂无</li>
                     <% end %>
                 </ul>
             </div>
