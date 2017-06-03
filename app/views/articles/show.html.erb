@@ -46,6 +46,9 @@
     <div class="container">
         <h3 class="title">
             <%= @article.title %>
+            <% if @article.visible == 2 %>
+                <img class="visible" src="/assets/icons/locker.gif" />
+            <% end %>
         </h3>
     </div>
 </div>

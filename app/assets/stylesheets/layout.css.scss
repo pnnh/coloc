@@ -95,6 +95,7 @@ table {
 @media(max-width: 768px) {
     .navbar form.search {
         margin-top: -42px;
+        .keyword { width: 60% !important; }
     }
 }
 

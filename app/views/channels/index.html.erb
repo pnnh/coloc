@@ -9,8 +9,15 @@
 
 <nav class="header navbar navbar-default">
     <div class="container">
-        <%= render 'layouts/navlogo', form: true, action: channels_path,
-                   placeholder: '搜索频道' %>
+        <%= render 'layouts/navlogo', form: false %>
+        <form method="get" action="<%= channels_path %>" class="navbar-form navbar-left search">
+            <input type="hidden" name="visible" value="<%= @visible %>" />
+            <div class="form-group">
+                <input name="keyword" type="text" value="<%= params[:keyword]%>"
+                       class="form-control keyword" maxlength="30"
+                       placeholder="搜索频道">
+            </div>
+        </form>
         <%= render 'layouts/navmenu', wrapper: true %>
     </div>
 </nav>
@@ -21,10 +28,13 @@
         <div class="col-md-9 left">
             <% @channels.each do |c|
                 channel = Channel.new(id: c['id'], title: c['title'], ctype: c['ctype'],
-                                      description: c['description']) %>
+                                      description: c['description'], visible: c['visible']) %>
                 <div class="post block">
                     <h4>
                         <%= link_to channel.title, contents_path(channel.id, channel.ctype), class: 'title' %>
+                        <% if channel.visible == 1 %>
+                            <img class="visible" src="/assets/icons/locker.gif" />
+                        <% end %>
                     </h4>
                     <div class="entry">
                         <div class="c_b_p_desc"><%= trunc_desc(channel.description) %></div>

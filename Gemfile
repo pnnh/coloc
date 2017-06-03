@@ -1,5 +1,6 @@
 # coding: utf-8
 source 'https://gems.ruby-china.org/'
+ruby '2.2.6'
 
 gem 'rails'
 gem 'turbolinks'

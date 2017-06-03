@@ -10,3 +10,4 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( articles.css channels.css )
 #Rails.application.config.assets.precompile += %w( channels.css )
 Rails.application.config.assets.precompile += %w( articles.js )
+Rails.application.config.assets.precompile += %w( channels.js )

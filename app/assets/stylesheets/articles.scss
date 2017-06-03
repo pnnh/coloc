@@ -40,6 +40,11 @@ div.articles, div.article {
         padding: 0 10px 0 10px;
         position: static;
     }
+    .visible {
+        height: 24px;
+        width: 24px;
+        margin-top: -3px;
+    }
     .right {
         padding: 0 10px 0 0;
         @media(max-width: 992px) {
@@ -85,6 +90,8 @@ div.articles, div.article {
         }
         .title {
             padding: 10px 0 10px 0;
+            height: 40px;
+            overflow: hidden;
             a {
                 color: #0c94d7;
             }
@@ -103,7 +110,16 @@ div.articles, div.article {
     background: #fff;
     border-bottom: 1px solid #e7eaf1;
     box-shadow: 0 1px 3px 0 rgba(0,37,55,.05);
-    .title { padding-left: 5px; }
+    .title {
+        padding-left: 5px;
+        height: 36px;
+        overflow: hidden;
+    }
+    .visible {
+        height: 24px;
+        width: 24px;
+        margin-top: -3px;
+    }
     .desc {
         padding: 0 5px;
         margin-top: 10px;
@@ -118,7 +134,7 @@ div.articles, div.article {
             overflow:hidden;
             display: inline-block;
         }
-        a { position: relative; top: -5px; }
+        .on { width: 50px; display: inline-block; }
     }
     .full {
         span { overflow: auto; }
