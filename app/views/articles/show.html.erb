@@ -15,14 +15,12 @@
 <%= render 'layouts/navbar' do %>
     <div class="dropdown table-card-cell rcard">
         <a href="<%= request.path.sub(article_path(@article), articles_path) %>">
-            <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
             上级
         </a>
     </div>
     <% if toc.length > 0 %>
         <div class="dropdown table-card-cell rcard">
             <a class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
                 目录
                 <span class="caret"></span>
             </a>
@@ -37,7 +35,6 @@
     <% if current_user?(@article.user) %>
         <div class="dropdown table-card-cell rcard">
             <a href="<%= request.path + '/edit' %>">
-                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                 修改
             </a>
         </div>

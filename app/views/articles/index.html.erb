@@ -13,14 +13,12 @@
     <% if signed_in? %>
         <div class="dropdown table-card-cell rcard">
             <a href="<%= new_channel_article_path %>">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 写文章
             </a>
         </div>
         <% if current_user?(@channel.user_id) %>
             <div class="dropdown table-card-cell rcard">
                 <a href="<%= edit_channel_path(@channel) %>">
-                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                     修改频道
                 </a>
             </div>

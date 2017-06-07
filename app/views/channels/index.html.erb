@@ -20,14 +20,7 @@
             </ul>
         </div>
         <div class="dropdown table-card-cell rcard">
-            <a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                创建
-                <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><%= link_to '频道', new_channel_path %></li>
-                <li><%= link_to '文章', channels_path(visible: 1) %></li>
-            </ul>
+            <%= link_to '创建频道', new_channel_path %>
         </div>
     <% else %>
         <a href="<%=signup_path%>" class="table-card-cell rcard">
