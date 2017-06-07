@@ -5,15 +5,15 @@
     <%= render 'layouts/header' %>
 </head>
 <body>
-<nav class="navbar navbar-default">
-    <div class="container">
-        <%= render 'layouts/navlogo', form: true, action: channels_path,
-                   placeholder: '搜索频道' %>
-        <%= render 'layouts/navmenu', wrapper: true %>
-    </div>
-</nav>
-<div class="container">
-    <div class="block">
+
+<%= render 'layouts/navbar' do %>
+<% end %>
+
+<div id="fixed-before" class="sub-header">
+</div>
+
+<div class="flex-container">
+    <div class="box card">
         <div class="form-group">
             <%= label_tag '姓名' %>
             <%= @user.name %>

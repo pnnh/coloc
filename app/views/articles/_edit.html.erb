@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= @article.title %>-文章修改-宇哲</title>
+    <%= render 'layouts/header' %>
+    <%= stylesheet_link_tag  'articles', media: 'all' %>
+    <%= javascript_include_tag 'articles' %>
+</head>
+<body>
+
+<%= form_for @article, url: request.path.sub('/edit', '') do |f| %>
+    <%= f.hidden_field :visible %>
+
+<nav class="header navbar navbar-default">
+    <div class="container">
+        <%= render 'layouts/navlogo', form: false, placeholder: '搜索文章',
+                   action: channel_articles_path(@article.channel_id) %>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-left">
+        <%= render 'layouts/navmenu', wrapper: false %>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+
+                    <% if @channel.visible == 0 %>
+                        <%= f.submit '公开', class: 'btn btn-default navbar-btn', onclick: 'setVisible(0);' %>
+                        <%= f.submit '匿名', class: 'btn btn-default navbar-btn', onclick: 'setVisible(1);' %>
+                    <% else %>
+                        <%= f.submit '私有', class: 'btn btn-default navbar-btn', onclick: 'setVisible(2);' %>
+                    <% end %>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="channel-title">
+    <div class="container">
+        <%= render 'controls/input-select', text_name: 'article[title]', text_value: @article.title,
+                   text_placeholder: '标题', select_name: 'article[ctype]', select_value: @article.ctype,
+                   items: {'md'=>'Markdown','html'=>'HTML'} %>
+    </div>
+</div>
+
+
+<div class="body container article">
+    <div class="row">
+        <div class="col-md-9 left">
+            <div class="block">
+                <%= f.text_area :content, placeholder: '正文', class: 'form-control auto-height content' %>
+            </div>
+        </div>
+        <div class="col-md-3 right">
+            <div class="block tags">
+                <div class="block-title">
+                    标签
+                </div>
+                <div class="block-body">
+                    <%= f.text_area :tags, placeholder: '标签', class: 'form-control auto-height' %>
+                </div>
+            </div>
+            <div class="block recomends">
+                <div class="block-title">
+                    版权
+                </div>
+                <div class="block-body">
+                    <%= f.text_area :copyright, placeholder: '版权', class: 'form-control auto-height' %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>
+
+<%= render 'layouts/footer' %>
+</body>
+</html>

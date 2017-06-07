@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>创建频道-宇哲</title>
+    <title>创建频道</title>
     <%= render 'layouts/header' %>
     <%= javascript_include_tag 'channels' %>
 </head>
 <body>
 
-<nav class="header navbar navbar-default">
-    <div class="container">
-        <%= render 'layouts/navlogo', form: true, action: channels_path,
-                   placeholder: '搜索频道' %>
-        <%= render 'layouts/navmenu', wrapper: true %>
-    </div>
-</nav>
 
-<div class="body container channels">
-    <div class="block">
+<%= render 'layouts/navbar' do %>
+<% end %>
+
+<div id="fixed-before" class="sub-header">
+</div>
+
+<div class="body flex-container channels">
+    <div class="box">
+        <div class="box-body">
         <%= render :partial => 'errors', :object => @channel.errors %>
         <%= form_for @channel, url: request.path.sub('/new', '') do |f| %>
             <%= f.hidden_field :visible %>
@@ -29,9 +29,9 @@
             <div class="form-group">
                 <%= f.text_field :tags, placeholder: '标签', class: 'form-control' %>
             </div>
-            <%= f.submit '公开', class: 'btn btn-default', onclick: 'setVisible(0);' %>
-            <%= f.submit '私有', class: 'btn btn-default', onclick: 'setVisible(1);' %>
+            <%= f.submit '保存', class: 'btn btn-default', onclick: 'setVisible(0);' %>
         <% end %>
+        </div>
     </div>
 </div>
 <%= render 'layouts/footer' %>

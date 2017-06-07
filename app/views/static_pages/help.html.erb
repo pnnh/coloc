@@ -6,19 +6,16 @@
 </head>
 <body>
 
-<nav class="header navbar navbar-default">
-    <div class="container">
-        <%= render 'layouts/navlogo', form: true, action: channels_path,
-                   placeholder: '搜索频道' %>
-        <%= render 'layouts/navmenu', wrapper: true %>
-    </div>
-</nav>
+<%= render 'layouts/navbar' do %>
+    <%= render 'layouts/navmenu2' %>
+<% end %>
 
-
-<div class="body container">
-    <div class="row">
-        <div class="col-md-12" style="position: static;">
-            <div class="block">
+<div id="fixed-before" class="sub-header">
+</div>
+<div class="body flex-container">
+    <div class="flex-content">
+        <div class="box">
+                <div class="box-body">
                 <p>本站内容允许使用Markdown来书写，这是一种文本标记语言。通过一些简单的标记，来标识出文章的不同部分内容。</p>
                 <p>如标识出标题、正文、引用快、列表、代码块等。通过将这些不同内容标识出来，系统将会自动给于文章一个更好的排版，更易于阅读。</p>
 
@@ -96,8 +93,8 @@ _   底线
 .   英文句点
 !   惊叹号
 </code></pre>
+                </div>
             </div>
-        </div>
     </div>
 </div>
 <%= render 'layouts/footer' %>

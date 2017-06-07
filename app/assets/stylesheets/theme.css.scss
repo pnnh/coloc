@@ -1,0 +1,18 @@
+
+$btn-default-color:      #fff !default;
+$btn-default-bg:          #0c94d7 !default;
+$btn-default-border:     #0c94d7 !default;
+
+$btn-info-color:                 #000 !default;
+$btn-info-bg:                    #fff !default;
+$btn-info-border:               #ccc !default;
+
+@import 'bootstrap-sprockets';
+@import "bootstrap";
+
+.weak {
+    color: #969696;
+    font-size: 0.9em;
+}
+
+.dropdown {display: inline-block;}

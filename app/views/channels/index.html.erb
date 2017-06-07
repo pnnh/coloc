@@ -7,47 +7,70 @@
 </head>
 <body>
 
-<nav class="header navbar navbar-default">
-    <div class="container">
-        <%= render 'layouts/navlogo', form: false %>
-        <form method="get" action="<%= channels_path %>" class="navbar-form navbar-left search">
-            <input type="hidden" name="visible" value="<%= @visible %>" />
-            <div class="form-group">
-                <input name="keyword" type="text" value="<%= params[:keyword]%>"
-                       class="form-control keyword" maxlength="30"
-                       placeholder="搜索频道">
-            </div>
-        </form>
-        <%= render 'layouts/navmenu', wrapper: true %>
-    </div>
-</nav>
+<%= render 'layouts/navbar' do %>
+    <% if signed_in? %>
+        <div class="dropdown table-card-cell rcard">
+            <a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                个人
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><%= link_to '信息', current_user %></li>
+                <li><%= link_to '注销', signout_path, method: 'delete'  %></li>
+            </ul>
+        </div>
+        <div class="dropdown table-card-cell rcard">
+            <a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                创建
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><%= link_to '频道', new_channel_path %></li>
+                <li><%= link_to '文章', channels_path(visible: 1) %></li>
+            </ul>
+        </div>
+    <% else %>
+        <a href="<%=signup_path%>" class="table-card-cell rcard">
+            注册
+        </a>
+        <a href="<%=signin_path%>" class="table-card-cell rcard">
+            登录
+        </a>
+    <% end %>
+<% end %>
 
+<div id="fixed-before" class="sub-header">
+</div>
 
-<div class="body container channels">
-    <div class="row">
-        <div class="col-md-9 left">
+<div class="body flex-container-21 channels">
+    <div class="flex-left">
+        <div class="flex-body">
             <% @channels.each do |c|
                 channel = Channel.new(id: c['id'], title: c['title'], ctype: c['ctype'],
                                       description: c['description'], visible: c['visible']) %>
-                <div class="post block">
-                    <h4>
-                        <%= link_to channel.title, contents_path(channel.id, channel.ctype), class: 'title' %>
-                        <% if channel.visible == 1 %>
-                            <img class="visible" src="/assets/icons/locker.gif" />
-                        <% end %>
-                    </h4>
-                    <div class="entry">
+                <div class="post box">
+                    <div class="box-title">
+                        <h4>
+                            <%= link_to channel.title, contents_path(channel.id, channel.ctype), class: 'title' %>
+                            <% if channel.visible == 1 %>
+                                <img class="visible" src="/assets/icons/locker.gif" />
+                            <% end %>
+                        </h4>
+                    </div>
+                    <div class="box-body">
                         <div class="c_b_p_desc"><%= trunc_desc(channel.description) %></div>
                     </div>
                 </div>
             <% end %>
         </div>
-        <div class="col-md-3 right">
-            <div class="block tags">
-                <div class="block-title">
+    </div>
+    <div class="flex-right">
+        <div id="fixed" class="flex-body">
+            <div class="box tags">
+                <div class="box-title">
                     标签
                 </div>
-                <div class="tagcloud">
+                <div class="box-body tagcloud">
                     <% if !@tags.nil? && @tags.length > 0
                            for i in 0..@tags.length - 1
                             break if i >= 20 %>
@@ -57,8 +80,8 @@
                     <% end %>
                 </div>
             </div>
-            <div class="block">
-                <div class="block-body">
+            <div class="box">
+                <div class="box-body">
                     <%=link_to '关于', about_path %>
                     <%=link_to '帮助', help_path %>
                 </div>

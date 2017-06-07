@@ -1,5 +1,5 @@
 var setVisible = function(visible) {
-    $("#article_visible").val(visible);
+    $("#article_visible").val(visible).closest('form').submit();
 };
 
 var showDesc = function(el) {
@@ -12,3 +12,25 @@ var showDesc = function(el) {
         parents(".desc").removeClass("simple").addClass("full");
     }
 };
+
+$(function () {
+   $("form .input-select-group").each(function () {
+       var toggleLabel = $(this).find(".dropdown-toggle .title");
+       var dropVal = $(this).find(".dropdown-value");
+      $(this).find("a[data-value]").each(function () {
+        $(this).click(function () {
+            dropVal.val($(this).data("value"));
+            toggleLabel.text($(this).text());
+        });
+      });
+   });
+
+    $('body').scrollspy({ offset: 60, target:'#fixed-spy'});
+    $('#fixed-spy').on('activate.bs.scrollspy', function (e) {
+        if(e.target.firstChild.hash === '#fixed') {
+            $('#fixed').addClass('fixed');
+        } else {
+            $('#fixed').removeClass('fixed');
+        }
+    });
+});

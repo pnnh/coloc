@@ -84,7 +84,7 @@ where c.channel_id = ? '
             redirect_to root_path
             return
         end
-
+        @items = {'md'=>'Markdown','html'=>'HTML'}
         @channel = Channel.find(params[:channel_id])
     end
 
@@ -98,8 +98,12 @@ where c.channel_id = ? '
             redirect_to root_path
             return
         end
+        ctype = params[:article][:ctype]
+        ctype = 'md' if ctype.blank? || ctype != 'html'
+        props = params.require(:article).permit(:title, :content, :tags, :visible, :copyright)
+        props[:ctype] = ctype if ctype != article.ctype
 
-        if article.update_attributes(params.require(:article).permit(:title, :content, :tags, :visible))
+        if article.update_attributes(props)
             redirect_to request.path
         end
     end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170512150822) do
+ActiveRecord::Schema.define(version: 20170603210550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,9 @@ ActiveRecord::Schema.define(version: 20170512150822) do
     t.integer  "minus"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "visible",    default: 0, null: false
+    t.integer  "visible",    default: 0,    null: false
+    t.string   "ctype",      default: "md", null: false
+    t.string   "copyright",  default: "",   null: false
   end
 
   create_table "channel_follows", force: :cascade do |t|

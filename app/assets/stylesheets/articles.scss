@@ -33,6 +33,7 @@ div.article {
         margin-top: -60px;
         padding-top: 60px;
     }
+    textarea.content { min-height: 300px; }
 }
 
 div.articles, div.article {
@@ -90,7 +91,6 @@ div.articles, div.article {
         }
         .title {
             padding: 10px 0 10px 0;
-            height: 40px;
             overflow: hidden;
             a {
                 color: #0c94d7;
@@ -99,22 +99,16 @@ div.articles, div.article {
     }
 }
 
-div.articles, div.article {
+div.articles {
     padding-top:0;
     margin-top: 10px;
 }
+
 .channel-title {
-    padding-top: 60px;
-    padding-bottom: 10px;
-    overflow: hidden;
+    padding-top: 50px;
     background: #fff;
     border-bottom: 1px solid #e7eaf1;
     box-shadow: 0 1px 3px 0 rgba(0,37,55,.05);
-    .title {
-        padding-left: 5px;
-        height: 36px;
-        overflow: hidden;
-    }
     .visible {
         height: 24px;
         width: 24px;
@@ -140,4 +134,10 @@ div.articles, div.article {
         span { overflow: auto; }
         a { position: static; top: 0; }
     }
+    .name {
+        margin-top:5px;
+        padding: 0 0 5px 0;
+        .nickname {font-size: 1em;}
+    }
 }
+

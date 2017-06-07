@@ -9,122 +9,119 @@
 </head>
 <body>
 
-<nav class="header navbar navbar-default">
-    <div class="container">
-        <%= render 'layouts/navlogo', form: true, placeholder: '搜索文章',
-                   action: channel_articles_path(@channel) %>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <% if signed_in? %>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-haspopup="true" aria-expanded="false">
-                            操作<span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><%= link_to '写文章', new_channel_article_path %></li>
-                            <li role="separator" class="divider"></li>
-                            <% favorite_id = @channel.favorite_id(current_user.id)
-                               if !favorite_id.nil? && favorite_id > 0 %>
-                                <li><%= link_to '取消收藏', channel_follow_path(favorite_id),
-                                                method: 'delete' %></li>
-                            <% else %>
-                                <li><%= link_to '收藏', channel_follows_path(channel_id: @channel.id),
-                                                method: 'post' %></li>
-                            <% end %>
-                            <li role="separator" class="divider"></li>
-                            <% if current_user?(@channel.user_id) %>
-                                <li><%= link_to '修改频道', edit_channel_path(@channel) %></li>
-                            <% end %>
-                        </ul>
-                    </li>
-                <% end %>
-                <%= render 'layouts/navmenu' %>
-            </ul>
+<%= render 'layouts/navbar' do %>
+    <% if signed_in? %>
+        <div class="dropdown table-card-cell rcard">
+            <a href="<%= new_channel_article_path %>">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                写文章
+            </a>
         </div>
-    </div>
-</nav>
-<div class="channel-title">
-    <div class="container">
-        <h3 class="title">
+        <% if current_user?(@channel.user_id) %>
+            <div class="dropdown table-card-cell rcard">
+                <a href="<%= edit_channel_path(@channel) %>">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    修改频道
+                </a>
+            </div>
+        <% end %>
+    <% end %>
+<% end %>
+
+<div class="sub-header">
+    <div class="flex-container">
+    <div class="flex-content vcard">
+        <h3 class="title lbrcard">
             <%= @channel.title %>
             <% if @channel.visible == 1 %>
                 <img class="visible" src="/assets/icons/locker.gif" />
             <% end %>
         </h3>
-        <p class="desc simple">
+        <p class="desc hcard simple">
             <span class="text"><%= @channel.description %></span>
             <span class="on">
-                <% if !@channel.description.nil? && @channel.description.length > 70 %>
-                    <%= link_to '展开', 'javascript:void(0)', onclick: 'showDesc(this)' %>
-                <% end %>
-            </span>
+            <% if !@channel.description.nil? && @channel.description.length > 70 %>
+                <%= link_to '展开', 'javascript:void(0)', onclick: 'showDesc(this)' %>
+            <% end %>
+        </span>
         </p>
+    </div>
     </div>
 </div>
 
-<div class="body container articles">
-    <div class="row">
-        <div class="col-md-9 left">
+<div class="body flex-container-21 clearfix channels">
+    <div class="flex-left">
+        <div class="flex-body">
             <% if @articles.count > 0
-               @articles.each do |article|%>
-                <div class="item block">
-                    <div class="name">
-                        <% if article['visible'] == 1  %>
-                            匿名
-                        <% else %>
-                            <%= link_to article['name'], user_path(article['user_id']), class: 'nickname' %>
-                        <% end %>
-                        <span class="time"><%=update_time(article['updated_at'].to_time)%></span>
+                   @articles.each do |article|%>
+                    <div class="item box">
+                        <div class="box-title name">
+                            <% if article['visible'] == 1  %>
+                                匿名
+                            <% else %>
+                                <%= link_to article['name'], user_path(article['user_id']), class: 'nickname' %>
+                            <% end %>
+                            <span class="weak"><%=update_time(article['updated_at'].to_time)%></span>
+                        </div>
+                        <div class="box-body">
+                            <a href="<%=channel_article_path(@channel, article['id'])%>">
+                                <h4>
+                                    <%= article['title'] %>
+                                    <% if article['visible'] == 2 %>
+                                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                                    <% end %>
+                                </h4>
+                            </a>
+                            <div class="entry tcard">
+                                <div class="c_b_p_desc"><%= trunc_desc(article['content']) %></div>
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="title">
-                        <%= link_to article['title'], channel_article_path(@channel, article['id']) %>
-                        <% if article['visible'] == 2 %>
-                            <img class="visible" src="/assets/icons/locker.gif" />
-                        <% end %>
-                    </h4>
-                    <div class="entry">
-                        <div class="c_b_p_desc"><%= trunc_desc(article['content']) %></div>
+                <% end else %>
+                <div class="box">
+                    <div class="box-body">
+                        暂无内容
                     </div>
-                </div>
-            <% end else %>
-                <div class="block">
-                    暂无内容
                 </div>
             <% end%>
         </div>
-        <div class="col-md-3 right">
-            <div class="block tags">
-                <div class="block-title">
+    </div>
+    <div class="flex-right">
+        <div id="fixed" class="flex-body">
+            <div class="box tags">
+                <div class="box-title">
                     频道标签
                 </div>
-                <div class="tagcloud">
+                <div class="box-body tagcloud">
                     <% if !@tags.nil? && @tags.length > 0
-                       @tags.each do |t|  %>
-                    <%= link_to t, channels_path(keyword: t) %>
-                    <% end else %>
-                      <p>暂无</p>
+                           @tags.each do |t|  %>
+                            <%= link_to t, channels_path(keyword: t), class: 'tag' %>
+                        <% end else %>
+                        暂无
                     <% end %>
                 </div>
             </div>
-            <div class="block recomends">
-                <div class="block-title">
+            <div class="box recomends">
+                <div class="box-title">
                     相关频道
                 </div>
-                <ul class="contents">
-                    <% if !@recomends.nil? and @recomends.count > 0
-                           @recomends.each do |r| %>
-                            <li>
-                                <%= link_to r['title'], channel_articles_path(r['id'])%>
-                            </li>
-                        <% end else %>
-                        <li>暂无</li>
-                    <% end %>
-                </ul>
+                <div class="box-body-full">
+                    <ul class="lbrcard contents">
+                        <% if !@recomends.nil? and @recomends.count > 0
+                               @recomends.each do |r| %>
+                                <li class="tcard">
+                                    <%= link_to r['title'], channel_articles_path(r['id'])%>
+                                </li>
+                            <% end else %>
+                            <li class="tcard">暂无</li>
+                        <% end %>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 <%= render 'layouts/footer' %>
 </body>
 </html>

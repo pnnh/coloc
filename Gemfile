@@ -3,7 +3,6 @@ source 'https://gems.ruby-china.org/'
 ruby '2.2.6'
 
 gem 'rails'
-gem 'turbolinks'
 gem 'jbuilder'
 #gem 'sdoc',          group: :doc
 gem 'sass'

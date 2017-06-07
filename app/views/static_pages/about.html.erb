@@ -1,31 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>帮助</title>
+    <title>关于</title>
     <%= render 'layouts/header' %>
 </head>
 <body>
 
-<nav class="header navbar navbar-default">
-    <div class="container">
-        <%= render 'layouts/navlogo', form: true, action: channels_path,
-                   placeholder: '搜索频道' %>
-        <%= render 'layouts/navmenu', wrapper: true %>
-    </div>
-</nav>
+<%= render 'layouts/navbar' do %>
+    <%= render 'layouts/navmenu2' %>
+<% end %>
 
+<div id="fixed-before" class="sub-header"></div>
 
-<div class="body container">
-    <div class="row">
-        <div class="col-md-12" style="position: static;">
-            <div class="block">
-                <p>这是一个个人站点。</p>
-                <p>意在记录分享一些个人生活，工作中遇到的问题及心得随笔。</p>
-                <p>这里开放注册。若有兴趣，可以注册帐号，并在这里写点什么。</p>
-                <p>因本站无产品、无运营、无专职开发，一切皆因个人兴趣产生。所以内容较乱，功能不完整。</p>
-                <p>有些文章是自己所写，有些文章摘抄自网络。</p>
-                <p>若内容影响了您的权益，或有什么建议，可通过以下方式联系我。感谢。</p>
-                <p>Email: larry@coloc.cc </p>
+<div class="body flex-container">
+    <div class="flex-content">
+        <div class="box">
+            <div class="box-body">
+            <p>这是一个个人站点。</p>
+            <p>有些内容摘抄自网络，有些是自己所写。</p>
+            <p>若内容影响了您的权益，或有什么建议，可通过以下方式联系我。感谢。</p>
+            <p>Email: larry@coloc.cc </p>
             </div>
         </div>
     </div>
