@@ -10,11 +10,11 @@
 <body>
 
 <%= render 'layouts/navbar' do %>
-    <div class="dropdown table-card-cell rcard">
-        <a href="<%= request.path.sub(article_path(@article), articles_path) %>">
-            上级
+    <% unless retrive_location.blank? %>
+        <a href="<%= retrive_location %>" class="table-card-cell rcard">
+            返回
         </a>
-    </div>
+    <% end %>
     <% if current_user?(@article.user) %>
         <div class="dropdown table-card-cell rcard">
             <a href="<%= request.path + '/edit' %>">
@@ -27,25 +27,20 @@
 <div id="fixed-before" class="sub-header">
     <div class="flex-container">
         <div class="flex-content card">
-    <h3 class="title mcolor">
-        <%= @article.title %>
-        <% if @article.visible == 2 %>
-            <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-        <% end %>
-    </h3>
-    <div class="name">
-        <% if @article.visible == 1  %>
-            匿名
-        <% else %>
-            <%= link_to @article.user.name, user_path(@article.user_id), class: 'nickname' %>
-        <% end %>
-        <span class="time"><%=update_time(@article.updated_at)%></span>
-    </div>
+            <h1 class="title mcolor tcard">
+                <%= @article.title %>
+                <% if @article.visible == 2 %>
+                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                <% end %>
+            </h1>
+            <div class="name">
+                <span class="time"><%=update_time(@article.updated_at)%></span>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="body flex-container-21 channels">
+<div class="body flex-container-21">
     <div class="flex-left">
         <div class="flex-body">
             <div class="box article">
@@ -77,12 +72,12 @@
             <% end %>
             <div class="box tags">
                 <div class="box-title">
-                    标签
+                    文章标签
                 </div>
                 <div class="box-body tagcloud">
                     <% if !@tags.nil? && @tags.length > 0
                            @tags.each do |t| %>
-                            <%= link_to t, channel_articles_path(@article.channel_id, keyword: t), class: 'tag' %>
+                            <%= link_to t, articles_path(keyword: t), class: 'tag' %>
                         <% end else %>
                         暂无
                     <% end %>
@@ -90,14 +85,14 @@
             </div>
             <div class="box recomends">
                 <div class="box-title">
-                    相关推荐
+                    相关文章
                 </div>
                 <div class="box-body-full">
                     <ul class="lbrcard contents">
                         <% if !@recomends.nil? and @recomends.count > 0
                                @recomends.each do |r| %>
                                 <li class="tcard">
-                                    <%= link_to r['title'], channel_article_path(@article.channel_id, r['id']) %>
+                                    <%= link_to r['title'], article_path(r['id']) %>
                                 </li>
                             <% end else %>
                             <li class="tcard">暂无</li>

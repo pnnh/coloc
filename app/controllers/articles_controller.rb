@@ -1,20 +1,10 @@
 class ArticlesController < ApplicationController
-    def index
-        @channel = Channel.find(params[:channel_id])
-        # 私有频道内容仅允许自己查看
-        if @channel.visible == 1 && !current_user?(@channel.user_id)
-            redirect_to root_path
-            return
-        end
+    before_action :signed_in_user, only: [:index, :new, :create, :edit, :update, :destroy]
 
-        query = 'SELECT c.id, c.title, c.user_id, c.tags, c.content, c.updated_at, u.name, c.visible
-FROM "articles" as c left join "users" as u on c.user_id = u.id
-where c.channel_id = ? '
-        query_params = [@channel.id]
-        if @channel.visible == 1
-            query << ' and c.user_id = ?'
-            query_params << current_user.id
-        end
+    def index
+        query = 'SELECT c.id, c.title, c.user_id, c.tags, c.content, c.updated_at, c.visible
+FROM "articles" as c where c.user_id = ? '
+        query_params = [current_user.id]
         keyword = params[:keyword]
         unless keyword.blank?
             query << ' and (c.title like ? or c.tags like ?)'
@@ -23,22 +13,17 @@ where c.channel_id = ? '
         query << ' order by c.updated_at desc limit 100;'
         @articles = execsql(query, query_params)
 
-        unless @channel.tags.blank?
-            @tags = @channel.tags.split(',')
-            tag = @tags[rand(@tags.length)]
-            query = 'select id, title from channels where id <> ? and (title like ? or tags like ?) limit 5;'
-            query = ActiveRecord::Base.send :sanitize_sql, [query, @channel.id, "%#{tag}%", "%#{tag}%"]
-            @recomends = ActiveRecord::Base.connection.execute(query)
+        @tags = []
+        @articles.each do |c|
+            unless c['tags'].blank?
+                @tags |= c['tags'].split(',')
+            end
         end
     end
 
     def new
-        unless signed_in?
-            redirect_to root_path
-            return
-        end
-        @channel = Channel.find(params[:channel_id])
-        @article = Article.new(channel_id: params[:channel_id])
+        @article = Article.new
+        store_location
     end
 
     def show
@@ -56,59 +41,68 @@ where c.channel_id = ? '
             query = ActiveRecord::Base.send :sanitize_sql, [query, @article.id, "%#{tag}%", "%#{tag}%"]
             @recomends = ActiveRecord::Base.connection.execute(query)
         end
+        store_location
     end
 
     def create
-        unless signed_in?
-            redirect_to root_path
-            return
-        end
         p = params[:article]
         @article = Article.new title: p[:title], content: p[:content], tags: p[:tags],
-            user_id: current_user.id, channel_id: params[:channel_id], visible: p[:visible],
-           copyright: p[:copyright]
+            user_id: current_user.id, visible: p[:visible], copyright: p[:copyright]
 
         if @article.save
-            redirect_to request.path + '/' + @article.id.to_s
-        else
-            render 'new'
+            saveTags(@article.id, '', @article.tags)
+            redirect_to article_path(@article)
         end
     end
 
     def edit
-        unless signed_in?
-            redirect_to root_path
-            return
-        end
         @article = Article.find(params[:id])
         unless current_user?(@article.user_id)
             redirect_to root_path
             return
         end
-        @items = {'md'=>'Markdown','html'=>'HTML'}
-        @channel = Channel.find(params[:channel_id])
     end
 
     def update
-        unless signed_in?
-            redirect_to root_path
-            return
-        end
         article = Article.find params[:id]
         unless current_user?(article.user_id)
             redirect_to root_path
             return
         end
+        tags = article.tags
         ctype = params[:article][:ctype]
         ctype = 'md' if ctype.blank? || ctype != 'html'
         props = params.require(:article).permit(:title, :content, :tags, :visible, :copyright)
         props[:ctype] = ctype if ctype != article.ctype
 
         if article.update_attributes(props)
-            redirect_to request.path
+            saveTags(article.id, tags, params[:article][:tags])
+            redirect_to article_path(article)
         end
     end
 
     def destroy
+    end
+
+    private
+
+    def saveTags(id, old_tags, tags)
+        return if old_tags == tags
+
+        sql = 'delete from article_tags where article_id = ?;'
+        params = [id]
+        unless tags.blank?
+            tags.split(',').each do |t|
+                sql << 'insert into article_tags(article_id, tag, score) values(?, ?, ?);'
+                params << id << t << 1
+            end
+        end
+        execsql(sql, params)
+    end
+
+    def signed_in_user
+        unless signed_in?
+            redirect_to root_path
+        end
     end
 end

@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="keywords" content="<%=@channel.tags%>">
-    <meta name="description" content="<%=trunc_desc(@channel.description)%>" />
-    <%= render 'layouts/header', title: @channel.title %>
+    <%= render 'layouts/header', title: '文章' %>
     <%= stylesheet_link_tag  'articles' %>
     <%= javascript_include_tag 'articles' %>
 </head>
@@ -11,42 +9,12 @@
 
 <%= render 'layouts/navbar' do %>
     <a class="table-card-cell rcard" href="<%= root_path %>">
-        上级
+        返回
     </a>
-    <% if signed_in? %>
-        <div class="dropdown table-card-cell rcard">
-            <a href="<%= new_channel_article_path %>">
-                写文章
-            </a>
-        </div>
-        <% if current_user?(@channel.user_id) %>
-            <div class="dropdown table-card-cell rcard">
-                <a href="<%= edit_channel_path(@channel) %>">
-                    修改频道
-                </a>
-            </div>
-        <% end %>
-    <% end %>
 <% end %>
 
 <div class="sub-header">
     <div class="flex-container">
-    <div class="flex-content vcard">
-        <h1 class="title lbrcard mcolor">
-            <%= @channel.title %>
-            <% if @channel.visible == 1 %>
-                <img class="visible" src="/assets/icons/locker.gif" />
-            <% end %>
-        </h1>
-        <p class="desc hcard simple">
-            <span class="text"><%= @channel.description %></span>
-            <span class="on">
-            <% if !@channel.description.nil? && @channel.description.length > 70 %>
-                <%= link_to '展开', 'javascript:void(0)', onclick: 'showDesc(this)' %>
-            <% end %>
-        </span>
-        </p>
-    </div>
     </div>
 </div>
 
@@ -57,15 +25,10 @@
                    @articles.each do |article|%>
                     <div class="item box">
                         <div class="box-title name">
-                            <% if article['visible'] == 1  %>
-                                匿名
-                            <% else %>
-                                <%= link_to article['name'], user_path(article['user_id']), class: 'nickname' %>
-                            <% end %>
                             <span class="weak"><%=update_time(article['updated_at'].to_time)%></span>
                         </div>
                         <div class="box-body">
-                            <a href="<%=channel_article_path(@channel, article['id'])%>">
+                            <a href="<%=article_path(article['id'], return_to: articles_path)%>">
                                 <h2 class="mcolor">
                                     <%= article['title'] %>
                                     <% if article['visible'] == 2 %>
@@ -91,32 +54,16 @@
         <div id="fixed" class="flex-body">
             <div class="box tags">
                 <div class="box-title">
-                    频道标签
+                    标签推荐
                 </div>
                 <div class="box-body tagcloud">
                     <% if !@tags.nil? && @tags.length > 0
-                           @tags.each do |t|  %>
-                            <%= link_to t, channels_path(keyword: t), class: 'tag' %>
+                           for i in 0..@tags.length - 1
+                               break if i >= 20 %>
+                            <%= link_to @tags[i], articles_path(keyword: @tags[i]), class: 'tag' %>
                         <% end else %>
-                        暂无
+                        <p>暂无内容</p>
                     <% end %>
-                </div>
-            </div>
-            <div class="box recomends">
-                <div class="box-title">
-                    相关频道
-                </div>
-                <div class="box-body-full">
-                    <ul class="lbrcard contents">
-                        <% if !@recomends.nil? and @recomends.count > 0
-                               @recomends.each do |r| %>
-                                <li class="tcard">
-                                    <%= link_to r['title'], channel_articles_path(r['id'])%>
-                                </li>
-                            <% end else %>
-                            <li class="tcard">暂无</li>
-                        <% end %>
-                    </ul>
                 </div>
             </div>
         </div>

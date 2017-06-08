@@ -1,50 +1,115 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%=@channel.title %>-频道详情-宇哲</title>
-    <%= render 'layouts/header' %>
     <meta name="keywords" content="<%=@channel.tags%>">
     <meta name="description" content="<%=trunc_desc(@channel.description)%>" />
-    <meta name="author" content="<%=@channel.user.name%>">
+    <%= render 'layouts/header', title: @channel.title %>
+    <%= stylesheet_link_tag  'articles' %>
+    <%= javascript_include_tag 'articles' %>
 </head>
 <body>
 
-<nav class="header navbar navbar-default">
-    <div class="container">
-        <%= render 'layouts/navlogo', form: true, action: channels_path,
-           placeholder: '搜索频道' %>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li ><%=link_to '上级', root_path %></li>
-                <li><%= link_to '查看内容', @channel.contents_path %></li>
-                <li><%= link_to '修改', edit_channel_path(@channel) %></li>
-                <%= render 'layouts/navmenu' %>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<div class="body container channels">
-    <div class="block">
-        <h2 class="title">
-            <%= @channel.title %>
-        </h2>
-    </div>
-    <div class="entry block">
-        <%= @channel.description %>
-    </div>
-    <% if !@channel.tags.blank? %>
-        <div class="block">
-            <ul class="postmetadata">
-                <li class="icon_bullet">
-                    <% @channel.tags.split(',').map do |t| %>
-                        <%= t.strip %>&nbsp;
-                    <% end %>&nbsp;
-                </li>
-            </ul>
-        </div>
+<%= render 'layouts/navbar' do %>
+    <a class="table-card-cell rcard" href="<%= root_path %>">
+        返回
+    </a>
+    <% if signed_in? %>
+        <% if current_user?(@channel.user_id) %>
+            <div class="dropdown table-card-cell rcard">
+                <a href="<%= edit_channel_path(@channel) %>">
+                    修改频道
+                </a>
+            </div>
+        <% end %>
     <% end %>
+<% end %>
+
+<div class="sub-header">
+    <div class="flex-container">
+        <div class="flex-content vcard">
+            <h1 class="title card mcolor">
+                <%= @channel.title %>
+            </h1>
+            <p class="desc hcard simple">
+                <span class="text"><%= @channel.description %></span>
+                <span class="on">
+            <% if !@channel.description.nil? && @channel.description.length > 70 %>
+                <%= link_to '展开', 'javascript:void(0)', onclick: 'showDesc(this)' %>
+            <% end %>
+        </span>
+            </p>
+        </div>
+    </div>
 </div>
+
+<div class="body flex-container-21 clearfix channels">
+    <div class="flex-left">
+        <div class="flex-body">
+            <% if @articles.count > 0
+                   @articles.each do |article|%>
+                    <div class="item box">
+                        <div class="box-title name">
+                            <span class="weak"><%=update_time(article['updated_at'].to_time)%></span>
+                        </div>
+                        <div class="box-body">
+                            <a href="<%=article_path(article['id'], return_to: channel_path(@channel))%>">
+                                <h2 class="mcolor">
+                                    <%= article['title'] %>
+                                    <% if article['visible'] == 2 %>
+                                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                                    <% end %>
+                                </h2>
+                            </a>
+                            <div class="entry tcard">
+                                <div class="c_b_p_desc"><%= trunc_desc(article['content']) %></div>
+                            </div>
+                        </div>
+                    </div>
+                <% end else %>
+                <div class="box">
+                    <div class="box-body">
+                        暂无内容
+                    </div>
+                </div>
+            <% end%>
+        </div>
+    </div>
+    <div class="flex-right">
+        <div id="fixed" class="flex-body">
+            <div class="box tags">
+                <div class="box-title">
+                    频道标签
+                </div>
+                <div class="box-body tagcloud">
+                    <% if !@tags.nil? && @tags.length > 0
+                           @tags.each do |t|  %>
+                            <%= link_to t, channels_path(keyword: t), class: 'tag' %>
+                        <% end else %>
+                        暂无
+                    <% end %>
+                </div>
+            </div>
+            <div class="box recomends">
+                <div class="box-title">
+                    相关频道
+                </div>
+                <div class="box-body-full">
+                    <ul class="lbrcard contents">
+                        <% if !@recomends.nil? and @recomends.count > 0
+                               @recomends.each do |r| %>
+                                <li class="tcard">
+                                    <%= link_to r['title'], channel_articles_path(r['id'])%>
+                                </li>
+                            <% end else %>
+                            <li class="tcard">暂无</li>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <%= render 'layouts/footer' %>
 </body>
 </html>

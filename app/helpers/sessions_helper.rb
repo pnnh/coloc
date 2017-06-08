@@ -35,7 +35,11 @@ module SessionsHelper
         session.delete(:return_to)
     end
 
+    def retrive_location
+        @return_to ||= session[:return_to]
+    end
+
     def store_location
-        session[:return_to] = request.fullpath
+        session[:return_to] = params[:return_to] || session[:return_to]
     end
 end

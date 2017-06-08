@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>频道</title>
-    <%= render 'layouts/header' %>
+    <%= render 'layouts/header', title: '频道' %>
     <%= stylesheet_link_tag  'channels' %>
 </head>
 <body>
@@ -15,12 +14,21 @@
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><%= link_to '文章', articles_path %></li>
+                <li role="separator" class="divider"></li>
                 <li><%= link_to '信息', current_user %></li>
                 <li><%= link_to '注销', signout_path, method: 'delete'  %></li>
             </ul>
         </div>
         <div class="dropdown table-card-cell rcard">
-            <%= link_to '创建频道', new_channel_path %>
+            <a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                创建
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><%= link_to '频道', new_channel_path %></li>
+                <li><a href="<%= new_article_path(return_to: root_path) %>">文章</a></li>
+            </ul>
         </div>
     <% else %>
         <a href="<%=signin_path%>" class="table-card-cell rcard">
@@ -40,12 +48,9 @@
                                       description: c['description'], visible: c['visible']) %>
                 <div class="post box">
                     <div class="box-title">
-                        <a href="<%=contents_path(channel.id, channel.ctype)%>" class="title">
+                        <a href="<%=channel_path(channel.id)%>" class="title">
                             <h1 class="mcolor">
                                 <%=channel.title%>
-                                <% if channel.visible == 1 %>
-                                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-                                <% end %>
                             </h1>
                         </a>
                     </div>
@@ -60,7 +65,7 @@
         <div id="fixed" class="flex-body">
             <div class="box tags">
                 <div class="box-title">
-                    标签
+                    标签推荐
                 </div>
                 <div class="box-body tagcloud">
                     <% if !@tags.nil? && @tags.length > 0

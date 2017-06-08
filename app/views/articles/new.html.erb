@@ -31,12 +31,8 @@
                 <div class="form-group">
                     <%= f.text_field :copyright, placeholder: '版权', class: 'form-control' %>
                 </div>
-                <% if @channel.visible == 0 %>
-                    <%= f.submit '公开', class: 'btn btn-default', onclick: 'setVisible(0);' %>
-                    <%= f.submit '匿名', class: 'btn btn-default', onclick: 'setVisible(1);' %>
-                <% else %>
-                    <%= f.submit '私有', class: 'btn btn-default', onclick: 'setVisible(2);' %>
-                <% end %>
+                <%= f.submit '公开', class: 'btn btn-default', onclick: 'setVisible(0);' %>
+                <%= f.submit '私有', class: 'btn btn-default', onclick: 'setVisible(2);' %>
             <% end %>
         </div>
     </div>

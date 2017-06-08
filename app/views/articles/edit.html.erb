@@ -21,7 +21,7 @@
     <a href="javascript:void(0)" class="table-card-cell rcard" onclick="setVisible(2)">
         私有
     </a>
-    <a href="<%=channel_article_path(@channel, @article.id)%>" class="table-card-cell rcard">
+    <a href="<%=article_path(@article.id)%>" class="table-card-cell rcard">
         取消
     </a>
 <% end %>
@@ -29,26 +29,9 @@
 <div id="fixed-before" class="channel-title">
     <div class="flex-container">
         <div class="flex-content card">
-            <% if current_user.admin %>
-                <div class="input-group input-select-group">
-                    <%= text_field_tag 'article[title]', @article.title, placeholder: '标题', class: 'form-control' %>
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="title"><%= @items[@article.ctype] %></span><span class="caret"></span>
-                        </button>
-                        <%= hidden_field_tag 'article[ctype]', @article.ctype, class: 'dropdown-value' %>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <% @items.each do |v,t| %>
-                                <li><a href="javascript:void(0)" data-value="<%= v %>"><%= t %></a></li>
-                            <% end %>
-                        </ul>
-                    </div>
-                </div>
-            <% else %>
-                <div class="form-group">
-                    <%= f.text_field :title, placeholder: '标题', class: 'form-control' %>
-                </div>
-            <% end %>
+            <div class="form-group">
+                <%= f.text_field :title, placeholder: '标题', class: 'form-control' %>
+            </div>
         </div>
     </div>
 </div>

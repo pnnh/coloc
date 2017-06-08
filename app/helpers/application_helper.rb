@@ -16,6 +16,6 @@ module ApplicationHelper
 
     def execsql(query, params)
         cmd = ActiveRecord::Base.send :sanitize_sql, params.insert(0, query)
-        @channels = ActiveRecord::Base.connection.execute(cmd)
+        ActiveRecord::Base.connection.execute(cmd)
     end
 end

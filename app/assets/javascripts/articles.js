@@ -12,16 +12,3 @@ var showDesc = function(el) {
         parents(".desc").removeClass("simple").addClass("full");
     }
 };
-
-$(function () {
-   $("form .input-select-group").each(function () {
-       var toggleLabel = $(this).find(".dropdown-toggle .title");
-       var dropVal = $(this).find(".dropdown-value");
-      $(this).find("a[data-value]").each(function () {
-        $(this).click(function () {
-            dropVal.val($(this).data("value"));
-            toggleLabel.text($(this).text());
-        });
-      });
-   });
-});
