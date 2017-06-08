@@ -65,7 +65,8 @@ where c.channel_id = ? '
         end
         p = params[:article]
         @article = Article.new title: p[:title], content: p[:content], tags: p[:tags],
-            user_id: current_user.id, channel_id: params[:channel_id], visible: p[:visible]
+            user_id: current_user.id, channel_id: params[:channel_id], visible: p[:visible],
+           copyright: p[:copyright]
 
         if @article.save
             redirect_to request.path + '/' + @article.id.to_s

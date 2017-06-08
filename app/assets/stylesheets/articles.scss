@@ -10,7 +10,13 @@ div.article {
         padding: 10px;
         margin: 0;
     }
-    h5 {margin-bottom:6px;}
+    h1,h2,h3,h4,h5,h6 {margin:10px 0;}
+    h1 { font-size: 1.25em; color:#CC0033;}
+    h2 { font-size: 1.2em; color:#CC3366;}
+    h3 { font-size: 1.15em; color:#CC6600;}
+    h4 { font-size: 1.1em; color:#3db6bf;}
+    h5 { font-size: 1.05em; color:#c3c35f;}
+    h6 {  font-size: 1em; color:#9c6398;}
 
     .block.main-title{
         padding: 5px 10px;
@@ -28,10 +34,6 @@ div.article {
         font-size: inherit;
         padding: 0 20px;
         margin: 0 0 10px;
-    }
-    [id^=part-] {
-        margin-top: -60px;
-        padding-top: 60px;
     }
     textarea.content { min-height: 300px; }
 }

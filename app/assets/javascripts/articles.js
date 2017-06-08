@@ -24,13 +24,4 @@ $(function () {
         });
       });
    });
-
-    $('body').scrollspy({ offset: 60, target:'#fixed-spy'});
-    $('#fixed-spy').on('activate.bs.scrollspy', function (e) {
-        if(e.target.firstChild.hash === '#fixed') {
-            $('#fixed').addClass('fixed');
-        } else {
-            $('#fixed').removeClass('fixed');
-        }
-    });
 });

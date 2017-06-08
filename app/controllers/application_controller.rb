@@ -44,10 +44,7 @@ class ApplicationController < ActionController::Base
                 :tables => true
             }
 
-            html = Redcarpet::Markdown.new(renderer, options).render(text).html_safe
-
-            arr = html.scan(/^<h(\d) id="(part-\w+)">([^<]+)<\/h\1>$/)
-            [html, arr]
+            Redcarpet::Markdown.new(renderer, options).render(text).html_safe
         #end
 
     end

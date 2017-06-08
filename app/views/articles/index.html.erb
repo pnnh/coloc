@@ -10,6 +10,9 @@
 <body>
 
 <%= render 'layouts/navbar' do %>
+    <a class="table-card-cell rcard" href="<%= root_path %>">
+        上级
+    </a>
     <% if signed_in? %>
         <div class="dropdown table-card-cell rcard">
             <a href="<%= new_channel_article_path %>">
@@ -29,12 +32,12 @@
 <div class="sub-header">
     <div class="flex-container">
     <div class="flex-content vcard">
-        <h3 class="title lbrcard">
+        <h1 class="title lbrcard mcolor">
             <%= @channel.title %>
             <% if @channel.visible == 1 %>
                 <img class="visible" src="/assets/icons/locker.gif" />
             <% end %>
-        </h3>
+        </h1>
         <p class="desc hcard simple">
             <span class="text"><%= @channel.description %></span>
             <span class="on">
@@ -63,12 +66,12 @@
                         </div>
                         <div class="box-body">
                             <a href="<%=channel_article_path(@channel, article['id'])%>">
-                                <h4>
+                                <h2 class="mcolor">
                                     <%= article['title'] %>
                                     <% if article['visible'] == 2 %>
                                         <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
                                     <% end %>
-                                </h4>
+                                </h2>
                             </a>
                             <div class="entry tcard">
                                 <div class="c_b_p_desc"><%= trunc_desc(article['content']) %></div>

@@ -23,9 +23,6 @@
             <%= link_to '创建频道', new_channel_path %>
         </div>
     <% else %>
-        <a href="<%=signup_path%>" class="table-card-cell rcard">
-            注册
-        </a>
         <a href="<%=signin_path%>" class="table-card-cell rcard">
             登录
         </a>
@@ -43,12 +40,14 @@
                                       description: c['description'], visible: c['visible']) %>
                 <div class="post box">
                     <div class="box-title">
-                        <h4>
-                            <%= link_to channel.title, contents_path(channel.id, channel.ctype), class: 'title' %>
-                            <% if channel.visible == 1 %>
-                                <img class="visible" src="/assets/icons/locker.gif" />
-                            <% end %>
-                        </h4>
+                        <a href="<%=contents_path(channel.id, channel.ctype)%>" class="title">
+                            <h1 class="mcolor">
+                                <%=channel.title%>
+                                <% if channel.visible == 1 %>
+                                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                                <% end %>
+                            </h1>
+                        </a>
                     </div>
                     <div class="box-body">
                         <div class="c_b_p_desc"><%= trunc_desc(channel.description) %></div>
