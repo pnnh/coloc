@@ -5,6 +5,6 @@ class AddCtypeCopyrightToArticles < ActiveRecord::Migration
                    default: 'md', null: false
         # 文章版权说明
         add_column :articles, :copyright, :string,
-                   default: '', null: false
+                   default: ''
     end
 end
