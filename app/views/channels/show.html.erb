@@ -49,18 +49,12 @@
                    @articles.each do |article|%>
                     <div class="item box">
                         <div class="box-title name">
+                            <a href="<%=article_path(article['id'], return_to: channel_path(@channel))%>">
                             <span class="weak"><%=update_time(article['updated_at'].to_time)%></span>
+                            </a>
                         </div>
                         <div class="box-body">
-                            <a href="<%=article_path(article['id'], return_to: channel_path(@channel))%>">
-                                <h2 class="mcolor">
-                                    <%= article['title'] %>
-                                    <% if article['visible'] == 2 %>
-                                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-                                    <% end %>
-                                </h2>
-                            </a>
-                            <div class="entry tcard">
+                            <div class="entry">
                                 <div class="c_b_p_desc"><%= trunc_desc(article['content']) %></div>
                             </div>
                         </div>

@@ -25,19 +25,6 @@
 <% end %>
 
 <div id="fixed-before" class="sub-header">
-    <div class="flex-container">
-        <div class="flex-content card">
-            <h1 class="title mcolor tcard">
-                <%= @article.title %>
-                <% if @article.visible == 2 %>
-                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-                <% end %>
-            </h1>
-            <div class="name">
-                <span class="time"><%=update_time(@article.updated_at)%></span>
-            </div>
-        </div>
-    </div>
 </div>
 
 <div class="body flex-container-21">

@@ -28,7 +28,7 @@ FROM "channels" as c where c.visible = ? '
             query << ' and c.title like ? or c.tags like ?'
             query_params << "%#{keyword}%" << "%#{keyword}%"
         end
-        query << ' limit 100;'
+        query << 'order by updated_at desc limit 100;'
         @channels = execsql(query, query_params)
 
         @tags = []
@@ -45,7 +45,7 @@ FROM "channels" as c where c.visible = ? '
         query = 'select articles.*, tmp.tag
 from articles join
   (select article_tags.article_id,article_tags.tag,channel_tags.score channel_score, article_tags.score article_score,
-     rank() over(PARTITION BY article_tags.article_id order by channel_tags.score asc, article_tags.score ASC) rank
+     row_number() over(PARTITION BY article_tags.article_id order by channel_tags.score asc, article_tags.score ASC) rank
    from channel_tags join article_tags on article_tags.tag = channel_tags.tag
    where channel_tags.channel_id = ?) as tmp
   on articles.id = tmp.article_id

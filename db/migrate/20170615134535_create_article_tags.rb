@@ -4,8 +4,6 @@ class CreateArticleTags < ActiveRecord::Migration
       t.references :article
       t.string :tag, null: false
       t.integer :score, default: 1
-
-      t.timestamps
     end
   end
 end

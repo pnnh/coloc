@@ -4,8 +4,6 @@ class CreateChannelTags < ActiveRecord::Migration
       t.references :channel
       t.string :tag, null: false
       t.integer :score, default: 1
-
-      t.timestamps
     end
   end
 end
