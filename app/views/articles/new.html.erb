@@ -7,11 +7,7 @@
 </head>
 <body>
 
-<%= render 'layouts/navbar' do %>
-<% end %>
-
-<div id="fixed-before" class="sub-header">
-</div>
+<%= render 'layouts/navbar' %>
 
 <div class="body flex-container">
     <div class="box">
@@ -19,6 +15,9 @@
             <%= render :partial => 'errors', :object => @article.errors %>
             <%= form_for @article, url: request.path.sub('/new', '') do |f| %>
                 <%= f.hidden_field :visible %>
+                <div class="form-group">
+                    <%= f.text_field :title, placeholder: '标题', class: 'form-control' %>
+                </div>
                 <div class="form-group">
                     <%= f.text_area :content, placeholder: '正文', class: 'form-control', rows: 20 %>
                 </div>

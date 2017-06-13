@@ -7,10 +7,10 @@
 <body>
 
 <%= render 'layouts/navbar' do %>
+    <a class="table-card-cell rcard" href="<%= channel_path(@channel) %>">
+        返回
+    </a>
 <% end %>
-
-<div id="fixed-before" class="sub-header">
-</div>
 
 <div class="body flex-container channels">
     <div class="box">

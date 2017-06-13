@@ -103,8 +103,8 @@ table {
 }
 
 nav.header {
+    position: inherit;
     border-width: 0 0 1px 0;
-    position: fixed;
     top: 0;
     width: 100%;
     background: #fff;
@@ -129,7 +129,6 @@ nav.header {
 
 
 .sub-header {
-    padding-top: 50px;
     background: #fff;
     border-bottom: 1px solid #e7eaf1;
     box-shadow: 0 1px 3px 0 rgba(0,37,55,.05);
@@ -165,9 +164,11 @@ nav.header {
     }
 }
 
-a.navbar-brand {
-    padding: 13px 15px 13px 0;
-    img.logo { height: 100%; }
+a.brand {
+    padding-right: 10px;
+    height: 40px;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 /* 底部导航 */

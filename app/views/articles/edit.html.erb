@@ -12,23 +12,23 @@
     <%= f.hidden_field :visible %>
 
 <%= render 'layouts/navbar' do %>
+    <a href="<%=article_path(@article.id)%>" class="table-card-cell rcard">
+        返回
+    </a>
     <a href="javascript:void(0)" class="table-card-cell rcard" onclick="setVisible(0)">
         公开
     </a>
     <a href="javascript:void(0)" class="table-card-cell rcard" onclick="setVisible(2)">
         私有
     </a>
-    <a href="<%=article_path(@article.id)%>" class="table-card-cell rcard">
-        取消
-    </a>
 <% end %>
-
-<div id="fixed-before" class="channel-title">
-</div>
 
 <div class="body flex-container clearfix article">
     <div class="box">
         <div class="box-body">
+            <div class="bcard">
+                <%= f.text_field :title, placeholder: '标题', class: 'form-control' %>
+            </div>
             <div class="bcard">
                 <%= f.text_area :content, placeholder: '正文', class: 'content form-control', rows: 20 %>
             </div>
