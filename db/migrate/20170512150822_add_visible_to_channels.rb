@@ -1,4 +1,4 @@
-class AddVisibleToChannels < ActiveRecord::Migration
+class AddVisibleToChannels < ActiveRecord::Migration[5.0]
     def change
         # 频道可见性 0 公开 1 私有
         add_column :channels, :visible, :integer,

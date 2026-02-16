@@ -1,4 +1,4 @@
-class AddVisibleToArticles < ActiveRecord::Migration
+class AddVisibleToArticles < ActiveRecord::Migration[5.0]
     def change
         # 文章可见性 0 公开 1 匿名
         add_column :articles, :visible, :integer,

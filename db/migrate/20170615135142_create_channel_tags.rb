@@ -1,4 +1,4 @@
-class CreateChannelTags < ActiveRecord::Migration
+class CreateChannelTags < ActiveRecord::Migration[5.0]
   def change
     create_table :channel_tags do |t|
       t.references :channel

@@ -1,4 +1,4 @@
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 
 # Pick the frameworks you want:
 require "active_model/railtie"
@@ -30,6 +30,10 @@ module Coloc
         config.time_zone = 'Beijing'
         config.active_record.default_timezone = :local
 
-        config.cache_store = :redis_store, {size: 128.megabytes}
+        # Rails 7配置
+        config.load_defaults 7.0
+
+        # 修复redis缓存配置
+        config.cache_store = :redis_cache_store, { url: 'redis://localhost:6379/0' }
     end
 end

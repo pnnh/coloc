@@ -1,4 +1,4 @@
-class AddCtypeCopyrightToArticles < ActiveRecord::Migration
+class AddCtypeCopyrightToArticles < ActiveRecord::Migration[5.0]
     def change
         # 文章内容类型 md Markdown, html HTML
         add_column :articles, :ctype, :string,

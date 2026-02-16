@@ -13,8 +13,8 @@ development:
     adapter: postgresql
     encoding: utf8
     database: coloc
-    username: coloc
-    password: i(2P]*d19|sFq8
+    username: postgres
+    password: 123456
     pool: 5
     timeout: 5000
     host: 127.0.0.1
